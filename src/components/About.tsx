@@ -34,11 +34,11 @@ const About: React.FC = () => {
         <div className="w-full justify-start items-center gap-8 grid lg:grid-cols-2 grid-cols-1">
           <div className="w-full flex-col justify-start lg:items-start items-center gap-10 inline-flex">
             <div className="w-full flex-col justify-start lg:items-start items-center gap-4 flex">
-              <h2 className="text-gray-900 text-2xl font-bold leading-normal lg:text-start text-center">
+              <h2 className="dark:invert text-gray-900 text-2xl font-bold leading-normal lg:text-start text-center">
                 {aboutContent.title}
               </h2>
               {isVisible && (
-                <p className="text-gray-500 text-base font-normal leading-relaxed lg:text-start text-center">
+                <p className="dark:invert text-gray-700 text-base font-normal leading-relaxed lg:text-start text-center">
                   {aboutContent.body}
                 </p>
               )}
@@ -53,10 +53,11 @@ const About: React.FC = () => {
             </button>
           </div>
           <img 
-            className="lg:mx-0 mx-auto h-full rounded-3xl object-cover" 
-            src={aboutContent.imageUrl} 
-            alt="About Us" 
-          />
+  className="lg:mx-0 mx-auto h-auto max-h-96 rounded-3xl object-cover" 
+  src={aboutContent.imageUrl} 
+  alt="About Us" 
+/>
+
         </div>
       </div>
     </section>

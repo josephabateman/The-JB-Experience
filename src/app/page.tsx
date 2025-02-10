@@ -4,6 +4,7 @@ import { Faq } from "@/components/Faq"; // Ensure this path is correct
 import { Contact } from "@/components/Contact"; // Ensure this path is correct
 import Youtube from "../components/Youtube"; // Correct path
 import Testimonials from "../components/Testimonials"; // Correct path
+import ThemeChanger from "@/components/ThemeChanger"; // Import the ThemeChanger component
 
 export default function Home() {
   return (
@@ -27,6 +28,9 @@ export default function Home() {
           <Contact />
         </div>
       </div>
+
+      {/* Theme Changer button will now appear at the bottom-right */}
+      <ThemeChanger />
     </div>
   );
 }
