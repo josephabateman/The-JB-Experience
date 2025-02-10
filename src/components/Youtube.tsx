@@ -1,11 +1,15 @@
 "use client"; // 👈 Required for Next.js client components
 
-
 import dynamic from "next/dynamic";
 import { useState, useRef } from "react";
 import * as Slider from "@radix-ui/react-slider";
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
+
+// Define an interface for the state parameter
+interface ProgressState {
+  played: number;
+}
 
 const Youtube: React.FC = () => {
   const [muted, setMuted] = useState(true);
@@ -15,12 +19,8 @@ const Youtube: React.FC = () => {
 
   const toggleMute = () => setMuted((prev) => !prev);
   const togglePlay = () => setPlaying((prev) => !prev);
-  const handleProgress = (state) => setPlayed(state.played);
-  const handleSeek = (value) => {
-    if (playerRef.current) {
-      playerRef.current.seekTo(value, "fraction");
-    }
-  };
+
+
 
   return (
     <div className="relative w-full">
@@ -36,7 +36,6 @@ const Youtube: React.FC = () => {
           width="100%"
           height="100%"
           className="absolute top-0 left-0"
-          onProgress={handleProgress}
           config={{
             youtube: {
               playerVars: {
