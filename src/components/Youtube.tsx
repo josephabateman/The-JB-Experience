@@ -1,5 +1,6 @@
 "use client"; // 👈 Required for Next.js client components
 
+
 import dynamic from "next/dynamic";
 import { useState, useRef } from "react";
 import * as Slider from "@radix-ui/react-slider";
