@@ -39,7 +39,7 @@ export const Contact = () => {
 
   return (
     <div className="w-full bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
+      <h2 className="dark:invert text-2xl font-bold mb-4">Contact Us</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-gray-700">Name</label>
