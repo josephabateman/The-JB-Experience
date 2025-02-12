@@ -3,11 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Disclosure } from "@headlessui/react";
 
-interface NavbarProps {
-  isPlaying: boolean;
-}
-
-export const Navbar: React.FC<NavbarProps> = ({ isPlaying }) => {
+export const Navbar: React.FC = () => {
   const navigation = [
     { name: "About", link: "#about" },
     { name: "Testimonials", link: "#testimonials" },
@@ -17,11 +13,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isPlaying }) => {
 
   return (
     <div className="w-full">
-      <nav
-        className={`absolute top-0 left-0 w-full z-10 flex flex-wrap items-center justify-between p-2 transition-all duration-300 ${
-          isPlaying ? "bg-transparent" : "backdrop-blur-lg bg-white/10"
-        }`}
-      >
+      <nav className="absolute top-0 left-0 w-full z-10 flex flex-wrap items-center justify-between p-2 backdrop-blur-lg bg-white/10 transition-all duration-300">
         {/* Logo */}
         <Link href="/">
           <span className="flex items-center space-x-2 dark:text-gray-100 py-2 ml-4 text-white rounded-md">

@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import { Navbar } from "@/components/Navbar"; // Ensure this path is correct
 import About from "../components/About"; // Correct import for default export
 import { Faq } from "@/components/Faq"; // Ensure this path is correct
@@ -9,16 +6,11 @@ import Youtube from "../components/Youtube"; // Correct path
 import Testimonials from "../components/Testimonials"; // Correct path
 import ThemeChanger from "@/components/ThemeChanger"; // Import the ThemeChanger component
 
-
-
-
 export default function Home() {
-  const [isPlaying, setIsPlaying] = useState(true);
-  
   return (
     <div>
-      <Navbar isPlaying={isPlaying} />
-      <Youtube onPlayStateChange={setIsPlaying} />
+      <Navbar />
+      <Youtube />
       
       <section id="about">
         <About />

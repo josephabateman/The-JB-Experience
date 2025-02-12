@@ -2,24 +2,17 @@
 
 import dynamic from "next/dynamic";
 import { useState, useRef } from "react";
+import * as Slider from "@radix-ui/react-slider";
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
-interface YoutubeProps {
-  onPlayStateChange: (isPlaying: boolean) => void;
-}
-
-const Youtube: React.FC<YoutubeProps> = ({ onPlayStateChange }) => {
+const Youtube: React.FC = () => {
   const [muted, setMuted] = useState(true);
   const [playing, setPlaying] = useState(true);
   const playerRef = useRef(null);
 
   const toggleMute = () => setMuted((prev) => !prev);
-  const togglePlay = () => {
-    const newState = !playing;
-    setPlaying(newState);
-    onPlayStateChange(newState); // Notify parent (Navbar)
-  };
+  const togglePlay = () => setPlaying((prev) => !prev);
 
   return (
     <div className="relative w-full">
