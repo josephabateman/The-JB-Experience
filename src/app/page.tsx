@@ -4,6 +4,8 @@ import About from "../components/About";
 import { Faq } from "@/components/Faq";
 import { Contact } from "@/components/Contact";
 import Youtube from "../components/Youtube";
+import HostedVideo from "../components/HostedVideo";
+
 
 // Dynamically import the Testimonials (or ReviewsSlider) component
 const Testimonials = dynamic(() => import("../components/Testimonials"), {
@@ -17,7 +19,7 @@ export default function Home() {
   return (
     <div>
       <Navbar />
-      <Youtube />
+      <HostedVideo />
       
       <section id="about">
         <About />

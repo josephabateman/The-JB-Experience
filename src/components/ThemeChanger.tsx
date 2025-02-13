@@ -13,6 +13,27 @@ const ThemeChanger = () => {
 
   return (
     <div className="fixed bottom-4 right-4 z-20">
+      
+{/* watch on youtube */}
+<a
+  href="https://www.youtube.com/watch?v=b7RNiZ3eUxc"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="inline-flex items-center px-4 mr-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded transition"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-6 h-6 mr-2"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
+    <path d="M19.615 3.184C21.068 3.63 22 4.715 22 6.17v11.66c0 1.456-.932 2.54-2.385 2.986C18.682 21.5 12 21.5 12 21.5s-6.682 0-7.615-.684C2.932 20.37 2 19.286 2 17.83V6.17c0-1.456.932-2.54 2.385-2.986C5.318 2.5 12 2.5 12 2.5s6.682 0 7.615.684zM10 15l5-3-5-3v6z"/>
+  </svg>
+  Watch on YouTube
+</a>
+
+{/* watch on youtube */}
+
       {theme === "dark" ? (
         <button
           onClick={() => setTheme("light")}
