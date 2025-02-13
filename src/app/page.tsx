@@ -3,7 +3,6 @@ import { Navbar } from "@/components/Navbar";
 import About from "../components/About";
 import { Faq } from "@/components/Faq";
 import { Contact } from "@/components/Contact";
-import Youtube from "../components/Youtube";
 import HostedVideo from "../components/HostedVideo";
 
 
