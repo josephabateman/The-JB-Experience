@@ -1,10 +1,17 @@
-import { Navbar } from "@/components/Navbar"; // Ensure this path is correct
-import About from "../components/About"; // Correct import for default export
-import { Faq } from "@/components/Faq"; // Ensure this path is correct
-import { Contact } from "@/components/Contact"; // Ensure this path is correct
-import Youtube from "../components/Youtube"; // Correct path
-import Testimonials from "../components/Testimonials"; // Correct path
-import ThemeChanger from "@/components/ThemeChanger"; // Import the ThemeChanger component
+import dynamic from "next/dynamic";
+import { Navbar } from "@/components/Navbar";
+import About from "../components/About";
+import { Faq } from "@/components/Faq";
+import { Contact } from "@/components/Contact";
+import Youtube from "../components/Youtube";
+
+// Dynamically import the Testimonials (or ReviewsSlider) component
+const Testimonials = dynamic(() => import("../components/Testimonials"), {
+  ssr: false,
+  loading: () => <p>Loading testimonials...</p>,
+});
+
+import ThemeChanger from "@/components/ThemeChanger";
 
 export default function Home() {
   return (
@@ -29,7 +36,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Theme Changer button will now appear at the bottom-right */}
+      {/* Theme Changer button appears at the bottom-right */}
       <ThemeChanger />
     </div>
   );

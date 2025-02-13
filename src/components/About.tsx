@@ -57,10 +57,11 @@ const About: React.FC = () => {
   className="lg:mx-0 mx-auto h-auto max-h-96 rounded-3xl object-cover"
   src={aboutContent.imageUrl}
   alt="About Us"
-  width={1200} // Specify the width of the image
-  height={800} // Specify the height of the image
-  loading="lazy"
+  width={1200}
+  height={800}
+  priority // This loads the image immediately
 />
+
 
         </div>
       </div>
