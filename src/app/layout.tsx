@@ -2,7 +2,6 @@
 import { ThemeProvider } from "next-themes";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { PopupWidget }  from "@/components/PopupWidget";
 import { Inter } from "next/font/google";
 import "./globals.css";  // global styles import
 
