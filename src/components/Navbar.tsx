@@ -1,7 +1,8 @@
 "use client";
+
+import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import Image from "next/image";
-import { Disclosure } from "@headlessui/react";
 
 export const Navbar: React.FC = () => {
   const navigation = [
@@ -13,44 +14,50 @@ export const Navbar: React.FC = () => {
 
   return (
     <div className="w-full">
-      <nav className="absolute top-0 left-0 w-full z-10 flex flex-wrap items-center justify-between p-2 transition-all duration-300">
+      <nav className="absolute top-0 left-0 w-full z-10 flex flex-wrap items-center justify-between p-4 transition-all duration-300">
         {/* Logo */}
-        <Link href="/">
-          <span className="flex items-center space-x-2 dark:text-gray-100 py-2 ml-4 text-white rounded-md">
-            <span>The</span>
-            <span>
-              <Image src="/img/logo.svg" width="32" height="32" alt="Logo" className="w-8 invert" />
-            </span>
-            <span>Experience</span>
-          </span>
+        <Link href="/" className="flex items-center space-x-2 text-white rounded-md">
+          <span>The</span>
+          <Image src="/img/logo.svg" width="32" height="32" alt="Logo" className="w-8 invert" />
+          <span>Experience</span>
         </Link>
 
-        <Disclosure>
-          {({ open }) => (
+        {/* Mobile Navigation */}
+        <Disclosure as="div" className="lg:hidden">
+          {({ open, close }) => (
             <>
-              <Disclosure.Button
-                aria-label="Toggle Menu"
-                className="px-2 py-1 text-white rounded-md lg:hidden hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:text-white dark:focus:bg-trueGray-700"
-              >
-                <svg className="w-6 h-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  {open ? (
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
-                    />
-                  ) : (
-                    <path fillRule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2z" />
-                  )}
-                </svg>
+              {/* Menu Button */}
+              <Disclosure.Button className="relative z-20 p-2 text-white rounded-md focus:outline-none">
+                {open ? (
+                  <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 5h16M4 12h16M4 19h16" />
+                  </svg>
+                )}
               </Disclosure.Button>
 
-              <Disclosure.Panel className="flex flex-wrap w-full my-5 lg:hidden">
+              {/* Mobile Menu Panel */}
+              <Disclosure.Panel className="fixed top-0 left-0 w-full h-screen bg-gray-900 bg-opacity-90 z-20 flex flex-col items-center justify-center space-y-6">
+                {/* Close Button in Top Right */}
+                <button
+                  onClick={() => close()} 
+                  className="absolute top-5 right-5 text-white hover:text-red-400 transition"
+                >
+                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+
+                {/* Menu Items */}
                 {navigation.map((item, index) => (
                   <Link
                     key={index}
                     href={item.link}
-                    className="w-full px-4 py-2 ml-4 text-white rounded-md hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none"
+                    className="text-white text-2xl px-6 py-3 rounded-md hover:text-indigo-400 transition"
+                    onClick={() => close()} // Close menu when clicking an item
                   >
                     {item.name}
                   </Link>
@@ -60,15 +67,12 @@ export const Navbar: React.FC = () => {
           )}
         </Disclosure>
 
-        {/* Menu */}
-        <div className="hidden text-center lg:flex lg:items-center">
-          <ul className="items-center justify-end flex-1 pt-6 list-none lg:pt-0 lg:flex">
+        {/* Desktop Menu */}
+        <div className="hidden lg:flex">
+          <ul className="flex space-x-6">
             {navigation.map((item, index) => (
-              <li className="mr-3 nav__item" key={index}>
-                <Link
-                  href={item.link}
-                  className="inline-block px-4 py-2 text-lg font-normal text-white no-underline rounded-md hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
-                >
+              <li key={index}>
+                <Link href={item.link} className="text-white hover:text-indigo-500 transition">
                   {item.name}
                 </Link>
               </li>

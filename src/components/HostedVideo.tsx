@@ -96,12 +96,12 @@ const HostedVideo: React.FC = () => {
       )}
 
       {controlsVisible && (
-        <div className="absolute bottom-[10%] right-4 lg:top-[10%] lg:bottom-auto flex flex-col space-y-2 lg:flex-row lg:space-x-2 lg:space-y-0">
-          <button
+        <div className="absolute bottom-[10%] right-4 lg:top-[10%] lg:bottom-auto flex flex-row space-x-2">
+        <button
             onClick={toggleMute}
-            className="inline-flex items-center px-4 py-2 bg-gray-800 hover:bg-gray-900 text-white rounded-full transition"
+            className="inline-flex items-center px-2 py-2 bg-gray-800 hover:bg-gray-900 text-white rounded-full transition"
           >
-            {isMuted ? "Unmute 🔊" : "Mute 🔇"}
+            {isMuted ? "🔊" : "🔇"}
           </button>
           <a
             href="https://www.youtube.com/watch?v=b7RNiZ3eUxc"
