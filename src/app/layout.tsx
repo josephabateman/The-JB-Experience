@@ -8,8 +8,8 @@ import "./globals.css";  // global styles import
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "The JB Experience – High-Energy Pop, Rock & Soul Band for Weddings, Parties & Events in East London",
-  description: "The JB Experience is a high-energy pop, rock, and soul band based in East London. Perfect for weddings, corporate events, birthday parties, and private functions. Book now for unforgettable live entertainment!",
+  title: "The JB Experience – High-Energy Pop, Rock & Soul Band for Weddings, Parties & Events in London",
+  description: "The JB Experience is a high-energy pop, rock, and soul band based in London. Perfect for weddings, corporate events, birthday parties, and private functions. Book now for unforgettable live entertainment!",
 };
 
 export default function RootLayout({

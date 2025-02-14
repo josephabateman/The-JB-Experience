@@ -12,7 +12,7 @@ interface AboutContent {
 
 const aboutContent: AboutContent = {
   title:
-    "The JB Experience are a high-energy Pop, Rock & Folk Band with countless performances for Weddings, Parties & Events in East London...",
+    "The JB Experience are a high-energy Pop, Rock & Folk Band with countless performances for Weddings, Parties & Events in London...",
   body: `Based in East London, The JB Experience is a high-energy band known for delivering an unforgettable mix of pop, rock, soul, and funk music. Led by Joe Bateman, a talented multi-instrumentalist, singer-songwriter, and producer, the band provides top-tier live performances that guarantee a packed dance floor at every event.
 
 Whether you're organizing a wedding, corporate event, birthday party, or private function, The JB Experience brings the perfect energy and atmosphere to your celebration. Their seamless blend of music and personalized performances makes them the ideal choice for events in East London and beyond.
