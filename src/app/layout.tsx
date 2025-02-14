@@ -1,9 +1,9 @@
-// app/layout.tsx
 import { ThemeProvider } from "next-themes";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Inter } from "next/font/google";
-import "./globals.css";  // global styles import
+import Script from "next/script";  // Import next/script
+import "./globals.css";  
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,12 +19,31 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Google Tag Manager Script */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-16871323737"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-16871323737');
+            `,
+          }}
+        />
+      </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class">
-          <Navbar /> {/* You can enable this later when you're ready */}
+          <Navbar />
           <div>{children}</div>
           <Footer />
-          {/* <PopupWidget /> */}
         </ThemeProvider>
       </body>
     </html>
