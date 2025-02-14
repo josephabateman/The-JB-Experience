@@ -55,14 +55,17 @@ const About: React.FC = () => {
             </button>
           </div>
           {/* Optimized Image */}
-          <Image
-            className="lg:mx-0 mx-auto h-auto max-h-96 rounded-3xl object-cover"
-            src={aboutContent.imageUrl}
-            alt="About Us"
-            width={1200}
-            height={800}
-            priority // Loads the image immediately, improving LCP
-          />
+          <div className="relative w-full aspect-video">
+  <iframe
+    className="w-full h-full rounded-3xl"
+    src="https://www.youtube.com/embed/b7RNiZ3eUxc"
+    title="YouTube video player"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  ></iframe>
+</div>
+
         </div>
       </div>
     </section>
