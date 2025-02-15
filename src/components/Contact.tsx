@@ -37,19 +37,25 @@ export const Contact = () => {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });
 
+        console.log("✅ Form submitted successfully. Triggering Google Ads conversion...");
+
         // ✅ Google Ads conversion tracking event
         if (typeof window !== "undefined" && window.gtag) {
           window.gtag("event", "conversion", {
             send_to: "AW-16871323737/3ig2CIyTmp4aENnw7-w-",
+            event_callback: () => {
+              console.log("✅ Google Ads conversion successfully fired!");
+            },
           });
         } else {
-          console.warn("Google Ads tracking not available");
+          console.warn("⚠️ Google Ads tracking not available.");
         }
       } else {
         setStatus("error");
+        console.error("❌ Error: Form submission failed.");
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("❌ Error submitting form:", error);
       setStatus("error");
     }
   };
