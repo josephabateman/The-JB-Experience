@@ -24,10 +24,29 @@ export default function RootLayout({
         {/* Favicon */}
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-        {/* Google Tag Manager Script */}
+        {/* Google Ads Conversion Tracking */}
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=AW-16871323737"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-ads"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-16871323737');
+            `,
+          }}
+        />
+
+        {/* Google Analytics (GA4) */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-FZKECVBGWM"
           strategy="afterInteractive"
         />
         <Script
@@ -38,7 +57,7 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'AW-16871323737');
+              gtag('config', 'G-FZKECVBGWM');
             `,
           }}
         />
