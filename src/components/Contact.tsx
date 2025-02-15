@@ -1,5 +1,13 @@
 "use client";
+
 import React, { useState } from "react";
+
+// ✅ Declare global window.gtag at the top
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -28,6 +36,15 @@ export const Contact = () => {
       if (res.ok) {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });
+
+        // ✅ Google Ads conversion tracking event
+        if (typeof window !== "undefined" && window.gtag) {
+          window.gtag("event", "conversion", {
+            send_to: "AW-16871323737/3ig2CIyTmp4aENnw7-w-",
+          });
+        } else {
+          console.warn("Google Ads tracking not available");
+        }
       } else {
         setStatus("error");
       }
