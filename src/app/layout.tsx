@@ -2,9 +2,9 @@ import { ThemeProvider } from "next-themes";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Inter } from "next/font/google";
-import Script from "next/script";  // Import next/script
-import { Analytics } from "@vercel/analytics/react";  // Import Analytics component
-import "./globals.css";  
+import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Favicon */}
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
         {/* Google Tag Manager Script */}
         <Script
           async
@@ -45,7 +48,6 @@ export default function RootLayout({
           <Navbar />
           <div>{children}</div>
           <Footer />
-          {/* Add Vercel Analytics component */}
           <Analytics />
         </ThemeProvider>
       </body>

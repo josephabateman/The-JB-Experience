@@ -19,7 +19,7 @@ export function Footer() {
               >
                 <span>The</span>
                 <Image
-                  src="/img/logo.svg"
+                  src="/img/favicon.svg"
                   alt="N"
                   width="32"
                   height="32"
