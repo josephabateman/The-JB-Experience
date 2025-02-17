@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
   <body>
@@ -10,23 +9,25 @@
 
       const config = {
         backend: {
-          name: 'git-gateway',
-          branch: 'main',
+          name: "github",
+          repo: "josephabateman/The-JB-Experience",  // ✅ Corrected
+          branch: "main",
+          auth_scope: "repo",
         },
-        media_folder: 'public/uploads',
-        public_folder: '/uploads',
+        media_folder: "public/uploads",
+        public_folder: "/uploads",
         collections: [
           {
-            name: 'pages',
-            label: 'Pages',
+            name: "pages",
+            label: "Pages",
             files: [
               {
-                file: 'content/home.md',
-                label: 'Home Page',
-                name: 'home',
+                file: "content/home.md",
+                label: "Home Page",
+                name: "home",
                 fields: [
-                  { label: 'Title', name: 'title', widget: 'string' },
-                  { label: 'Body', name: 'body', widget: 'markdown' },
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "Body", name: "body", widget: "markdown" },
                 ],
               },
             ],

@@ -1,10 +1,10 @@
 backend:
   name: github
-  repo: yourusername/your-repo  # Replace with your GitHub repo
+  repo: josephabateman/The-JB-Experience  # ✅ Corrected format
   branch: main
   auth_scope: "repo"
 
-media_folder: "public/uploads"  # Where images will be uploaded
+media_folder: "public/uploads"
 public_folder: "/uploads"
 
 collections:
