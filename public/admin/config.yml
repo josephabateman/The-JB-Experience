@@ -1,0 +1,19 @@
+backend:
+  name: github
+  repo: yourusername/your-repo  # Replace with your GitHub repo
+  branch: main
+  auth_scope: "repo"
+
+media_folder: "public/uploads"  # Where images will be uploaded
+public_folder: "/uploads"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "content/home.md"
+        label: "Home Page"
+        name: "home"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }

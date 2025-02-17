@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  </head>
+  <body>
+    <script>
+      window.CMS_MANUAL_INIT = true;
+
+      const config = {
+        backend: {
+          name: 'git-gateway',
+          branch: 'main',
+        },
+        media_folder: 'public/uploads',
+        public_folder: '/uploads',
+        collections: [
+          {
+            name: 'pages',
+            label: 'Pages',
+            files: [
+              {
+                file: 'content/home.md',
+                label: 'Home Page',
+                name: 'home',
+                fields: [
+                  { label: 'Title', name: 'title', widget: 'string' },
+                  { label: 'Body', name: 'body', widget: 'markdown' },
+                ],
+              },
+            ],
+          },
+        ],
+      };
+
+      window.CMS.init({ config });
+    </script>
+    <div id="nc-root"></div>
+  </body>
+</html>
