@@ -1,8 +1,8 @@
 backend:
   name: github
-  repo: josephabateman/The-JB-Experience  # ✅ Corrected format
-  branch: main
-  auth_scope: "repo"
+  repo: "josephabateman/The-JB-Experience"  # Your repository name
+  branch: main  # Specify the branch
+  auth_scope: "repo"  # Define the authentication scope
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
