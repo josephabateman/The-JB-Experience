@@ -1,9 +1,19 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-    enabled: process.env.ANALYZE === 'true',
-  });
-  
-  module.exports = withBundleAnalyzer({
-    // your existing Next.js config, e.g.:
-    reactStrictMode: true,
-  });
-  
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
+
+const nextConfig = {
+  reactStrictMode: true,
+  experimental: {
+    outputStandalone: true,
+  },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.ya?ml$/,
+      type: "asset/resource",
+    });
+    return config;
+  },
+};
+
+module.exports = withBundleAnalyzer(nextConfig);
