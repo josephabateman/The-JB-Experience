@@ -7,35 +7,15 @@
     <script>
       window.CMS_MANUAL_INIT = true;
 
-      const config = {
-        backend: {
-          name: "github",
-          repo: "josephabateman/The-JB-Experience",  // ✅ Corrected
-          branch: "main",
-          auth_scope: "repo",
-        },
-        media_folder: "public/uploads",
-        public_folder: "/uploads",
-        collections: [
-          {
-            name: "pages",
-            label: "Pages",
-            files: [
-              {
-                file: "content/home.md",
-                label: "Home Page",
-                name: "home",
-                fields: [
-                  { label: "Title", name: "title", widget: "string" },
-                  { label: "Body", name: "body", widget: "markdown" },
-                ],
-              },
-            ],
-          },
-        ],
-      };
-
-      window.CMS.init({ config });
+      fetch("/admin/config.yml")
+        .then(response => {
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+          return response.text();
+        })
+        .then(yamlText => {
+          window.CMS.init({ config: yamlText });
+        })
+        .catch(error => console.error("Failed to load Decap CMS:", error));
     </script>
     <div id="nc-root"></div>
   </body>
