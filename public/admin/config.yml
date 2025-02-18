@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: "josephabateman/The-JB-Experience"  # Your repository name
+  repo: "josephabateman/The-JB-Experience"  # Your GitHub repository name
   branch: main  # Specify the branch
   auth_scope: "repo"  # Define the authentication scope
 
@@ -17,3 +17,10 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
+      - file: "content/about.md"
+        label: "About Page"
+        name: "about"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+

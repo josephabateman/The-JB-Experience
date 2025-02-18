@@ -1,29 +1,7 @@
 "use client"; // Required for Next.js client components
 
 import { useState } from "react";
-import Image from "next/image";
-
-// Define an interface for your component, if necessary
-interface AboutContent {
-  title: string;
-  body: string;
-  imageUrl: string;
-}
-
-const aboutContent: AboutContent = {
-  title:
-    "The JB Experience are a high-energy Pop, Rock & Folk Band with countless performances for Weddings, Parties & Events in London...",
-  body: `Based in East London, The JB Experience is a high-energy band known for delivering an unforgettable mix of pop, rock, soul, and funk music. Led by Joe Bateman, a talented multi-instrumentalist, singer-songwriter, and producer, the band provides top-tier live performances that guarantee a packed dance floor at every event.
-
-Whether you're organizing a wedding, corporate event, birthday party, or private function, The JB Experience brings the perfect energy and atmosphere to your celebration. Their seamless blend of music and personalized performances makes them the ideal choice for events in East London and beyond.
-
-Joe Bateman’s extensive experience includes performances at the prestigious Isle of Wight Festival, features on BBC Radio London, and millions of Spotify streams. His passion for music and his ability to connect with audiences makes every show a one-of-a-kind experience.
-
-From laid-back acoustic sets to high-energy dance hits, The JB Experience customizes their setlist to suit your event. Their versatility, professionalism, and reputation for excellence make them the go-to choice for any celebration.
-
-If you're looking for exceptional live entertainment for your event, book The JB Experience today for a night of unforgettable music that your guests will talk about for years to come.`,
-  imageUrl: "/img/band-profile.jpg",
-};
+import { attributes, react as AboutContent } from "../../content/about.md";
 
 const About: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false); // For toggling extra details
@@ -36,13 +14,14 @@ const About: React.FC = () => {
         <div className="w-full justify-start items-center gap-8 grid lg:grid-cols-2 grid-cols-1">
           <div className="w-full flex-col justify-start lg:items-start items-center gap-10 inline-flex">
             <div className="w-full flex-col justify-start lg:items-start items-center gap-4 flex">
+              {/* Dynamic Title from Markdown */}
               <h2 className="dark:invert text-gray-900 text-2xl font-bold leading-normal lg:text-start text-center">
-                {aboutContent.title}
+                {attributes.title}
               </h2>
               {isVisible && (
-                <p className="dark:invert text-gray-700 text-base font-normal leading-relaxed lg:text-start text-center">
-                  {aboutContent.body}
-                </p>
+                <div className="dark:invert text-gray-700 text-base font-normal leading-relaxed lg:text-start text-center">
+                  <AboutContent />
+                </div>
               )}
             </div>
             <button
@@ -54,23 +33,22 @@ const About: React.FC = () => {
               </span>
             </button>
           </div>
-          {/* Optimized Image */}
-          <div className="relative w-full aspect-video">
-  <iframe
-    className="w-full h-full rounded-3xl"
-    src="https://www.youtube.com/embed/b7RNiZ3eUxc"
-    title="YouTube video player"
-    frameBorder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowFullScreen
-  ></iframe>
-</div>
 
+          {/* YouTube Video */}
+          <div className="relative w-full aspect-video">
+            <iframe
+              className="w-full h-full rounded-3xl"
+              src="https://www.youtube.com/embed/b7RNiZ3eUxc"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
         </div>
       </div>
     </section>
   );
 };
-
 
 export default About;
