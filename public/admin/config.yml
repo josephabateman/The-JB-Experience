@@ -1,11 +1,9 @@
 backend:
-  name: github
-  repo: "josephabateman/The-JB-Experience"  # Your GitHub repository name
-  branch: main  # Specify the branch
-  auth_scope: "repo"  # Define the authentication scope
+  name: git-gateway
+  branch: main  # Specify the branch name
 
-media_folder: "public/uploads"
-public_folder: "/uploads"
+media_folder: "public/img"
+public_folder: "img"
 
 collections:
   - name: "pages"
@@ -23,4 +21,3 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
-
