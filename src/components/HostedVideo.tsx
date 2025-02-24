@@ -1,100 +1,83 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
+import Hls from "hls.js";
 import Image from "next/image";
 
-// Lazy-load the HLS player (for non-Safari browsers)
-const HlsPlayer = dynamic(() => import("react-hls-player"), { ssr: false });
-
 const HostedVideo: React.FC = () => {
-  const playerRef = useRef<HTMLVideoElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isSafari, setIsSafari] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [showVideo, setShowVideo] = useState(true);
   const [controlsVisible, setControlsVisible] = useState(true);
-  const videoSrc = "/video/output.m3u8"; // Update this URL if needed
+  const videoSrc = "/video/output.m3u8"; // Ensure this path is correct
 
-  // Detect if the user is on Safari
+  // Detect Safari (including iOS)
   useEffect(() => {
-    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+    const isSafariBrowser =
+      /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    setIsSafari(isSafariBrowser);
   }, []);
 
   useEffect(() => {
-    const player = playerRef.current;
-    if (player) {
-      player.muted = isMuted;
-      player.autoplay = true;
-      player.playsInline = true;
-      player.loop = true;
+    const video = videoRef.current;
 
-      const tryPlay = () => {
-        player.play().catch(() => {
-          console.warn("Autoplay blocked, displaying fallback image.");
+    if (!video) return;
+
+    if (isSafari) {
+      // Safari natively supports HLS
+      video.src = videoSrc;
+      video.load();
+    } else if (Hls.isSupported()) {
+      // Use Hls.js for other browsers
+      const hls = new Hls();
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        video.play().catch((err) => {
+          console.warn("Autoplay blocked:", err);
           setShowVideo(false);
           setControlsVisible(false);
         });
-      };
-
-      player.addEventListener("canplaythrough", tryPlay);
-      tryPlay();
+      });
 
       return () => {
-        player.removeEventListener("canplaythrough", tryPlay);
+        hls.destroy();
       };
     }
-  }, [isMuted]);
+  }, [isSafari]);
 
   const handlePlay = () => {
     setShowVideo(true);
     setControlsVisible(true);
 
-    const player = playerRef.current;
-    if (player) {
-      player.muted = false;
+    if (videoRef.current) {
+      videoRef.current.muted = false;
       setIsMuted(false);
-      player.play().catch((err) => console.error("Play failed:", err));
+      videoRef.current.play().catch((err) => console.error("Play failed:", err));
     }
   };
 
   const toggleMute = () => {
-    const player = playerRef.current;
-    if (player) {
-      player.muted = !player.muted;
-      setIsMuted(player.muted);
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
     }
   };
 
   return (
     <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
       {showVideo ? (
-        isSafari ? (
-          // **Native HLS Support for Safari**
-          <video
-            ref={playerRef}
-            src={videoSrc}
-            autoPlay
-            controls={false}
-            muted={isMuted}
-            playsInline
-            loop
-            className="absolute top-0 left-0 w-full h-full object-cover"
-          />
-        ) : (
-          // **Use HLS.js for Chrome/Firefox/Edge**
-          <HlsPlayer
-            playerRef={playerRef}
-            src={videoSrc}
-            autoPlay
-            controls={false}
-            muted={isMuted}
-            playsInline
-            loop
-            width="100%"
-            height="100%"
-            className="absolute top-0 left-0 w-full h-full object-cover"
-          />
-        )
+        <video
+          ref={videoRef}
+          autoPlay
+          controls={false}
+          muted={isMuted}
+          playsInline
+          loop
+          className="absolute top-0 left-0 w-full h-full object-cover"
+        />
       ) : (
         <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
           <div className="brightness-50">
@@ -151,4 +134,3 @@ const HostedVideo: React.FC = () => {
 };
 
 export default HostedVideo;
- 
