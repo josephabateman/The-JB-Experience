@@ -58,16 +58,20 @@ const HostedVideo: React.FC = () => {
   return (
     <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
       {showVideo ? (
-        <video
-          ref={videoRef}
-          src="/video/Background_720p.mp4"
-          loop
-          muted={isMuted} // Ensure mute state is applied
-          playsInline
-          autoPlay
-          preload="auto"
-          className="absolute top-0 left-0 w-full h-full object-cover"
-        />
+         <video
+         ref={videoRef}
+         muted={isMuted} // Ensure mute state is applied
+         playsInline
+         autoPlay
+         preload="auto"
+         className="absolute top-0 left-0 w-full h-full object-cover"
+       >
+         {/* Use the .m3u8 playlist URL for HLS streaming */}
+         <source
+           src="/video/output.m3u8"
+           type="application/x-mpegURL"
+         />
+       </video>
       ) : (
         <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
           <div className="brightness-50"><Image
