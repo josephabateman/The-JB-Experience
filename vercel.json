@@ -1,0 +1,23 @@
+{
+    "headers": [
+      {
+        "source": "/video/:file",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-mpegURL"
+          }
+        ]
+      },
+      {
+        "source": "/video/:file.ts",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "video/MP2T"
+          }
+        ]
+      }
+    ]
+  }
+  

@@ -4,9 +4,27 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    outputStandalone: true,
+  output: "standalone",
+
+  async headers() {
+    return [
+      {
+        source: "/video/:path*",
+        headers: [
+          { key: "Content-Type", value: "application/vnd.apple.mpegurl" }, // HLS playlist
+          { key: "Access-Control-Allow-Origin", value: "*" }, // Fix CORS issues
+        ],
+      },
+      {
+        source: "/video/:path*.ts",
+        headers: [
+          { key: "Content-Type", value: "video/mp2t" }, // HLS segments
+          { key: "Access-Control-Allow-Origin", value: "*" },
+        ],
+      },
+    ];
   },
+
   webpack: (config) => {
     // Support for YAML files
     config.module.rules.push({
