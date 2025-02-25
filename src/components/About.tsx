@@ -10,7 +10,13 @@ const About: React.FC = () => {
   return (
     <section className="py-6 relative">
       <div className="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
-        <div className="w-full justify-start items-center gap-8 grid lg:grid-cols-2 grid-cols-1">
+        {/* Dynamic grid layout */}
+        <div
+          className={`w-full justify-start items-center gap-8 grid ${
+            isVisible ? "grid-cols-1" : "lg:grid-cols-2 grid-cols-1"
+          }`}
+        >
+          {/* Text content */}
           <div className="w-full flex-col justify-start lg:items-start items-center gap-10 inline-flex">
             <div className="w-full flex-col justify-start lg:items-start items-center gap-4 flex">
               <h2 className="dark:invert text-gray-900 text-2xl font-bold leading-normal lg:text-start text-center">
@@ -40,6 +46,7 @@ const About: React.FC = () => {
                 </div>
               )}
             </div>
+            {/* Toggle button */}
             <button
               className="sm:w-fit w-full px-3.5 py-2 bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 ease-in-out rounded-lg shadow-md justify-center items-center flex"
               onClick={toggleVisibility}
@@ -50,11 +57,24 @@ const About: React.FC = () => {
             </button>
           </div>
 
+          {/* Video 1 */}
           <div className="relative w-full aspect-video">
             <iframe
               className="w-full h-full rounded-3xl"
               src="https://www.youtube.com/embed/b7RNiZ3eUxc"
-              title="YouTube video player"
+              title="The JB Experience"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+
+          {/* Video 2 */}
+          <div className="relative w-full aspect-video">
+            <iframe
+              className="w-full h-full rounded-3xl"
+              src="https://www.youtube.com/embed/OVvikoc0chk"
+              title="Joe Bateman at Ealing Broadway"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
