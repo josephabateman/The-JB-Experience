@@ -22,6 +22,12 @@ const About: React.FC = () => {
               <h2 className="dark:invert text-gray-900 text-2xl font-bold leading-normal lg:text-start text-center">
                 The JB Experience - High-Energy Pop, Rock & Folk Band for Weddings & Events in London
               </h2>
+              <h3 className="dark:invert text-gray-900 font-bold leading-normal lg:text-start text-center">
+                Full band starting at £1499
+              </h3>
+              <h3 className="dark:invert text-gray-900 font-bold leading-normal lg:text-start text-center">
+                Solo with stomp box and looper pedal from £499
+              </h3>
               {isVisible && (
                 <div className="dark:invert text-gray-700 text-base font-normal leading-relaxed lg:text-start text-center">
                   <p>
