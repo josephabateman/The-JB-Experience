@@ -23,10 +23,10 @@ const About: React.FC = () => {
                 The JB Experience - High-Energy Pop, Rock & Folk Band for Weddings & Events in London
               </h2>
               <h3 className="dark:invert text-gray-900 font-bold leading-normal lg:text-start text-center">
-                Full band starting at £1499
+                Full band starting at £1199
               </h3>
               <h3 className="dark:invert text-gray-900 font-bold leading-normal lg:text-start text-center">
-                Solo with stomp box and looper pedal from £499
+                Solo with stomp box and looper pedal: £425
               </h3>
               {isVisible && (
                 <div className="dark:invert text-gray-700 text-base font-normal leading-relaxed lg:text-start text-center">
