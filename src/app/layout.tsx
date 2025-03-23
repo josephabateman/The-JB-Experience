@@ -9,7 +9,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "The JB Experience | London Wedding & Event Band – Pop, Rock & Folk",
+  title: "The JB Experience | London Wedding & Event Band – Pop, Rock, Folk",
   description: "The JB Experience: High-energy pop, rock & folk band for weddings & events in London. Book now for an unforgettable live show!",
 };
 
