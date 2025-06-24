@@ -11,6 +11,7 @@ import "swiper/css/pagination";
 export default function PhotoGallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [availableImages, setAvailableImages] = useState<string[]>([]);
+  const [preloadedImages, setPreloadedImages] = useState<Set<string>>(new Set());
 
   // List of potential images - add/remove from here as needed
   const potentialImages = [
@@ -47,9 +48,29 @@ export default function PhotoGallery() {
     checkImages();
   }, []);
 
+  // Preload images for faster lightbox loading
+  const preloadImage = (src: string) => {
+    if (preloadedImages.has(src)) return;
+    
+    const img = new window.Image();
+    img.onload = () => {
+      setPreloadedImages(prev => new Set([...prev, src]));
+    };
+    img.src = src;
+  };
+
   const openLightbox = (index: number) => {
     setSelectedImage(index);
     document.body.style.overflow = 'hidden';
+    
+    // Preload current and adjacent images
+    const currentImage = availableImages[index];
+    const nextImage = availableImages[index + 1];
+    const prevImage = availableImages[index - 1];
+    
+    preloadImage(currentImage);
+    if (nextImage) preloadImage(nextImage);
+    if (prevImage) preloadImage(prevImage);
   };
 
   const closeLightbox = () => {
@@ -62,6 +83,12 @@ export default function PhotoGallery() {
     if (selectedImage === null) return;
     const newIndex = selectedImage === 0 ? availableImages.length - 1 : selectedImage - 1;
     setSelectedImage(newIndex);
+    
+    // Preload adjacent images
+    const nextImage = availableImages[newIndex + 1];
+    const prevImage = availableImages[newIndex - 1];
+    if (nextImage) preloadImage(nextImage);
+    if (prevImage) preloadImage(prevImage);
   };
 
   const goToNext = (e: React.MouseEvent) => {
@@ -69,6 +96,12 @@ export default function PhotoGallery() {
     if (selectedImage === null) return;
     const newIndex = selectedImage === availableImages.length - 1 ? 0 : selectedImage + 1;
     setSelectedImage(newIndex);
+    
+    // Preload adjacent images
+    const nextImage = availableImages[newIndex + 1];
+    const prevImage = availableImages[newIndex - 1];
+    if (nextImage) preloadImage(nextImage);
+    if (prevImage) preloadImage(prevImage);
   };
 
   // Handle keyboard navigation
@@ -155,8 +188,12 @@ export default function PhotoGallery() {
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                         sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
-                        quality={60}
-                        loading={index < 4 ? "eager" : "lazy"}
+                        quality={40}
+                        loading={index < 6 ? "eager" : "lazy"}
+                        onLoad={() => {
+                          // Preload first few images when they become visible
+                          if (index < 4) preloadImage(image);
+                        }}
                         placeholder="blur"
                         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH8U7hOKUXKcJN2IRVGCAw5ExmDwWbMa6vl3Zw+GjxnfOslNlMEH5rJCLN7GbSgbF9fgNRXhCFvIpVeCRIXhiYBdCRHOGNzWvOGKkJOWFvlOL9+k6pHg5sYQAJAB3j3yVhQEH3zxoRZxNEhupPnBg8MmVFCLPTKYB9Q6QGxNQgOg7DfCkVGf86VNnlSiUbE5A39dJ1TZA6cjkOCNKk7HGb1W4P8wCLs+OKrxAVFJrPfnMWfGf8KrrpnVR3BUVRA7ZyPDgkG+vNDMnM4kMNDKnDuN/PEKo/9k="
                       />
@@ -194,16 +231,24 @@ export default function PhotoGallery() {
           >
             {/* Main image container */}
             <div className="relative max-w-4xl max-h-[90vh] w-full">
+              {/* Loading indicator */}
+              {!preloadedImages.has(availableImages[selectedImage]) && (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50">
+                  <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              )}
+              
               {/* The image */}
               <Image
                 src={availableImages[selectedImage]}
                 alt="The JB Experience performance"
-                width={800}
-                height={600}
+                width={600}
+                height={450}
                 className="w-full h-full object-contain"
-                quality={75}
+                quality={80}
                 priority
                 sizes="(max-width: 768px) 95vw, 80vw"
+                onLoad={() => preloadImage(availableImages[selectedImage])}
               />
 
               {/* Close button */}
