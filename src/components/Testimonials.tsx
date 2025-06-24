@@ -21,7 +21,7 @@ const reviews = [
   {
     name: "Olivia H",
     event: "Wedding - Surrey",
-    text: "Our wedding was unforgettable thanks to Joe and his band! Their setlist perfectly included our favourite songs, and they had a great way of reading the crowd. The band was not only professional but also friendly and approachable. We’re so grateful they were part of our special day and can’t recommend them enough!",
+    text: "Our wedding was unforgettable thanks to Joe and his band! Their setlist perfectly included our favourite songs, and they had a great way of reading the crowd. The band was not only professional but also friendly and approachable. We're so grateful they were part of our special day and can't recommend them enough!",
   },
   {
     name: "Nathan C",
@@ -36,7 +36,7 @@ const reviews = [
   {
     name: "Felicity B",
     event: "Wedding - London",
-    text: "Joe and the band were amazing! We had a very specific style of music we wanted for our wedding, and they absolutely delivered. The band created such a beautiful atmosphere during the day. When the evening hit, they kept the energy high, and the dance floor was packed all night. We couldn’t have asked for more!",
+    text: "Joe and the band were amazing! We had a very specific style of music we wanted for our wedding, and they absolutely delivered. The band created such a beautiful atmosphere during the day. When the evening hit, they kept the energy high, and the dance floor was packed all night. We couldn't have asked for more!",
   },
   {
     name: "Adam P",
@@ -50,45 +50,99 @@ const reviews = [
   },
   {
     name: "Bethany F",
-    event: "New Year’s Eve Party - London",
-    text: "Hired for our New Year’s Eve party, and they completely blew us away! The band was super tight, and the performance was unforgettable. It was the perfect way to ring in the new year!",
+    event: "New Year's Eve Party - London",
+    text: "Hired for our New Year's Eve party, and they completely blew us away! The band was super tight, and the performance was unforgettable. It was the perfect way to ring in the new year!",
   },
   {
     name: "Francesca D",
     event: "Company Christmas Party - London",
-    text: "We hired Joe and his band for our company’s Christmas party, and they really got everyone in the festive spirit! The energy was fantastic, and they nailed a great mix of Christmas classics and crowd favourites. Everyone was up dancing from the moment they started playing, and it really made the night special. Can’t recommend them enough!",
+    text: "We hired Joe and his band for our company's Christmas party, and they really got everyone in the festive spirit! The energy was fantastic, and they nailed a great mix of Christmas classics and crowd favourites. Everyone was up dancing from the moment they started playing, and it really made the night special. Can't recommend them enough!",
   },
   {
     name: "Rebecca C",
     event: "Birthday Party - London",
-    text: "Joe’s performance was the highlight of the evening at my husband’s birthday. The band really brought the party to life, and everyone loved the mix of covers and originals. By the end, the dance floor was packed! The whole experience—the looping, the musicianship—made it extra special.",
+    text: "Joe's performance was the highlight of the evening at my husband's birthday. The band really brought the party to life, and everyone loved the mix of covers and originals. By the end, the dance floor was packed! The whole experience—the looping, the musicianship—made it extra special.",
   },
   {
     name: "Sarah D",
     event: "Wedding - London",
-    text: "Joe Bateman and his band were exceptional at our wedding! The energy was through the roof, and the whole band had the crowd dancing non-stop. We couldn’t have asked for a more perfect performance to cap off our day. Highly recommend!",
+    text: "Joe Bateman and his band were exceptional at our wedding! The energy was through the roof, and the whole band had the crowd dancing non-stop. We couldn't have asked for a more perfect performance to cap off our day. Highly recommend!",
   },
 ];
 
 export default function ReviewsSlider() {
   return (
-    <Swiper
-      modules={[Navigation, Pagination, Autoplay]}
-      spaceBetween={50}
-      slidesPerView={1}
-      navigation
-      pagination={{ clickable: true }}
-      autoplay={{ delay: 7000, disableOnInteraction: false }}
-    >
-      {reviews.map((review, index) => (
-        <SwiperSlide key={index}>
-          <div className="m-8 w-5/6 flex flex-col justify-between bg-gray-100 px-14 rounded-2xl py-14 dark:bg-trueGray-800 mx-auto items-center text-center">
-            <p className="text-2xl leading-normal">“{review.text}”</p>
-            <div className="text-lg font-medium mt-8">{review.name}</div>
-            <div className="text-gray-600 dark:text-gray-400">{review.event}</div>
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <section className="py-12 bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            What Our Clients Say
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300">
+            Real feedback from weddings, corporate events & parties across London
+          </p>
+        </div>
+        
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={30}
+          slidesPerView={1}
+          breakpoints={{
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+          }}
+          navigation={{
+            prevEl: '.swiper-button-prev-custom',
+            nextEl: '.swiper-button-next-custom',
+          }}
+          pagination={{ 
+            clickable: true,
+            bulletClass: 'swiper-pagination-bullet-custom',
+            bulletActiveClass: 'swiper-pagination-bullet-custom-active',
+          }}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          className="testimonials-swiper"
+        >
+          {reviews.map((review, index) => (
+            <SwiperSlide key={index}>
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 h-auto min-h-[280px] flex flex-col">
+                <div className="flex-1">
+                  <div className="flex mb-4">
+                    <span className="text-yellow-400 text-lg">★★★★★</span>
+                  </div>
+                  <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-6">
+                    "{review.text}"
+                  </p>
+                </div>
+                <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+                  <div className="font-semibold text-gray-900 dark:text-white">{review.name}</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">{review.event}</div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Custom Navigation Buttons */}
+        <div className="flex justify-center mt-8 space-x-4">
+          <button className="swiper-button-prev-custom w-10 h-10 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center transition-colors">
+            <span className="text-lg">←</span>
+          </button>
+          <button className="swiper-button-next-custom w-10 h-10 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center transition-colors">
+            <span className="text-lg">→</span>
+          </button>
+        </div>
+      </div>
+    </section>
   );
 }

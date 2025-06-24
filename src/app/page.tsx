@@ -20,12 +20,12 @@ export default function Home() {
       <Navbar />
       <HostedVideo />
       
-      <section id="about">
-        <About />
-      </section>
-      
       <section id="testimonials">
         <Testimonials />
+      </section>
+      
+      <section id="about">
+        <About />
       </section>
 
       <div className="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto px-4">
