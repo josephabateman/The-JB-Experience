@@ -4,62 +4,41 @@ import React from "react";
 import { Container } from "@/components/Container";
 
 export function Footer() {
-  const navigation = ["About", "Testimonials", "FAQ", "Contact"];
-
   return (
-    <div className="relative bg-gray-100 dark:bg-gray-900 py-8">
+    <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
       <Container>
-        <div className="grid grid-cols-1 gap-8 pt-6 border-t border-gray-200 dark:border-gray-700 lg:grid-cols-5">
-          {/* Logo Section */}
-          <div className="lg:col-span-2 flex flex-col items-center lg:items-start">
-            <Link href="/" className="flex items-center space-x-2">
-              <span className="text-lg font-semibold dark:text-gray-100">The</span>
-              <Image
-                src="/img/favicon.svg"
-                alt="Logo"
-                width="32"
-                height="32"
-                className="w-8 dark:invert"
-              />
-              <span className="text-lg font-semibold dark:text-gray-100">Experience</span>
-            </Link>
-          </div>
+        <div className="py-8 flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2 group">
+            <span className="text-lg font-semibold text-gray-900 dark:text-white">The</span>
+            <Image
+              src="/img/favicon.svg"
+              alt="Logo"
+              width="28"
+              height="28"
+              className="w-7 dark:invert group-hover:scale-110 transition-transform"
+            />
+            <span className="text-lg font-semibold text-gray-900 dark:text-white">Experience</span>
+          </Link>
 
-          {/* Navigation */}
-          <div className="flex flex-col items-center lg:items-start">
-            {navigation.map((item, index) => (
-              <Link
-                key={index}
-                href={`/#${item.toLowerCase()}`}
-                className="text-gray-600 dark:text-gray-300 hover:text-indigo-500 py-1"
-              >
-                {item}
-              </Link>
-            ))}
+          {/* Social & Copyright */}
+          <div className="flex items-center space-x-6">
+            <a
+              href="https://www.instagram.com/joebatemanofficial"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-indigo-500 transition-colors"
+              aria-label="Follow on Instagram"
+            >
+              <Instagram size={20} />
+            </a>
+            <span className="text-sm text-gray-500 dark:text-gray-400">
+              © {new Date().getFullYear()} The JB Experience
+            </span>
           </div>
-
-          {/* Social Media Section */}
-          <div className="flex flex-col items-center lg:items-start">
-            <span className="text-gray-600 dark:text-gray-300 mb-2">Follow Joe&apos;s artist career</span>
-            <div className="flex space-x-4">
-              <a
-                href="https://www.instagram.com/joebatemanofficial"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 dark:text-gray-500 hover:text-indigo-500"
-              >
-                <Instagram size={24} />
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        {/* Copyright */}
-        <div className="mt-8 text-sm text-center text-gray-600 dark:text-gray-400">
-          Copyright © {new Date().getFullYear()}
         </div>
       </Container>
-    </div>
+    </footer>
   );
 }
 
