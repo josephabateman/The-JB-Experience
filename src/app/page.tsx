@@ -19,28 +19,32 @@ export default function Home() {
   return (
     <div>
       <Navbar />
+      {/* 1. Hero Video - Immediate Impact & Credibility */}
       <HostedVideo />
       
+      {/* 2. Social Proof - Build Trust Early */}
       <section id="testimonials">
         <Testimonials />
       </section>
       
+      {/* 3. Service Overview & Pricing - Clear Value Proposition */}
       <section id="about">
         <About />
       </section>
 
+      {/* 4. Detailed Information - For Interested Prospects */}
       <section id="setlist">
         <Setlist />
       </section>
 
-      <div className="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto px-4">
-        <div id="faq" className="w-full lg:w-1/2">
-          <Faq />
-        </div>
-        <div id="contact" className="w-full lg:w-1/2">
-          <Contact />
-        </div>
-      </div>
+      <section id="faq">
+        <Faq />
+      </section>
+
+      {/* 5. Final Conversion - Contact Form */}
+      <section id="contact" className="max-w-6xl mx-auto px-4">
+        <Contact />
+      </section>
 
       {/* Theme Changer button appears at the bottom-right */}
       <ThemeChanger />
