@@ -21,8 +21,8 @@ interface FormData {
   venueAddress: string;
   
   // Special Requests
-  specialRequests: string;
   firstDance: string;
+  additionalNotes: string;
   
   // Additional Info
   hearAboutUs: string;
@@ -40,8 +40,8 @@ export default function BookingForm() {
     performanceType: "",
     venue: "",
     venueAddress: "",
-    specialRequests: "",
     firstDance: "",
+    additionalNotes: "",
     hearAboutUs: ""
   });
 
@@ -75,8 +75,8 @@ export default function BookingForm() {
         performanceType: "",
         venue: "",
         venueAddress: "",
-        specialRequests: "",
         firstDance: "",
+        additionalNotes: "",
         hearAboutUs: ""
       });
     } catch (error) {
@@ -352,10 +352,12 @@ export default function BookingForm() {
             {/* Special Requests */}
             <div className="mb-8">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Special Requests</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
+              
+              {/* First Dance - Only show for weddings */}
+              {formData.eventType === "Wedding" && (
+                <div className="mb-6">
                   <label htmlFor="firstDance" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    First Dance Song (Weddings)
+                    First Dance Song
                   </label>
                   <input
                     type="text"
@@ -367,6 +369,22 @@ export default function BookingForm() {
                     placeholder="Song title and artist"
                   />
                 </div>
+              )}
+
+              {/* Additional Notes */}
+              <div>
+                <label htmlFor="additionalNotes" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Additional Notes or Questions
+                </label>
+                <textarea
+                  id="additionalNotes"
+                  name="additionalNotes"
+                  rows={4}
+                  value={formData.additionalNotes}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                  placeholder="Any special song requests, venue requirements, questions about the performance, or other details about your event..."
+                />
               </div>
             </div>
 
