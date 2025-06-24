@@ -22,15 +22,26 @@ const About: React.FC = () => {
             </p>
           </div>
 
-          {/* Pricing Tiles */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Pricing Tiles with Videos */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">🎸🥁🎤</span>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Full Band</h3>
               </div>
               <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">£1,199</p>
-              <p className="text-gray-600 dark:text-gray-300">Three piece: lead vocals & guitar, bass, drums. Sax player available for additional fee.</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">Three piece: lead vocals & guitar, bass, drums. Sax player available for additional fee.</p>
+              
+              <div className="relative w-full aspect-video">
+                <iframe
+                  className="w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/b7RNiZ3eUxc"
+                  title="The JB Experience - Full Band Performance"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
             </div>
             
             <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800">
@@ -39,7 +50,18 @@ const About: React.FC = () => {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Solo Performance</h3>
               </div>
               <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">£499</p>
-              <p className="text-gray-600 dark:text-gray-300">Solo performance using live loop pedal</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">Solo performance using live loop pedal</p>
+              
+              <div className="relative w-full aspect-video">
+                <iframe
+                  className="w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/OVvikoc0chk"
+                  title="Joe Bateman Solo Performance with Live Looping"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
             </div>
           </div>
 
@@ -76,42 +98,6 @@ const About: React.FC = () => {
             </p>
           </div>
 
-          {/* Video showcase */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="space-y-3">
-              <div className="relative w-full aspect-video">
-                <iframe
-                  className="w-full h-full rounded-lg shadow-lg"
-                  src="https://www.youtube.com/embed/b7RNiZ3eUxc"
-                  title="The JB Experience - Full Band Performance"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-              <div className="text-center">
-                <h4 className="font-semibold text-gray-900 dark:text-white">Full Band Performance</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">High-energy live show experience</p>
-              </div>
-            </div>
-            
-            <div className="space-y-3">
-              <div className="relative w-full aspect-video">
-                <iframe
-                  className="w-full h-full rounded-lg shadow-lg"
-                  src="https://www.youtube.com/embed/OVvikoc0chk"
-                  title="Joe Bateman Solo Performance with Live Looping"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-              <div className="text-center">
-                <h4 className="font-semibold text-gray-900 dark:text-white">Solo with Live Looping</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Intimate acoustic performance</p>
-              </div>
-            </div>
-          </div>
 
           {/* Toggle button */}
           <div className="text-center">

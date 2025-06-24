@@ -2,59 +2,22 @@
 
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay, EffectCoverflow } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/effect-coverflow";
 
 const galleryImages = [
-  {
-    src: "/images/Photo Jan 25 2025, 19 48 13.jpg",
-    alt: "The JB Experience performing live",
-    caption: "Live performance at wedding reception"
-  },
-  {
-    src: "/images/Photo Jan 25 2025, 19 48 59.jpg",
-    alt: "Band setup and performance",
-    caption: "Full band setup in action"
-  },
-  {
-    src: "/images/Photo Jan 25 2025, 19 49 20.jpg",
-    alt: "Joe performing with guitar",
-    caption: "Joe performing acoustic set"
-  },
-  {
-    src: "/images/Photo Jan 25 2025, 19 49 40.jpg",
-    alt: "Band performance",
-    caption: "High-energy live show"
-  },
-  {
-    src: "/images/Photo Jan 25 2025, 19 49 53.jpg",
-    alt: "Live music performance",
-    caption: "Engaging the crowd"
-  },
-  {
-    src: "/images/Photo Jan 31 2025, 18 41 16 (1).jpg",
-    alt: "The JB Experience band",
-    caption: "Professional band setup"
-  },
-  {
-    src: "/images/Photo Jan 31 2025, 18 41 16.jpg",
-    alt: "Band performing live",
-    caption: "Creating unforgettable moments"
-  },
-  {
-    src: "/images/band-performing.jpg",
-    alt: "Band performance",
-    caption: "Professional live entertainment"
-  },
-  {
-    src: "/images/band-profile.jpg",
-    alt: "Band profile photo",
-    caption: "The JB Experience team"
-  }
+  "/images/Photo Jan 25 2025, 19 48 13.jpg",
+  "/images/Photo Jan 25 2025, 19 48 59.jpg",
+  "/images/Photo Jan 25 2025, 19 49 20.jpg",
+  "/images/Photo Jan 25 2025, 19 49 40.jpg",
+  "/images/Photo Jan 25 2025, 19 49 53.jpg",
+  "/images/Photo Jan 31 2025, 18 41 16 (1).jpg",
+  "/images/Photo Jan 31 2025, 18 41 16.jpg",
+  "/images/band-performing.jpg",
+  "/images/band-profile.jpg"
 ];
 
 export default function PhotoGallery() {
@@ -65,40 +28,28 @@ export default function PhotoGallery() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Live in Action
+            Photo Gallery
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
-            See us perform at weddings, corporate events & private parties
-          </p>
         </div>
 
         {/* Main Gallery Slider */}
         <div className="mb-8">
           <Swiper
-            modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
-            spaceBetween={30}
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={20}
             slidesPerView={1}
-            centeredSlides={true}
-            effect="coverflow"
-            coverflowEffect={{
-              rotate: 50,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows: true,
-            }}
             breakpoints={{
               640: {
-                slidesPerView: 1.5,
+                slidesPerView: 2,
                 spaceBetween: 20,
               },
               768: {
-                slidesPerView: 2,
+                slidesPerView: 3,
                 spaceBetween: 30,
               },
               1024: {
-                slidesPerView: 3,
-                spaceBetween: 40,
+                slidesPerView: 4,
+                spaceBetween: 30,
               },
             }}
             navigation={{
@@ -107,13 +58,10 @@ export default function PhotoGallery() {
             }}
             pagination={{ 
               clickable: true,
-              bulletClass: 'gallery-bullet',
-              bulletActiveClass: 'gallery-bullet-active',
             }}
             autoplay={{ 
-              delay: 4000, 
+              delay: 3000, 
               disableOnInteraction: false,
-              pauseOnMouseEnter: true 
             }}
             className="gallery-swiper"
           >
@@ -123,18 +71,14 @@ export default function PhotoGallery() {
                   className="relative group cursor-pointer"
                   onClick={() => setSelectedImage(index)}
                 >
-                  <div className="aspect-[4/3] relative overflow-hidden rounded-xl shadow-lg">
+                  <div className="aspect-square relative overflow-hidden rounded-lg shadow-md">
                     <Image
-                      src={image.src}
-                      alt={image.alt}
+                      src={image}
+                      alt="The JB Experience performance"
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                     />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 rounded-b-xl">
-                    <p className="text-white text-sm font-medium">{image.caption}</p>
                   </div>
                 </div>
               </SwiperSlide>
@@ -160,8 +104,8 @@ export default function PhotoGallery() {
           >
             <div className="relative max-w-4xl max-h-full">
               <Image
-                src={galleryImages[selectedImage].src}
-                alt={galleryImages[selectedImage].alt}
+                src={galleryImages[selectedImage]}
+                alt="The JB Experience performance"
                 width={800}
                 height={600}
                 className="max-w-full max-h-full object-contain rounded-lg"
@@ -172,36 +116,11 @@ export default function PhotoGallery() {
               >
                 ✕
               </button>
-              <div className="absolute bottom-4 left-4 right-4 text-center">
-                <p className="text-white text-lg font-medium bg-black/50 rounded-lg p-2">
-                  {galleryImages[selectedImage].caption}
-                </p>
-              </div>
             </div>
           </div>
         )}
       </div>
 
-      <style jsx global>{`
-        .gallery-bullet {
-          width: 12px;
-          height: 12px;
-          background: rgba(156, 163, 175, 0.5);
-          border-radius: 50%;
-          opacity: 1;
-          transition: all 0.3s;
-        }
-        .gallery-bullet-active {
-          background: rgb(79, 70, 229);
-          transform: scale(1.2);
-        }
-        .gallery-swiper .swiper-slide {
-          transition: all 0.3s;
-        }
-        .gallery-swiper .swiper-slide:not(.swiper-slide-active) {
-          opacity: 0.7;
-        }
-      `}</style>
     </section>
   );
 }
