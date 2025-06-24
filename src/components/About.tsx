@@ -18,71 +18,132 @@ const About: React.FC = () => {
         >
           {/* Text content */}
           <div className="w-full flex-col justify-start lg:items-start items-center gap-10 inline-flex">
-          <div className="w-full flex-col justify-start lg:items-start items-center gap-4 flex">
-  <h1 className="dark:invert text-gray-900 text-2xl font-bold leading-normal lg:text-start text-center">
-    The JB Experience &ndash; High-Energy Pop, Rock, Folk & Funk Band for Weddings, Parties & Events in London &amp; the UK
-  </h1>
-  <h2 className="dark:invert text-gray-900 font-bold leading-normal lg:text-start text-center">
-    Full Band Starting at &pound;1199 &ndash; High-Energy Live Entertainment
-  </h2>
-  <h2 className="dark:invert text-gray-900 font-bold leading-normal lg:text-start text-center">
-    Solo Performance with Stomp Box and Looper Pedal: &pound;425 &ndash; Perfect for Intimate Events
-  </h2>
-  <p>
-        Based in East London, <strong>The JB Experience</strong> is a dynamic, high-energy band renowned for delivering an unforgettable mix of <strong>pop, rock, folk, and funk music</strong>. Whether you&apos;re planning a wedding, corporate event, birthday party, or private function, we bring the perfect blend of music and energy to create a lively and unforgettable atmosphere.
-      </p>
-      <p>
-        Led by Joe Bateman, a talented multi-instrumentalist, singer-songwriter, and producer, The JB Experience guarantees top-tier live performances that will get your guests dancing all night long. Joe&apos;s extensive experience includes performances for high-profile weddings and companies such as Hilton Hotels and The Financial Times. He has performed at the prestigious Isle of Wight Festival, had features on BBC Radio London, and racked up millions of Spotify streams. His passion for music and ability to connect with audiences ensures every show is a one-of-a-kind experience.
-      </p>
-      <p>
-        Whether you&apos;re hosting an intimate gathering or a large celebration, The JB Experience tailors each performance to suit your event. From <strong>laid-back acoustic sets</strong> for a relaxed vibe to <strong>high-energy dance hits</strong> for an epic party, our band is versatile and professional, making us the ideal choice for any celebration in London and beyond.
-      </p>
-  {isVisible && (
-    <div className="dark:invert text-gray-700 text-base font-normal leading-relaxed lg:text-start text-center">
-    <p>
-      Our customisable setlists and professional approach make The JB Experience the go-to live band for your wedding, corporate event, birthday party, or any private function. With our ability to personalise performances and bring unique energy to your event, we are the band that will ensure your celebration is talked about for years to come.
+          <div className="w-full space-y-8">
+  {/* Header */}
+  <div className="text-center lg:text-left space-y-3">
+    <h1 className="dark:invert text-gray-900 text-3xl font-bold">
+      The JB Experience
+    </h1>
+    <p className="dark:invert text-gray-600 text-lg">
+      Professional Live Music • London & UK
     </p>
-    <p>
-      Looking for exceptional live entertainment for your event? <strong>Book The JB Experience</strong> today to enjoy high-energy, unforgettable music that will leave your guests raving. With a reputation for excellence, we are the trusted choice for weddings, parties, and events across London and the UK.
-    </p>
-  
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-      <div className="cta text-center why-choose">
-        <h2 className="text-xl font-bold text-gray-900 text-center my-4">Why Choose The JB Experience?</h2>
-        <ul className="pl-6 text-gray-700">
-          <li><strong>✅ Versatile Band Options:</strong> From a dynamic full band (&pound;1199) to an intimate solo performance with looping (&pound;425).</li>
-          <li><strong>✅ Experienced Musicians:</strong> We&apos;ve performed at hundreds of weddings, parties, and corporate events across the UK.</li>
-          <li><strong>✅ Custom Setlists:</strong> Dance-floor anthems, acoustic ballads, and everything in between&mdash;tailored to your event.</li>
-        </ul>
+  </div>
+
+  {/* Pricing Tiles */}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800">
+      <div className="flex items-center gap-3 mb-4">
+        <span className="text-2xl">🎸</span>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white">Full Band</h3>
       </div>
-  
-      <div className="cta text-center what-we-offer">
-        <h2 className="text-xl font-bold text-gray-900 text-center my-4">What We Offer:</h2>
-        <ul className="pl-6 text-gray-700">
-          <li><strong>🎸 Full Live Band:</strong> A high-energy experience with guitar, bass, drums, and vocals.</li>
-          <li><strong>🎤 Solo Act with Live Looping:</strong> A unique performance featuring stompbox, loop pedal, and acoustic guitar.</li>
-          <li><strong>🎶 First Dance & Special Requests:</strong> Tell us your favorite songs, and we&apos;ll make it magical.</li>
-        </ul>
-      </div>
+      <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">£1,199</p>
+      <p className="text-gray-600 dark:text-gray-300">Complete live experience with full instrumentation</p>
     </div>
-  
-    <div className="cta text-center client-reviews mt-6">
-      <h2 className="text-xl font-bold text-gray-900 text-center my-4">Client Reviews:</h2>
-      <div className="reviews text-gray-700">
-        <p><strong>⭐️⭐️⭐️⭐️⭐️</strong> &ldquo;The JB Experience made our wedding unforgettable! The energy, the setlist&mdash;everything was perfect!&rdquo; &ndash; Sarah &amp; James</p>
-        <p><strong>⭐️⭐️⭐️⭐️⭐️</strong> &ldquo;Professional, talented, and an absolute joy to work with. Highly recommend for any event!&rdquo; &ndash; Emily R.</p>
+    
+    <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800">
+      <div className="flex items-center gap-3 mb-4">
+        <span className="text-2xl">🎤</span>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white">Solo Performance</h3>
       </div>
-    </div>
-  
-    <div className="cta text-center my-6">
-      <h2 className="text-xl font-bold text-gray-900">Book Now &ndash; Limited Availability!</h2>
-      <p>We book up fast&mdash;secure your date today! Get in touch for a free quote and availability check.</p>
-      <p><strong>📍 Based in London | Available for UK &amp; International Bookings</strong></p>
-      <p>📞 Contact Us: <a href="tel:+447939000446" className="text-blue-500 hover:text-blue-700">+447939000446</a></p>
-      <p>📧 Email: <a href="#contact" className="text-blue-500 hover:text-blue-700">Contact Us</a></p>
+      <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">£499</p>
+      <p className="text-gray-600 dark:text-gray-300">Acoustic with live looping technology</p>
     </div>
   </div>
-  
+
+  {/* Key Info Tiles */}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
+      <div className="text-2xl mb-2">🏢</div>
+      <p className="font-semibold text-gray-900 dark:text-white">Corporate Events</p>
+      <p className="text-sm text-gray-600 dark:text-gray-300">Hilton Hotels, Financial Times</p>
+    </div>
+    
+    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
+      <div className="text-2xl mb-2">🎪</div>
+      <p className="font-semibold text-gray-900 dark:text-white">Festival Experience</p>
+      <p className="text-sm text-gray-600 dark:text-gray-300">Isle of Wight Festival</p>
+    </div>
+    
+    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
+      <div className="text-2xl mb-2">📻</div>
+      <p className="font-semibold text-gray-900 dark:text-white">Media Coverage</p>
+      <p className="text-sm text-gray-600 dark:text-gray-300">BBC Radio, Millions of streams</p>
+    </div>
+  </div>
+
+  {/* Short description */}
+  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
+    <p className="text-gray-700 dark:text-gray-300 text-center">
+      Based in East London, we deliver high-energy performances across pop, rock, folk, and funk. 
+      Perfect for weddings, corporate events, and private celebrations throughout London and the UK.
+    </p>
+  </div>
+  {isVisible && (
+    <div className="space-y-8">
+      {/* Why Choose Us - Tiles */}
+      <div>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">Why Choose Us</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+            <div className="text-xl mb-2">🎯</div>
+            <p className="font-semibold text-gray-900 dark:text-white">Versatile Options</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">Full band or intimate solo</p>
+          </div>
+          <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800 text-center">
+            <div className="text-xl mb-2">⭐</div>
+            <p className="font-semibold text-gray-900 dark:text-white">Proven Experience</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">Hundreds of successful events</p>
+          </div>
+          <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800 text-center">
+            <div className="text-xl mb-2">🎵</div>
+            <p className="font-semibold text-gray-900 dark:text-white">Custom Setlists</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">Tailored to your event</p>
+          </div>
+        </div>
+      </div>
+
+      {/* What's Included - Tiles */}
+      <div>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">What's Included</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
+            <div className="text-xl mb-2">🎸</div>
+            <p className="font-semibold text-gray-900 dark:text-white">Full Band Setup</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">Professional sound & lighting</p>
+          </div>
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
+            <div className="text-xl mb-2">🎤</div>
+            <p className="font-semibold text-gray-900 dark:text-white">Live Looping</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">Innovative stomp box tech</p>
+          </div>
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
+            <div className="text-xl mb-2">💝</div>
+            <p className="font-semibold text-gray-900 dark:text-white">Special Requests</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">First dance & favorites</p>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA */}
+      <div className="bg-indigo-600 text-white p-8 rounded-xl text-center">
+        <h3 className="text-2xl font-bold mb-4">Ready to Book?</h3>
+        <p className="text-lg mb-6 opacity-90">Limited availability - secure your date today!</p>
+        <div className="space-y-4">
+          <p className="flex items-center justify-center gap-2">
+            <span>📍</span>
+            <span>London | UK & International Bookings</span>
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="tel:+447939000446" className="bg-white text-indigo-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              📞 Call +44 7939 000446
+            </a>
+            <a href="#contact" className="border-2 border-white text-white px-6 py-2 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition-colors">
+              📧 Get Quote
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   )}
 </div>
 
