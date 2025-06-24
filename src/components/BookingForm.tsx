@@ -128,12 +128,8 @@ export default function BookingForm() {
   ];
 
   const durations = [
-    "1 hour",
-    "2 hours",
-    "3 hours",
-    "4 hours",
-    "5+ hours",
-    "All day/evening"
+    "3 x 40 minute sets",
+    "2 x 1 hour sets"
   ];
 
   if (submitStatus === "success") {
@@ -339,8 +335,9 @@ export default function BookingForm() {
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                   >
                     <option value="">Select performance type</option>
-                    <option value="full-band">Full Band (3-piece + optional sax)</option>
-                    <option value="solo">Solo with Live Looping</option>
+                    <option value="trio">Trio (Lead vocals/guitar, bass, drums)</option>
+                    <option value="trio-plus-sax">Trio + Sax (4-piece with saxophone)</option>
+                    <option value="solo">Solo with Loop Pedal</option>
                     <option value="not-sure">Not sure - please advise</option>
                   </select>
                 </div>
