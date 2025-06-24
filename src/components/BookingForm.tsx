@@ -21,8 +21,7 @@ interface FormData {
   venue: string;
   venueAddress: string;
   
-  // Budget & Extras
-  budgetRange: string;
+  // Special Requests
   specialRequests: string;
   firstDance: string;
   
@@ -44,7 +43,6 @@ export default function BookingForm() {
     performanceType: "",
     venue: "",
     venueAddress: "",
-    budgetRange: "",
     specialRequests: "",
     firstDance: "",
     hearAboutUs: "",
@@ -82,7 +80,6 @@ export default function BookingForm() {
         performanceType: "",
         venue: "",
         venueAddress: "",
-        budgetRange: "",
         specialRequests: "",
         firstDance: "",
         hearAboutUs: "",
@@ -107,15 +104,6 @@ export default function BookingForm() {
     "Other"
   ];
 
-  const budgetRanges = [
-    "Under £500",
-    "£500 - £1,000",
-    "£1,000 - £2,000",
-    "£2,000 - £3,000",
-    "£3,000 - £5,000",
-    "Over £5,000",
-    "Prefer to discuss"
-  ];
 
   const guestCounts = [
     "Under 25",
@@ -380,27 +368,10 @@ export default function BookingForm() {
               </div>
             </div>
 
-            {/* Budget & Special Requests */}
+            {/* Special Requests */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Budget & Special Requests</h3>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Special Requests</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="budgetRange" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Budget Range
-                  </label>
-                  <select
-                    id="budgetRange"
-                    name="budgetRange"
-                    value={formData.budgetRange}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                  >
-                    <option value="">Select budget range</option>
-                    {budgetRanges.map(range => (
-                      <option key={range} value={range}>{range}</option>
-                    ))}
-                  </select>
-                </div>
                 <div>
                   <label htmlFor="firstDance" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     First Dance Song (Weddings)
@@ -418,7 +389,7 @@ export default function BookingForm() {
               </div>
               <div className="mt-6">
                 <label htmlFor="specialRequests" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Special Song Requests or Requirements
+                  Additional Notes
                 </label>
                 <textarea
                   id="specialRequests"
@@ -427,7 +398,7 @@ export default function BookingForm() {
                   value={formData.specialRequests}
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                  placeholder="Any specific songs you'd like us to play, or special requirements for your event..."
+                  placeholder="Any special song requests, requirements, or other notes about your event..."
                 />
               </div>
             </div>
