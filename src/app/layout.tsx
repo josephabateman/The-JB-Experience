@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Favicon */}
-        <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
         
         {/* Preload critical fonts */}
         <link rel="preload" href="/_next/static/css/app/layout.css" as="style" />

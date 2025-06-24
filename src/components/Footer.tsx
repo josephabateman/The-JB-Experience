@@ -12,7 +12,7 @@ export function Footer() {
           <Link href="/" className="flex items-center space-x-2 group">
             <span className="text-lg font-semibold text-gray-900 dark:text-white">The</span>
             <Image
-              src="/img/favicon.svg"
+              src="/images/favicon.svg"
               alt="Logo"
               width="28"
               height="28"

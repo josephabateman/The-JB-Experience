@@ -18,7 +18,7 @@ export const Navbar: React.FC = () => {
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 text-white rounded-md">
           <span>The</span>
-          <Image src="/img/favicon.svg" width="32" height="32" alt="Logo" className="w-8 invert" />
+          <Image src="/images/favicon.svg" width="32" height="32" alt="Logo" className="w-8 invert" />
           <span>Experience</span>
         </Link>
 
