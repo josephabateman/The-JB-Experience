@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import { Navbar } from "@/components/Navbar";
 import About from "../components/About";
 import { Faq } from "@/components/Faq";
-import { Contact } from "@/components/Contact";
+import BookingForm from "../components/BookingForm";
 import HostedVideo from "../components/HostedVideo";
 import Setlist from "../components/Setlist";
 import PhotoGallery from "../components/PhotoGallery";
@@ -47,10 +47,8 @@ export default function Home() {
         <Faq />
       </section>
 
-      {/* 5. Final Conversion - Contact Form */}
-      <section id="contact" className="max-w-6xl mx-auto px-4">
-        <Contact />
-      </section>
+      {/* 5. Final Conversion - Booking Form */}
+      <BookingForm />
 
       {/* Theme Changer button appears at the bottom-right */}
       <ThemeChanger />
