@@ -27,7 +27,6 @@ interface FormData {
   
   // Additional Info
   hearAboutUs: string;
-  additionalInfo: string;
 }
 
 export default function BookingForm() {
@@ -45,8 +44,7 @@ export default function BookingForm() {
     venueAddress: "",
     specialRequests: "",
     firstDance: "",
-    hearAboutUs: "",
-    additionalInfo: ""
+    hearAboutUs: ""
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -82,8 +80,7 @@ export default function BookingForm() {
         venueAddress: "",
         specialRequests: "",
         firstDance: "",
-        hearAboutUs: "",
-        additionalInfo: ""
+        hearAboutUs: ""
       });
     } catch (error) {
       setSubmitStatus("error");
@@ -156,7 +153,7 @@ export default function BookingForm() {
               Get Your Custom Quote
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Fill out our booking inquiry form below and we&apos;ll get back to you with availability and a personalized quote within 24 hours. All pricing includes travel costs and any additional fees.
+              Fill out our booking inquiry form below and we&apos;ll get back to you with availability and a personalized quote within 24 hours. <span className="text-sm text-gray-500 dark:text-gray-400">(plus travel)</span>
             </p>
           </div>
 
@@ -169,7 +166,7 @@ export default function BookingForm() {
               <p><strong>Parking:</strong> Any venue parking costs must be covered by the client</p>
               <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded p-3 mt-4">
                 <p className="text-yellow-800 dark:text-yellow-300 text-sm">
-                  <strong>Extended Travel:</strong> For venues more than 2 hours drive from London, we usually don&apos;t travel this distance but may make an exception. Additional fees apply - please submit your inquiry for a custom quote.
+                  <strong>Extended Travel:</strong> For venues more than 2 hours drive from London, we usually don&apos;t travel this distance but may make an exception. Additional fees apply - please submit your inquiry below for a custom quote.
                 </p>
               </div>
             </div>
@@ -326,7 +323,7 @@ export default function BookingForm() {
                     <option value="trio">Trio (Lead vocals/guitar, bass, drums)</option>
                     <option value="trio-plus-sax">Trio + Sax (4-piece with saxophone)</option>
                     <option value="solo">Solo with Loop Pedal</option>
-                    <option value="not-sure">Not sure - please advise</option>
+                    <option value="not-sure">Not sure - please advise in your inquiry</option>
                   </select>
                 </div>
               </div>
@@ -387,20 +384,6 @@ export default function BookingForm() {
                   />
                 </div>
               </div>
-              <div className="mt-6">
-                <label htmlFor="specialRequests" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Additional Notes
-                </label>
-                <textarea
-                  id="specialRequests"
-                  name="specialRequests"
-                  rows={3}
-                  value={formData.specialRequests}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                  placeholder="Any special song requests, requirements, or other notes about your event..."
-                />
-              </div>
             </div>
 
             {/* Additional Information */}
@@ -428,20 +411,6 @@ export default function BookingForm() {
                   </select>
                 </div>
               </div>
-              <div className="mt-6">
-                <label htmlFor="additionalInfo" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Additional Information
-                </label>
-                <textarea
-                  id="additionalInfo"
-                  name="additionalInfo"
-                  rows={4}
-                  value={formData.additionalInfo}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                  placeholder="Tell us more about your event, any special requirements, or questions you have..."
-                />
-              </div>
             </div>
 
             {/* Submit Button */}
@@ -464,14 +433,14 @@ export default function BookingForm() {
                 )}
               </button>
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
-                We&apos;ll respond within 24 hours with availability and pricing
+                We&apos;ll respond within 24 hours with availability and pricing <span className="text-xs">(plus travel)</span>
               </p>
             </div>
 
             {submitStatus === "error" && (
               <div className="mt-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
                 <p className="text-red-700 dark:text-red-300 text-center">
-                  Sorry, there was an error sending your inquiry. Please try again or contact us directly.
+                  Sorry, there was an error sending your inquiry. Please try again or contact us directly for assistance.
                 </p>
               </div>
             )}
