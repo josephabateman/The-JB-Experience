@@ -11,7 +11,6 @@ import "swiper/css/pagination";
 export default function PhotoGallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [availableImages, setAvailableImages] = useState<string[]>([]);
-  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
 
   // List of potential images - add/remove from here as needed
   const potentialImages = [
@@ -27,7 +26,7 @@ export default function PhotoGallery() {
   ];
 
   useEffect(() => {
-    // Check which images actually exist by trying to load them
+    // Check which images actually exist
     const checkImages = async () => {
       const existingImages: string[] = [];
       
@@ -48,14 +47,51 @@ export default function PhotoGallery() {
     checkImages();
   }, []);
 
-  const handleImageLoad = (imagePath: string) => {
-    setLoadedImages(prev => new Set([...prev, imagePath]));
+  const openLightbox = (index: number) => {
+    setSelectedImage(index);
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
   };
 
-  const handleImageError = (imagePath: string) => {
-    // Remove failed image from available images
-    setAvailableImages(prev => prev.filter(img => img !== imagePath));
+  const closeLightbox = () => {
+    setSelectedImage(null);
+    document.body.style.overflow = 'unset'; // Restore scrolling
   };
+
+  const goToPrevious = () => {
+    if (selectedImage === null) return;
+    const newIndex = selectedImage === 0 ? availableImages.length - 1 : selectedImage - 1;
+    setSelectedImage(newIndex);
+  };
+
+  const goToNext = () => {
+    if (selectedImage === null) return;
+    const newIndex = selectedImage === availableImages.length - 1 ? 0 : selectedImage + 1;
+    setSelectedImage(newIndex);
+  };
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedImage === null) return;
+      
+      switch (e.key) {
+        case 'Escape':
+          closeLightbox();
+          break;
+        case 'ArrowLeft':
+          goToPrevious();
+          break;
+        case 'ArrowRight':
+          goToNext();
+          break;
+      }
+    };
+
+    if (selectedImage !== null) {
+      document.addEventListener('keydown', handleKeyDown);
+      return () => document.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [selectedImage, availableImages.length]);
 
   return (
     <section className="py-12 bg-gray-50 dark:bg-gray-900">
@@ -104,7 +140,7 @@ export default function PhotoGallery() {
                 <SwiperSlide key={image}>
                   <div 
                     className="relative group cursor-pointer"
-                    onClick={() => setSelectedImage(index)}
+                    onClick={() => openLightbox(index)}
                   >
                     <div className="aspect-square relative overflow-hidden rounded-lg shadow-md">
                       <Image
@@ -117,9 +153,15 @@ export default function PhotoGallery() {
                         loading={index < 4 ? "eager" : "lazy"}
                         placeholder="blur"
                         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH8U7hOKUXKcJN2IRVGCAw5ExmDwWbMa6vl3Zw+GjxnfOslNlMEH5rJCLN7GbSgbF9fgNRXhCFvIpVeCRIXhiYBdCRHOGNzWvOGKkJOWFvlOL9+k6pHg5sYQAJAB3j3yVhQEH3zxoRZxNEhupPnBg8MmVFCLPTKYB9Q6QGxNQgOg7DfCkVGf86VNnlSiUbE5A39dJ1TZA6cjkOCNKk7HGb1W4P8wCLs+OKrxAVFJrPfnMWfGf8KrrpnVR3BUVRA7ZyPDgkG+vNDMnM4kMNDKnDuN/PEKo/9k="
-                        onLoad={() => handleImageLoad(image)}
-                        onError={() => handleImageError(image)}
                       />
+                      {/* Overlay to indicate clickable */}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                          <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </SwiperSlide>
@@ -139,49 +181,72 @@ export default function PhotoGallery() {
         )}
 
         {/* Lightbox Modal */}
-        {selectedImage !== null && availableImages[selectedImage] && (
+        {selectedImage !== null && (
           <div 
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center"
+            onClick={closeLightbox}
           >
-            <div className="relative max-w-4xl max-h-full" onClick={(e) => e.stopPropagation()}>
-              <Image
-                src={availableImages[selectedImage]}
-                alt="The JB Experience performance"
-                width={1200}
-                height={800}
-                className="max-w-full max-h-full object-contain rounded-lg"
-                quality={85}
-                priority
-                sizes="90vw"
-              />
+            {/* Main image container */}
+            <div 
+              className="relative w-full h-full flex items-center justify-center p-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* The image */}
+              <div className="relative max-w-[90vw] max-h-[90vh]">
+                <Image
+                  src={availableImages[selectedImage]}
+                  alt="The JB Experience performance"
+                  width={1200}
+                  height={800}
+                  className="max-w-full max-h-full object-contain"
+                  quality={90}
+                  priority
+                  sizes="90vw"
+                />
+              </div>
+
+              {/* Close button */}
               <button
-                onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors"
+                onClick={closeLightbox}
+                className="absolute top-4 right-4 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors z-10"
+                aria-label="Close"
               >
-                ✕
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
-              
-              {/* Navigation arrows in lightbox */}
+
+              {/* Previous button */}
               {availableImages.length > 1 && (
-                <>
-                  <button
-                    onClick={() => setSelectedImage(prev => 
-                      prev === null ? 0 : (prev - 1 + availableImages.length) % availableImages.length
-                    )}
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors"
-                  >
-                    ←
+                <button
+                  onClick={goToPrevious}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors z-10"
+                  aria-label="Previous image"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+              )}
+
+              {/* Next button */}
+              {availableImages.length > 1 && (
+                <button
+                  onClick={goToNext}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors z-10"
+                  aria-label="Next image"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                   </button>
-                  <button
-                    onClick={() => setSelectedImage(prev => 
-                      prev === null ? 0 : (prev + 1) % availableImages.length
-                    )}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors"
-                  >
-                    →
-                  </button>
-                </>
+              )}
+
+              {/* Image counter */}
+              {availableImages.length > 1 && (
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                  {selectedImage + 1} / {availableImages.length}
+                </div>
               )}
             </div>
           </div>
