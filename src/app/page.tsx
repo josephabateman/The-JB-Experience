@@ -5,6 +5,7 @@ import { Faq } from "@/components/Faq";
 import { Contact } from "@/components/Contact";
 import HostedVideo from "../components/HostedVideo";
 import Setlist from "../components/Setlist";
+import PhotoGallery from "../components/PhotoGallery";
 
 
 // Dynamically import the Testimonials (or ReviewsSlider) component
@@ -32,7 +33,12 @@ export default function Home() {
         <About />
       </section>
 
-      {/* 4. Detailed Information - For Interested Prospects */}
+      {/* 4. Photo Gallery - Visual Proof of Performance Quality */}
+      <section id="gallery">
+        <PhotoGallery />
+      </section>
+
+      {/* 5. Detailed Information - For Interested Prospects */}
       <section id="setlist">
         <Setlist />
       </section>
