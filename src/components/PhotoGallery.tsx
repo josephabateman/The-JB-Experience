@@ -49,21 +49,23 @@ export default function PhotoGallery() {
 
   const openLightbox = (index: number) => {
     setSelectedImage(index);
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
   };
 
   const closeLightbox = () => {
     setSelectedImage(null);
-    document.body.style.overflow = 'unset'; // Restore scrolling
+    document.body.style.overflow = 'unset';
   };
 
-  const goToPrevious = () => {
+  const goToPrevious = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (selectedImage === null) return;
     const newIndex = selectedImage === 0 ? availableImages.length - 1 : selectedImage - 1;
     setSelectedImage(newIndex);
   };
 
-  const goToNext = () => {
+  const goToNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (selectedImage === null) return;
     const newIndex = selectedImage === availableImages.length - 1 ? 0 : selectedImage + 1;
     setSelectedImage(newIndex);
@@ -79,10 +81,14 @@ export default function PhotoGallery() {
           closeLightbox();
           break;
         case 'ArrowLeft':
-          goToPrevious();
+          e.preventDefault();
+          const prevIndex = selectedImage === 0 ? availableImages.length - 1 : selectedImage - 1;
+          setSelectedImage(prevIndex);
           break;
         case 'ArrowRight':
-          goToNext();
+          e.preventDefault();
+          const nextIndex = selectedImage === availableImages.length - 1 ? 0 : selectedImage + 1;
+          setSelectedImage(nextIndex);
           break;
       }
     };
@@ -149,7 +155,7 @@ export default function PhotoGallery() {
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                         sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
-                        quality={75}
+                        quality={60}
                         loading={index < 4 ? "eager" : "lazy"}
                         placeholder="blur"
                         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH8U7hOKUXKcJN2IRVGCAw5ExmDwWbMa6vl3Zw+GjxnfOslNlMEH5rJCLN7GbSgbF9fgNRXhCFvIpVeCRIXhiYBdCRHOGNzWvOGKkJOWFvlOL9+k6pHg5sYQAJAB3j3yVhQEH3zxoRZxNEhupPnBg8MmVFCLPTKYB9Q6QGxNQgOg7DfCkVGf86VNnlSiUbE5A39dJ1TZA6cjkOCNKk7HGb1W4P8wCLs+OKrxAVFJrPfnMWfGf8KrrpnVR3BUVRA7ZyPDgkG+vNDMnM4kMNDKnDuN/PEKo/9k="
@@ -183,35 +189,30 @@ export default function PhotoGallery() {
         {/* Lightbox Modal */}
         {selectedImage !== null && (
           <div 
-            className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center"
+            className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
             onClick={closeLightbox}
           >
             {/* Main image container */}
-            <div 
-              className="relative w-full h-full flex items-center justify-center p-4"
-              onClick={(e) => e.stopPropagation()}
-            >
+            <div className="relative max-w-4xl max-h-[90vh] w-full">
               {/* The image */}
-              <div className="relative max-w-[90vw] max-h-[90vh]">
-                <Image
-                  src={availableImages[selectedImage]}
-                  alt="The JB Experience performance"
-                  width={1200}
-                  height={800}
-                  className="max-w-full max-h-full object-contain"
-                  quality={90}
-                  priority
-                  sizes="90vw"
-                />
-              </div>
+              <Image
+                src={availableImages[selectedImage]}
+                alt="The JB Experience performance"
+                width={800}
+                height={600}
+                className="w-full h-full object-contain"
+                quality={75}
+                priority
+                sizes="(max-width: 768px) 95vw, 80vw"
+              />
 
               {/* Close button */}
               <button
                 onClick={closeLightbox}
-                className="absolute top-4 right-4 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors z-10"
+                className="absolute top-2 right-2 w-10 h-10 bg-black/70 hover:bg-black/90 text-white rounded-full flex items-center justify-center transition-colors z-10"
                 aria-label="Close"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
@@ -220,10 +221,10 @@ export default function PhotoGallery() {
               {availableImages.length > 1 && (
                 <button
                   onClick={goToPrevious}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors z-10"
+                  className="absolute left-2 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/70 hover:bg-black/90 text-white rounded-full flex items-center justify-center transition-colors z-10"
                   aria-label="Previous image"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
@@ -233,18 +234,18 @@ export default function PhotoGallery() {
               {availableImages.length > 1 && (
                 <button
                   onClick={goToNext}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors z-10"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/70 hover:bg-black/90 text-white rounded-full flex items-center justify-center transition-colors z-10"
                   aria-label="Next image"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                  </button>
+                </button>
               )}
 
               {/* Image counter */}
               {availableImages.length > 1 && (
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
                   {selectedImage + 1} / {availableImages.length}
                 </div>
               )}
