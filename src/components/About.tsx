@@ -8,16 +8,10 @@ const About: React.FC = () => {
   const toggleVisibility = () => setIsVisible((prev) => !prev);
 
   return (
-    <section className="py-6 relative">
+    <section className="py-8 relative">
       <div className="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
-        {/* Dynamic grid layout */}
-        <div
-          className={`w-full justify-start items-center gap-8 grid ${
-            isVisible ? "grid-cols-1" : "lg:grid-cols-2 grid-cols-1"
-          }`}
-        >
-          {/* Text content */}
-          <div className="w-full flex-col justify-start lg:items-start items-center gap-10 inline-flex">
+        {/* Main content area */}
+        <div className="space-y-8">
           <div className="w-full space-y-8">
   {/* Header */}
   <div className="text-center lg:text-left space-y-3">
@@ -71,12 +65,53 @@ const About: React.FC = () => {
     </div>
   </div>
 
-  {/* Short description */}
+  {/* About the band */}
   <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
-    <p className="text-gray-700 dark:text-gray-300 text-center">
-      Based in East London, we deliver high-energy performances across pop, rock, folk, and funk. 
+    <p className="text-gray-700 dark:text-gray-300 text-center mb-4">
+      Based in East London, <strong>The JB Experience</strong> delivers high-energy performances across pop, rock, folk, and funk. 
       Perfect for weddings, corporate events, and private celebrations throughout London and the UK.
     </p>
+    <p className="text-gray-700 dark:text-gray-300 text-center">
+      Led by Joe Bateman, a talented multi-instrumentalist and producer with extensive experience performing for high-profile clients. 
+      Whether you need an intimate acoustic set or a full band experience, we tailor every performance to your event.
+    </p>
+  </div>
+
+  {/* Video showcase */}
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="space-y-3">
+      <div className="relative w-full aspect-video">
+        <iframe
+          className="w-full h-full rounded-lg shadow-lg"
+          src="https://www.youtube.com/embed/b7RNiZ3eUxc"
+          title="The JB Experience - Full Band Performance"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </div>
+      <div className="text-center">
+        <h4 className="font-semibold text-gray-900 dark:text-white">Full Band Performance</h4>
+        <p className="text-sm text-gray-600 dark:text-gray-300">High-energy live show experience</p>
+      </div>
+    </div>
+    
+    <div className="space-y-3">
+      <div className="relative w-full aspect-video">
+        <iframe
+          className="w-full h-full rounded-lg shadow-lg"
+          src="https://www.youtube.com/embed/OVvikoc0chk"
+          title="Joe Bateman Solo Performance with Live Looping"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </div>
+      <div className="text-center">
+        <h4 className="font-semibold text-gray-900 dark:text-white">Solo with Live Looping</h4>
+        <p className="text-sm text-gray-600 dark:text-gray-300">Intimate acoustic performance</p>
+      </div>
+    </div>
   </div>
   {isVisible && (
     <div className="space-y-8">
@@ -148,40 +183,19 @@ const About: React.FC = () => {
 </div>
 
 
-            {/* Toggle button */}
-            <button
-              className="sm:w-fit w-full px-3.5 py-2 bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 ease-in-out rounded-lg shadow-md justify-center items-center flex"
-              onClick={toggleVisibility}
-            >
-              <span className="px-1.5 text-white text-sm font-medium leading-6">
-                {isVisible ? "Hide Details" : "Read More"}
-              </span>
-            </button>
-          </div>
-
-          {/* Video 1 */}
-          <div className="relative w-full aspect-video">
-            <iframe
-              className="w-full h-full rounded-3xl"
-              src="https://www.youtube.com/embed/b7RNiZ3eUxc"
-              title="The JB Experience"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
-
-          {/* Video 2 */}
-          <div className="relative w-full aspect-video">
-            <iframe
-              className="w-full h-full rounded-3xl"
-              src="https://www.youtube.com/embed/OVvikoc0chk"
-              title="Joe Bateman at Ealing Broadway"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
+  {/* Toggle button */}
+  <div className="text-center">
+    <button
+      className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-md transition-all duration-300"
+      onClick={toggleVisibility}
+    >
+      <span className="flex items-center gap-2">
+        {isVisible ? "Show Less" : "Learn More"}
+        <span className="text-sm">{isVisible ? "↑" : "↓"}</span>
+      </span>
+    </button>
+  </div>
+        </div>
         </div>
       </div>
     </section>
