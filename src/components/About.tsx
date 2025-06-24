@@ -26,7 +26,7 @@ const About: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800">
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-2xl">🎸</span>
+                <span className="text-2xl">🎸🥁🎤</span>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Full Band</h3>
               </div>
               <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">£1,199</p>
@@ -133,19 +133,19 @@ const About: React.FC = () => {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">Why Choose Us</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
-                    <div className="text-xl mb-2">🎯</div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Versatile Options</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Full band or intimate solo</p>
+                    <div className="text-xl mb-2">🎸</div>
+                    <p className="font-semibold text-gray-900 dark:text-white">Professional Musicians</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Experienced, reliable performers</p>
                   </div>
                   <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800 text-center">
-                    <div className="text-xl mb-2">⭐</div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Proven Experience</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Hundreds of successful events</p>
+                    <div className="text-xl mb-2">🎉</div>
+                    <p className="font-semibold text-gray-900 dark:text-white">Dance Floor Guaranteed</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">We know how to get people moving</p>
                   </div>
                   <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800 text-center">
-                    <div className="text-xl mb-2">🎵</div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Custom Setlists</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Tailored to your event</p>
+                    <div className="text-xl mb-2">⚡</div>
+                    <p className="font-semibold text-gray-900 dark:text-white">Stress-Free Booking</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Professional setup & communication</p>
                   </div>
                 </div>
               </div>
