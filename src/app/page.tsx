@@ -4,6 +4,7 @@ import About from "../components/About";
 import { Faq } from "@/components/Faq";
 import { Contact } from "@/components/Contact";
 import HostedVideo from "../components/HostedVideo";
+import Setlist from "../components/Setlist";
 
 
 // Dynamically import the Testimonials (or ReviewsSlider) component
@@ -26,6 +27,10 @@ export default function Home() {
       
       <section id="about">
         <About />
+      </section>
+
+      <section id="setlist">
+        <Setlist />
       </section>
 
       <div className="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto px-4">
