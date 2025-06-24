@@ -7,7 +7,6 @@ interface FormData {
   // Contact Info
   name: string;
   email: string;
-  phone: string;
   
   // Event Details
   eventType: string;
@@ -33,7 +32,6 @@ export default function BookingForm() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
-    phone: "",
     eventType: "",
     eventDate: "",
     eventTime: "",
@@ -69,7 +67,6 @@ export default function BookingForm() {
       setFormData({
         name: "",
         email: "",
-        phone: "",
         eventType: "",
         eventDate: "",
         eventTime: "",
@@ -153,21 +150,22 @@ export default function BookingForm() {
               Get Your Custom Quote
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Fill out our booking inquiry form below and we&apos;ll get back to you with availability and a personalized quote within 24 hours. <span className="text-sm text-gray-500 dark:text-gray-400">(plus travel)</span>
+              Fill out our booking inquiry form below and get an instant estimate! We&apos;ll also get back to you with availability confirmation within 24 hours.
             </p>
           </div>
 
-          {/* Pricing Information */}
-          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mb-12">
-            <h3 className="text-xl font-semibold text-blue-900 dark:text-blue-200 mb-4">Travel & Pricing Information</h3>
-            <div className="space-y-3 text-blue-800 dark:text-blue-300">
-              <p><strong>Travel costs:</strong> £1 per mile for three band members</p>
-              <p><strong>London Congestion Zone:</strong> Additional congestion charge (×3 for band members) applies for venues within the zone</p>
-              <p><strong>Parking:</strong> Any venue parking costs must be covered by the client</p>
-              <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded p-3 mt-4">
-                <p className="text-yellow-800 dark:text-yellow-300 text-sm">
-                  <strong>Extended Travel:</strong> For venues more than 2 hours drive from London, we usually don&apos;t travel this distance but may make an exception. Additional fees apply - please submit your inquiry below for a custom quote.
-                </p>
+          {/* Instant Quote Calculator */}
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mb-12">
+            <h3 className="text-xl font-semibold text-blue-900 dark:text-blue-200 mb-4">✨ Get Your Instant Quote</h3>
+            <p className="text-blue-800 dark:text-blue-300 mb-4">
+              Fill out the form below and see your estimated total cost automatically calculated including all travel expenses and fees!
+            </p>
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-blue-200 dark:border-blue-700">
+              <div className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                <p>• Performance fee: Based on your selected package</p>
+                <p>• Travel costs: £1 per mile (calculated from venue postcode)</p>
+                <p>• London Congestion Zone: £15 × 3 band members (if applicable)</p>
+                <p>• Parking costs: As required by venue (client responsibility)</p>
               </div>
             </div>
           </div>
@@ -177,7 +175,7 @@ export default function BookingForm() {
             {/* Contact Information */}
             <div className="mb-8">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Contact Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Full Name *
@@ -206,20 +204,6 @@ export default function BookingForm() {
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                     placeholder="your@email.com"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                    placeholder="+44 7123 456789"
                   />
                 </div>
               </div>
@@ -413,6 +397,37 @@ export default function BookingForm() {
               </div>
             </div>
 
+            {/* Quote Display */}
+            {formData.performanceType && formData.venueAddress && (
+              <div className="mb-8 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6">
+                <h4 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">📋 Your Estimated Quote</h4>
+                <div className="space-y-2 text-green-700 dark:text-green-300">
+                  <div className="flex justify-between">
+                    <span>Performance Package ({formData.performanceType}):</span>
+                    <span className="font-medium">From £XXX</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Travel costs (calculated from {formData.venueAddress}):</span>
+                    <span className="font-medium">£XXX</span>
+                  </div>
+                  {formData.venueAddress.toLowerCase().includes('london') && (
+                    <div className="flex justify-between">
+                      <span>Congestion Zone (if applicable):</span>
+                      <span className="font-medium">£45</span>
+                    </div>
+                  )}
+                  <hr className="border-green-300 dark:border-green-700" />
+                  <div className="flex justify-between text-lg font-bold">
+                    <span>Estimated Total:</span>
+                    <span>£XXX+</span>
+                  </div>
+                  <p className="text-sm text-green-600 dark:text-green-400 mt-2">
+                    *Parking costs additional. Final quote subject to availability confirmation.
+                  </p>
+                </div>
+              </div>
+            )}
+
             {/* Submit Button */}
             <div className="text-center">
               <button
@@ -433,7 +448,7 @@ export default function BookingForm() {
                 )}
               </button>
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
-                We&apos;ll respond within 24 hours with availability and pricing <span className="text-xs">(plus travel)</span>
+                We&apos;ll respond within 24 hours with availability confirmation
               </p>
             </div>
 
