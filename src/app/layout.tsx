@@ -6,7 +6,12 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: 'swap',
+  preload: true,
+  variable: '--font-inter'
+});
 
 export const metadata = {
   title: "The JB Experience | London Wedding & Event Band – Pop, Rock, Folk",
@@ -23,6 +28,13 @@ export default function RootLayout({
       <head>
         {/* Favicon */}
         <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+        
+        {/* Preload critical fonts */}
+        <link rel="preload" href="/_next/static/css/app/layout.css" as="style" />
+        
+        {/* DNS prefetch for external domains */}
+        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
 
         {/* Google Ads Conversion Tracking */}
         <Script
