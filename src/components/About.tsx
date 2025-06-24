@@ -30,7 +30,7 @@ const About: React.FC = () => {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Full Band</h3>
               </div>
               <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">£1,199</p>
-              <p className="text-gray-600 dark:text-gray-300">Complete live experience with full instrumentation</p>
+              <p className="text-gray-600 dark:text-gray-300">Three piece: lead vocals & guitar, bass, drums. Sax player available for additional fee.</p>
             </div>
             
             <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800">
@@ -39,22 +39,22 @@ const About: React.FC = () => {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Solo Performance</h3>
               </div>
               <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">£499</p>
-              <p className="text-gray-600 dark:text-gray-300">Acoustic with live looping technology</p>
+              <p className="text-gray-600 dark:text-gray-300">Solo performance using live loop pedal</p>
             </div>
           </div>
 
           {/* Key Info Tiles */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
-              <div className="text-2xl mb-2">🏢</div>
-              <p className="font-semibold text-gray-900 dark:text-white">Corporate Events</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Hilton Hotels, Financial Times</p>
+              <div className="text-2xl mb-2">💒</div>
+              <p className="font-semibold text-gray-900 dark:text-white">Weddings</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">First dance & special requests</p>
             </div>
             
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
-              <div className="text-2xl mb-2">🎪</div>
-              <p className="font-semibold text-gray-900 dark:text-white">Festival Experience</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Isle of Wight Festival</p>
+              <div className="text-2xl mb-2">🏢</div>
+              <p className="font-semibold text-gray-900 dark:text-white">Corporate Events</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Hilton Hotels, Financial Times</p>
             </div>
             
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">

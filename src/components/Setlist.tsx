@@ -133,7 +133,7 @@ export default function Setlist() {
               onClick={() => setShowAll(!showAll)}
               className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors"
             >
-              {showAll ? `Show Less` : `Show All ${filteredSongs.length} Songs`}
+              {showAll ? `Show Less` : `Show All Songs`}
             </button>
           </div>
         )}
@@ -141,7 +141,7 @@ export default function Setlist() {
         {/* Note */}
         <div className="mt-8 text-center">
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            This is just a sample of our repertoire. We can learn specific songs for your event upon request.
+            We can learn your first dance for weddings.
           </p>
         </div>
       </div>
