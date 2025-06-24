@@ -2,36 +2,78 @@
 import React from "react";
 import { Container } from "@/components/Container";
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
-import { ChevronUpIcon } from "@heroicons/react/24/solid";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 export const Faq = () => {
+  const getIcon = (question: string) => {
+    if (question.includes("singer") || question.includes("videos")) return "🎤";
+    if (question.includes("line-up") || question.includes("different")) return "🎸";
+    if (question.includes("timings") || question.includes("change")) return "⏰";
+    if (question.includes("iPod") || question.includes("DJ")) return "🎵";
+    if (question.includes("set up") || question.includes("time")) return "⚡";
+    if (question.includes("songs") || question.includes("set list")) return "📋";
+    if (question.includes("equipment") || question.includes("PA")) return "🔊";
+    if (question.includes("learn") || question.includes("requests")) return "💡";
+    return "❓";
+  };
+
   return (
+    <section className="py-12">
+      <div className="text-center mb-10">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          Frequently Asked Questions
+        </h2>
+        <p className="text-lg text-gray-600 dark:text-gray-300">
+          Common questions about booking and performances
+        </p>
+      </div>
 
-        <Container className="!p-0">
-          <div className="w-full p-2 rounded-2xl">
-            {faqdata.map((item) => (
-              <div key={item.question} className="mb-5">
-                <Disclosure>
-                  {({ open }) => (
-                    <>
-                      <DisclosureButton className="flex items-center justify-between w-full px-4 py-4 text-lg text-left text-gray-800 rounded-lg bg-gray-50 hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-indigo-100 focus-visible:ring-opacity-75 dark:bg-trueGray-800 dark:text-gray-200">
-                        <span>{item.question}</span>
-                        <ChevronUpIcon
-                          className={`${open ? "transform rotate-180" : ""} w-5 h-5 text-indigo-500`}
-                        />
-                      </DisclosureButton>
-                      <DisclosurePanel className="px-4 pt-4 pb-2 text-gray-500 dark:text-gray-300">
+      <Container className="!p-0">
+        <div className="w-full space-y-4">
+          {faqdata.map((item, index) => (
+            <div key={item.question} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+              <Disclosure>
+                {({ open }) => (
+                  <>
+                    <DisclosureButton className="flex items-center justify-between w-full px-6 py-5 text-left hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-opacity-50 transition-colors">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-lg">{getIcon(item.question)}</span>
+                        </div>
+                        <span className="text-lg font-semibold text-gray-900 dark:text-white">
+                          {item.question}
+                        </span>
+                      </div>
+                      <ChevronDownIcon
+                        className={`${open ? "transform rotate-180" : ""} w-5 h-5 text-indigo-600 dark:text-indigo-400 transition-transform duration-200 flex-shrink-0 ml-4`}
+                      />
+                    </DisclosureButton>
+                    <DisclosurePanel className="px-6 pb-5">
+                      <div className="ml-14 text-gray-600 dark:text-gray-300 leading-relaxed">
                         {item.answer}
-                      </DisclosurePanel>
-                    </>
-                  )}
-                </Disclosure>
-              </div>
-            ))}
-          </div>
-        </Container>
-      
-
+                      </div>
+                    </DisclosurePanel>
+                  </>
+                )}
+              </Disclosure>
+            </div>
+          ))}
+        </div>
+        
+        <div className="mt-10 text-center">
+          <p className="text-gray-600 dark:text-gray-400 mb-4">
+            Have a different question?
+          </p>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors"
+          >
+            <span>💬</span>
+            Get in Touch
+          </a>
+        </div>
+      </Container>
+    </section>
   );
 };
 
