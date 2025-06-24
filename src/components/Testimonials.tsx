@@ -121,7 +121,7 @@ export default function ReviewsSlider() {
                     <span className="text-yellow-400 text-lg">★★★★★</span>
                   </div>
                   <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-6">
-                    "{review.text}"
+                    &ldquo;{review.text}&rdquo;
                   </p>
                 </div>
                 <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
