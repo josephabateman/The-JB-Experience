@@ -8,30 +8,34 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+// List of available images - only include existing files
+const AVAILABLE_IMAGES = [
+  "/images/Photo Jan 25 2025, 19 48 13.jpg",
+  "/images/Photo Jan 25 2025, 19 48 59.jpg",
+  "/images/Photo Jan 25 2025, 19 49 20.jpg",
+  "/images/Photo Jan 25 2025, 19 49 40.jpg",
+  "/images/Photo Jan 25 2025, 19 49 53.jpg",
+  "/images/Photo Jan 31 2025, 18 41 16 (1).jpg"
+];
+
 export default function PhotoGallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [availableImages, setAvailableImages] = useState<string[]>([]);
   const [preloadedImages, setPreloadedImages] = useState<Set<string>>(new Set());
 
-  // List of available images - only include existing files
-  const potentialImages = [
-    "/images/Photo Jan 25 2025, 19 48 13.jpg",
-    "/images/Photo Jan 25 2025, 19 48 59.jpg",
-    "/images/Photo Jan 25 2025, 19 49 20.jpg",
-    "/images/Photo Jan 25 2025, 19 49 40.jpg",
-    "/images/Photo Jan 25 2025, 19 49 53.jpg",
-    "/images/Photo Jan 31 2025, 18 41 16 (1).jpg"
-  ];
-
   useEffect(() => {
     // Use the known available images directly for faster loading
-    setAvailableImages(potentialImages);
+    setAvailableImages(AVAILABLE_IMAGES);
     
     // Immediately start preloading the first few images
-    potentialImages.slice(0, 4).forEach(imagePath => {
+    AVAILABLE_IMAGES.slice(0, 4).forEach(imagePath => {
       const img = new window.Image();
       img.onload = () => {
-        setPreloadedImages(prev => new Set([...prev, imagePath]));
+        setPreloadedImages(prev => {
+          const newSet = new Set(prev);
+          newSet.add(imagePath);
+          return newSet;
+        });
       };
       img.src = imagePath;
     });
@@ -43,7 +47,11 @@ export default function PhotoGallery() {
     
     const img = new window.Image();
     img.onload = () => {
-      setPreloadedImages(prev => new Set([...prev, src]));
+      setPreloadedImages(prev => {
+        const newSet = new Set(prev);
+        newSet.add(src);
+        return newSet;
+      });
     };
     img.src = src;
   };
