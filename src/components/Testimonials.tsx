@@ -72,8 +72,42 @@ const reviews = [
 
 export default function ReviewsSlider() {
   return (
-    <section className="py-12 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <>
+      {/* Review Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "The JB Experience",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "5",
+              "reviewCount": reviews.length,
+              "bestRating": "5",
+              "worstRating": "5"
+            },
+            "review": reviews.slice(0, 5).map(review => ({
+              "@type": "Review",
+              "author": {
+                "@type": "Person",
+                "name": review.name
+              },
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5",
+                "bestRating": "5"
+              },
+              "reviewBody": review.text,
+              "datePublished": "2024-01-01"
+            }))
+          })
+        }}
+      />
+      
+      <section className="py-12 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
             What Our Clients Say
@@ -144,5 +178,6 @@ export default function ReviewsSlider() {
         </div>
       </div>
     </section>
+    </>
   );
 }

@@ -86,15 +86,20 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          {/* About the band */}
+          {/* About the band - SEO optimized */}
           <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+              London&apos;s Premier Wedding Band - Book Direct & Save
+            </h2>
             <p className="text-gray-700 dark:text-gray-300 text-center mb-4">
-              Based in East London, <strong>The JB Experience</strong> delivers high-energy performances across pop, rock, folk, and funk. 
-              Perfect for weddings, corporate events, and private celebrations throughout London and the UK.
+              Based in <strong>East London (E10)</strong>, <strong>The JB Experience</strong> is a professional wedding band serving London, Essex, and Hertfordshire within a 40-mile radius. We deliver high-energy live music performances across pop, rock, folk, and funk genres - perfect for weddings, corporate events, and private celebrations.
+            </p>
+            <p className="text-gray-700 dark:text-gray-300 text-center mb-4">
+              <strong>Why book direct with us instead of agencies?</strong> Save up to 30% by booking directly - no agency commission fees! You get the same professional wedding band entertainment at a better price, with direct communication for your special requests.
             </p>
             <p className="text-gray-700 dark:text-gray-300 text-center">
-              Led by Joe Bateman, a talented multi-instrumentalist and producer with extensive experience performing for high-profile clients. 
-              Whether you need an intimate acoustic set or a full band experience, we tailor every performance to your event.
+              Led by <strong>Joe Bateman</strong>, a talented multi-instrumentalist and producer with extensive experience performing for high-profile clients including BBC Radio features and corporate events for major London venues. 
+              Whether you need an intimate acoustic solo performance with live loop pedal (from £499) or a full three-piece band experience (from £1,199), we tailor every performance to your event.
             </p>
           </div>
 

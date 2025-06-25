@@ -24,7 +24,7 @@ export const Faq = () => {
           Frequently Asked Questions
         </h2>
         <p className="text-lg text-gray-600 dark:text-gray-300">
-          Common questions about booking and performances
+          Everything you need to know about booking London&apos;s best wedding band direct - no agency fees!
         </p>
       </div>
 
@@ -79,20 +79,20 @@ export const Faq = () => {
 
 const faqdata = [
   {
-    question: "Will the singer be the same as who I see in the videos?",
-    answer: "Yes! Joe will always be the lead singer at your event, ensuring you get the experience shown in our videos. In the rare case a band member is unavailable, we have pre-auditioned substitute musicians (deps) ready to step in. As a professional band, our reputation is paramount, and you can trust that all our musicians are of the highest caliber."
+    question: "Why should I book direct instead of using a wedding band agency?",
+    answer: "Booking direct with The JB Experience saves you up to 30% compared to agency prices. Agencies typically charge 20-40% commission on top of our standard rates. By booking directly, you get the same professional wedding band service, better communication, and more flexibility with special requests - all at a lower cost. You're dealing directly with the musicians who will perform at your event."
   },
   {
-    question: "Do you have different line-up options?",
-    answer: "Yes! Our standard lineup features Joe as the lead vocalist and guitarist, accompanied by bass and drums, creating a versatile sound for various events. Additionally, Joe is available as a stand-alone option. Inquire for details."
+    question: "What areas do you cover from your East London (E10) base?",
+    answer: "We primarily serve a 40-mile radius from East London (E10 5ZD), covering all of London, Essex, Hertfordshire, Kent, and Surrey. This includes popular wedding venues in Chingford, Walthamstow, Enfield, Hertford, Watford, St. Albans, Chelmsford, and surrounding areas. Travel costs are calculated at £1 per mile, with additional congestion zone charges if applicable."
   },
   {
-    question: "What if my timings change after I've booked you?",
-    answer: "We understand that event schedules can change, and we do our best to accommodate these adjustments. If your timings shift slightly as your event approaches, please let us know, and we will work together to ensure everything runs smoothly."
+    question: "How much does it cost to hire The JB Experience for a wedding?",
+    answer: "Our wedding band prices start from £499 for solo acoustic performance with live loop pedal, and £1,199 for our full three-piece band (vocals/guitar, bass, drums). These are direct booking prices with no agency fees. Additional costs include travel (£1 per mile from E10), and parking as required by your venue. London congestion zone charges may apply."
   },
   {
-    question: "Can you provide an iPod/DJ service before and between your sets?",
-    answer: "Yes, at a small additional cost. It includes a Spotify playlist that we can create for you, or you can provide your own. We often receive requests for this service and are happy to assist!"
+    question: "Can you learn our first dance song for our wedding?",
+    answer: "Absolutely! Learning your first dance song is included in all our wedding packages at no extra cost. We work with you to ensure we deliver the perfect version of your special song. We're experienced with a wide range of genres and can adapt songs to suit our acoustic or full band setup."
   },
   {
     question: "How much time do you need to set up?",
