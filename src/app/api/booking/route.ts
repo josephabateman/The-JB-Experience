@@ -4,6 +4,18 @@ import nodemailer from "nodemailer";
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.json();
+    
+    console.log('Booking form submission received:', {
+      name: formData.name,
+      email: formData.email,
+      eventType: formData.eventType
+    });
+    
+    // Check environment variables
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      console.error('Missing email environment variables');
+      throw new Error('Email service not configured. Please contact us directly at joebatemanofficial@gmail.com or 07939 000446.');
+    }
 
     // Configure the email transporter
     const transporter = nodemailer.createTransporter({

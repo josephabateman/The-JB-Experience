@@ -47,6 +47,7 @@ export default function BookingForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -305,6 +306,7 @@ export default function BookingForm() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus("idle");
+    setErrorMessage("");
     
     try {
       // Prepare the submission data including quote information
@@ -348,6 +350,7 @@ export default function BookingForm() {
     } catch (error: any) {
       console.error('Submission error:', error);
       setSubmitStatus("error");
+      setErrorMessage(error.message || 'Failed to send inquiry. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -768,8 +771,8 @@ export default function BookingForm() {
               </div>
             )}
 
-            {/* Submit Button - Only show when quote is NOT visible */}
-            {!quote && (
+            {/* Submit Button - Only show when quote box is NOT visible */}
+            {!(formData.performanceType && formData.venueAddress) && (
               <div className="text-center">
                 <button
                   type="submit"
@@ -797,7 +800,7 @@ export default function BookingForm() {
             {submitStatus === "error" && (
               <div className="mt-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
                 <p className="text-red-700 dark:text-red-300 text-center mb-3">
-                  Sorry, there was an error sending your inquiry. Please try again or contact us directly:
+                  {errorMessage || "Sorry, there was an error sending your inquiry. Please try again or contact us directly:"}
                 </p>
                 <div className="text-center">
                   <a 
