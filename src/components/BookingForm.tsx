@@ -764,6 +764,8 @@ export default function BookingForm() {
                     </svg>
                     Sending...
                   </span>
+                ) : quote ? (
+                  "Submit Complete Inquiry"
                 ) : (
                   "Get My Quote"
                 )}
