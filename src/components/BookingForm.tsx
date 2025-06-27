@@ -736,7 +736,7 @@ export default function BookingForm() {
                           {isSubmitting ? 'Sending...' : 'Submit Inquiry for This Quote →'}
                         </button>
                         <p className="text-xs text-green-600 dark:text-green-400 mt-2">
-                          We'll confirm availability within 24 hours
+                          We&apos;ll confirm availability within 24 hours
                         </p>
                       </div>
                     </div>
