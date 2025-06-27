@@ -185,7 +185,7 @@ export default function ReviewsSlider() {
               Join Our Happy Clients
             </h3>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-              Book direct for the same quality service at a better price
+              Book direct for personalized service and better communication
             </p>
             <CTAButton 
               variant="outline" 

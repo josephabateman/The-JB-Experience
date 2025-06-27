@@ -229,7 +229,7 @@ export default function PhotoGallery() {
               Ready to Create Memories Like These?
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              Book direct and save up to 30% on your wedding entertainment
+              Professional wedding entertainment with personal service
             </p>
             <CTAButton 
               variant="secondary" 

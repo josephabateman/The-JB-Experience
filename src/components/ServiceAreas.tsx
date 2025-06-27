@@ -50,8 +50,8 @@ export default function ServiceAreas() {
             Areas We Cover from Our East London Base
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Professional wedding band services within 40 miles of E10 5ZD. Travel costs calculated at £1 per mile - 
-            transparent pricing with no hidden agency fees!
+            Professional wedding band services across London, Essex, and Hertfordshire. 
+            Local knowledge, reliable service, and transparent pricing with no hidden agency fees!
           </p>
         </div>
 
@@ -86,7 +86,7 @@ export default function ServiceAreas() {
               
               <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
                 <p className="text-xs text-gray-600 dark:text-gray-400">
-                  Travel: £{area.distance.split('-')[0].replace(' miles', '')} - £{area.distance.split('-')[1].replace(' miles', '')}
+                  Coverage: {area.distance} from base
                 </p>
               </div>
             </div>
@@ -100,8 +100,8 @@ export default function ServiceAreas() {
               Your Local Wedding Band
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
-              Based in E10, we know the venues, the routes, and the local wedding scene. 
-              Book direct for better service and 30% savings compared to agencies.
+              Based in East London, we know the venues, the routes, and the local wedding scene. 
+              Book direct for better service and personal attention compared to agencies.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <CTAButton 

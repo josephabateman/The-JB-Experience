@@ -30,9 +30,7 @@ const About: React.FC = () => {
                 <span className="text-2xl">🎸🥁🎤</span>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Full Band</h3>
               </div>
-              <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
-                £1,199 <span className="text-sm font-normal text-gray-500">+ travel expenses</span>
-              </p>
+              <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">£1,199</p>
               <p className="text-gray-600 dark:text-gray-300 mb-4">Three piece: lead vocals & guitar, bass, drums. Sax player available for additional fee.</p>
               
               <div className="relative w-full aspect-video">
@@ -52,9 +50,7 @@ const About: React.FC = () => {
                 <span className="text-2xl">🎤</span>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Solo Performance</h3>
               </div>
-              <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
-                £499 <span className="text-sm font-normal text-gray-500">+ travel expenses</span>
-              </p>
+              <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">£499</p>
               <p className="text-gray-600 dark:text-gray-300 mb-4">Solo performance using live loop pedal</p>
               
               <div className="relative w-full aspect-video">

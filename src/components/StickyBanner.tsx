@@ -31,7 +31,7 @@ export default function StickyBanner() {
       <div className="bg-white dark:bg-gray-800 rounded-full shadow-2xl border border-gray-200 dark:border-gray-700 px-6 py-3 flex items-center space-x-4 max-w-sm mx-auto">
         <div className="flex-1 text-center">
           <p className="text-sm font-medium text-gray-900 dark:text-white">
-            Save 30% - Book Direct!
+            Book Direct - Better Service!
           </p>
         </div>
         <CTAButton 
