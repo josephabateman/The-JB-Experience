@@ -62,12 +62,16 @@ export default function RootLayout({
         {/* Favicon */}
         <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
         
-        {/* Preload critical fonts */}
+        {/* Preload critical resources */}
         <link rel="preload" href="/_next/static/css/app/layout.css" as="style" />
+        <link rel="preload" href="/images/band-performing.jpg" as="image" />
         
         {/* DNS prefetch for external domains */}
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//www.youtube.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.youtube.com" />
         
         {/* Local Business Schema Markup */}
         <script

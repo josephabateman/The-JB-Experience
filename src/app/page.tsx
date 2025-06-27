@@ -6,15 +6,28 @@ import BookingForm from "../components/BookingForm";
 import HostedVideo from "../components/HostedVideo";
 import Setlist from "../components/Setlist";
 import PhotoGallery from "../components/PhotoGallery";
+import ServiceAreas from "../components/ServiceAreas";
 
 
-// Dynamically import the Testimonials (or ReviewsSlider) component
+// Dynamically import the Testimonials component with better loading
 const Testimonials = dynamic(() => import("../components/Testimonials"), {
   ssr: false,
-  loading: () => <p>Loading testimonials...</p>,
+  loading: () => (
+    <section className="py-12 bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <div className="animate-pulse">
+            <div className="h-8 bg-gray-300 dark:bg-gray-700 rounded w-64 mx-auto mb-4"></div>
+            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-96 mx-auto"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  ),
 });
 
 import ThemeChanger from "@/components/ThemeChanger";
+import StickyBanner from "@/components/StickyBanner";
 
 export default function Home() {
   return (
@@ -47,11 +60,17 @@ export default function Home() {
         <Faq />
       </section>
 
-      {/* 5. Final Conversion - Booking Form */}
+      {/* 6. Service Areas - Local SEO */}
+      <ServiceAreas />
+
+      {/* 7. Final Conversion - Booking Form */}
       <BookingForm />
 
       {/* Theme Changer button appears at the bottom-right */}
       <ThemeChanger />
+      
+      {/* Sticky CTA Banner */}
+      <StickyBanner />
     </div>
   );
 }

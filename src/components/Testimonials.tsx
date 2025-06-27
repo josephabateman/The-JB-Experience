@@ -2,6 +2,7 @@
 
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import CTAButton from "./CTAButton";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -175,6 +176,23 @@ export default function ReviewsSlider() {
           <button className="swiper-button-next-custom w-10 h-10 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center transition-colors">
             <span className="text-lg">→</span>
           </button>
+        </div>
+
+        {/* CTA after testimonials */}
+        <div className="text-center mt-12">
+          <div className="bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 rounded-xl p-8 border border-indigo-200 dark:border-indigo-800">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+              Join Our Happy Clients
+            </h3>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+              Book direct for the same quality service at a better price
+            </p>
+            <CTAButton 
+              variant="outline" 
+              size="lg" 
+              text="Start Your Quote"
+            />
+          </div>
         </div>
       </div>
     </section>

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
+import CTAButton from "./CTAButton";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -136,6 +137,9 @@ export default function PhotoGallery() {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
             Photo Gallery
           </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+            See us in action at weddings and events across London
+          </p>
         </div>
 
         {/* Main Gallery Slider */}
@@ -185,8 +189,9 @@ export default function PhotoGallery() {
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                         sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
-                        quality={40}
-                        loading="eager"
+                        quality={75}
+                        loading={index < 3 ? "eager" : "lazy"}
+                        priority={index < 3}
                         onLoad={() => preloadImage(image)}
                         placeholder="blur"
                         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH8U7hOKUXKcJN2IRVGCAw5ExmDwWbMa6vl3Zw+GjxnfOslNlMEH5rJCLN7GbSgbF9fgNRXhCFvIpVeCRIXhiYBdCRHOGNzWvOGKkJOWFvlOL9+k6pHg5sYQAJAB3j3yVhQEH3zxoRZxNEhupPnBg8MmVFCLPTKYB9Q6QGxNQgOg7DfCkVGf86VNnlSiUbE5A39dJ1TZA6cjkOCNKk7HGb1W4P8wCLs+OKrxAVFJrPfnMWfGf8KrrpnVR3BUVRA7ZyPDgkG+vNDMnM4kMNDKnDuN/PEKo/9k="
@@ -216,6 +221,23 @@ export default function PhotoGallery() {
             </div>
           </div>
         )}
+
+        {/* CTA after gallery */}
+        <div className="text-center mt-8">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-lg">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+              Ready to Create Memories Like These?
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Book direct and save up to 30% on your wedding entertainment
+            </p>
+            <CTAButton 
+              variant="secondary" 
+              size="md" 
+              text="Check Availability & Pricing"
+            />
+          </div>
+        </div>
 
         {/* Lightbox Modal */}
         {selectedImage !== null && (

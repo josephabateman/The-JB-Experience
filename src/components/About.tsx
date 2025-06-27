@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import CTAButton from "./CTAButton";
 
 const About: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,7 +30,9 @@ const About: React.FC = () => {
                 <span className="text-2xl">🎸🥁🎤</span>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Full Band</h3>
               </div>
-              <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">£1,199</p>
+              <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                £1,199 <span className="text-sm font-normal text-gray-500">+ travel expenses</span>
+              </p>
               <p className="text-gray-600 dark:text-gray-300 mb-4">Three piece: lead vocals & guitar, bass, drums. Sax player available for additional fee.</p>
               
               <div className="relative w-full aspect-video">
@@ -49,7 +52,9 @@ const About: React.FC = () => {
                 <span className="text-2xl">🎤</span>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Solo Performance</h3>
               </div>
-              <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">£499</p>
+              <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                £499 <span className="text-sm font-normal text-gray-500">+ travel expenses</span>
+              </p>
               <p className="text-gray-600 dark:text-gray-300 mb-4">Solo performance using live loop pedal</p>
               
               <div className="relative w-full aspect-video">
@@ -69,20 +74,20 @@ const About: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
               <div className="text-2xl mb-2">💒</div>
-              <p className="font-semibold text-gray-900 dark:text-white">Weddings</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">First dance & special requests</p>
+              <p className="font-semibold text-gray-900 dark:text-white">London Weddings</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Venues across E10, Essex, Hertfordshire</p>
             </div>
             
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
               <div className="text-2xl mb-2">🏢</div>
               <p className="font-semibold text-gray-900 dark:text-white">Corporate Events</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Hilton Hotels, Financial Times</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Hilton Hotels, Central London venues</p>
             </div>
             
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
               <div className="text-2xl mb-2">📻</div>
-              <p className="font-semibold text-gray-900 dark:text-white">Media Coverage</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">BBC Radio, Millions of streams</p>
+              <p className="font-semibold text-gray-900 dark:text-white">Media Features</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">BBC Radio, Featured artist</p>
             </div>
           </div>
 
@@ -97,10 +102,18 @@ const About: React.FC = () => {
             <p className="text-gray-700 dark:text-gray-300 text-center mb-4">
               <strong>Why book direct with us instead of agencies?</strong> Save up to 30% by booking directly - no agency commission fees! You get the same professional wedding band entertainment at a better price, with direct communication for your special requests.
             </p>
-            <p className="text-gray-700 dark:text-gray-300 text-center">
+            <p className="text-gray-700 dark:text-gray-300 text-center mb-6">
               Led by <strong>Joe Bateman</strong>, a talented multi-instrumentalist and producer with extensive experience performing for high-profile clients including BBC Radio features and corporate events for major London venues. 
               Whether you need an intimate acoustic solo performance with live loop pedal (from £499) or a full three-piece band experience (from £1,199), we tailor every performance to your event.
             </p>
+            <div className="text-center">
+              <CTAButton 
+                variant="primary" 
+                size="lg" 
+                text="Get Your Free Quote Now"
+                className="animate-pulse"
+              />
+            </div>
           </div>
 
 

@@ -95,8 +95,8 @@ const faqdata = [
     answer: "Absolutely! Learning your first dance song is included in all our wedding packages at no extra cost. We work with you to ensure we deliver the perfect version of your special song. We're experienced with a wide range of genres and can adapt songs to suit our acoustic or full band setup."
   },
   {
-    question: "How much time do you need to set up?",
-    answer: "We typically require 1 hour to set up before performance time. Once our PA system is ready, we can start playing a playlist to help create the perfect atmosphere and get your guests excited for our live performance!"
+    question: "Which London venues have you performed at?",
+    answer: "We regularly perform at venues throughout London, Essex, and Hertfordshire including hotels, private estates, registry offices, and unique venues. Popular areas we cover include Chingford, Walthamstow, Enfield, Hertford, Watford, St. Albans, and Chelmsford. We're familiar with most venue requirements and setup procedures across the region."
   },
   {
     question: "Can I pick the songs you play from the set list?",
