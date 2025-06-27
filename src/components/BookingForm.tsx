@@ -749,31 +749,31 @@ export default function BookingForm() {
               </div>
             )}
 
-            {/* Submit Button */}
-            <div className="text-center">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white px-8 py-4 rounded-lg font-medium text-lg transition-colors min-w-[200px]"
-              >
-                {isSubmitting ? (
-                  <span className="flex items-center justify-center">
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Sending...
-                  </span>
-                ) : quote ? (
-                  "Submit Complete Inquiry"
-                ) : (
-                  "Get My Quote"
-                )}
-              </button>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
-                We&apos;ll respond within 24 hours with availability confirmation
-              </p>
-            </div>
+            {/* Submit Button - Only show when quote is NOT visible */}
+            {!quote && (
+              <div className="text-center">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white px-8 py-4 rounded-lg font-medium text-lg transition-colors min-w-[200px]"
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    "Get My Quote"
+                  )}
+                </button>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
+                  We&apos;ll respond within 24 hours with availability confirmation
+                </p>
+              </div>
+            )}
 
             {submitStatus === "error" && (
               <div className="mt-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
