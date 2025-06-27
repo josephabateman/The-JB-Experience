@@ -72,11 +72,14 @@ Reply directly to this email to respond to ${formData.name}.
 
     // Send email to you
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+      from: `"${formData.name}" <${process.env.EMAIL_USER}>`, // Shows client name but sends from your email
       to: "joebatemanofficial@gmail.com",
-      replyTo: formData.email, // This allows you to click reply and respond directly
+      replyTo: `"${formData.name}" <${formData.email}>`, // This allows you to click reply and respond directly to client
       subject: emailSubject,
       text: emailBody,
+      headers: {
+        'Return-Path': formData.email, // Additional header to ensure proper reply routing
+      }
     });
 
     return NextResponse.json({ 
