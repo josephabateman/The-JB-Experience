@@ -304,11 +304,28 @@ export default function BookingForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus("idle");
     
     try {
-      // Here you would typically send to your backend or email service
-      // For now, we'll simulate a successful submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Prepare the submission data including quote information
+      const submissionData = {
+        ...formData,
+        quote: quote // Include the calculated quote in the submission
+      };
+
+      const response = await fetch('/api/booking', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send inquiry');
+      }
       
       setSubmitStatus("success");
       // Reset form after successful submission
@@ -327,7 +344,9 @@ export default function BookingForm() {
         additionalNotes: "",
         hearAboutUs: ""
       });
-    } catch (error) {
+      setDistanceData(null); // Reset distance data too
+    } catch (error: any) {
+      console.error('Submission error:', error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -777,9 +796,24 @@ export default function BookingForm() {
 
             {submitStatus === "error" && (
               <div className="mt-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
-                <p className="text-red-700 dark:text-red-300 text-center">
-                  Sorry, there was an error sending your inquiry. Please try again or contact us directly for assistance.
+                <p className="text-red-700 dark:text-red-300 text-center mb-3">
+                  Sorry, there was an error sending your inquiry. Please try again or contact us directly:
                 </p>
+                <div className="text-center">
+                  <a 
+                    href="mailto:joebatemanofficial@gmail.com" 
+                    className="text-indigo-600 dark:text-indigo-400 hover:underline font-medium"
+                  >
+                    joebatemanofficial@gmail.com
+                  </a>
+                  <span className="mx-2 text-gray-400">|</span>
+                  <a 
+                    href="tel:+447939000446" 
+                    className="text-indigo-600 dark:text-indigo-400 hover:underline font-medium"
+                  >
+                    07939 000446
+                  </a>
+                </div>
               </div>
             )}
           </form>
