@@ -15,9 +15,9 @@ const About: React.FC = () => {
         <div className="space-y-8">
           {/* Header */}
           <div className="text-center lg:text-left space-y-3">
-            <h1 className="dark:invert text-gray-900 text-3xl font-bold">
+            <h2 className="dark:invert text-gray-900 text-3xl font-bold">
               The JB Experience
-            </h1>
+            </h2>
             <p className="dark:invert text-gray-600 text-lg">
               Professional Live Music • London & UK
             </p>

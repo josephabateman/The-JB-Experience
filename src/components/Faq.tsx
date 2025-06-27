@@ -18,7 +18,27 @@ export const Faq = () => {
   };
 
   return (
-    <section className="py-12">
+    <>
+      {/* FAQ Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqdata.map(item => ({
+              "@type": "Question",
+              "name": item.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": item.answer
+              }
+            }))
+          })
+        }}
+      />
+
+      <section className="py-12">
       <div className="text-center mb-10">
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
           Frequently Asked Questions
@@ -74,6 +94,7 @@ export const Faq = () => {
         </div>
       </Container>
     </section>
+    </>
   );
 };
 
