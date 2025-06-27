@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Configure the email transporter
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
         user: process.env.EMAIL_USER, // Your Gmail email
