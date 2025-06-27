@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container } from "@/components/Container";
 
 interface FormData {
@@ -53,9 +53,194 @@ export default function BookingForm() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Calculate quote based on form data
+  // Calculate distance between two points using Haversine formula
+  const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number): number => {
+    const R = 3959; // Earth's radius in miles
+    const dLat = (lat2 - lat1) * (Math.PI / 180);
+    const dLon = (lon2 - lon1) * (Math.PI / 180);
+    const a = 
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  };
+
+  // State for distance calculation
+  const [distanceData, setDistanceData] = useState<{
+    miles: number;
+    hours: number;
+    isCalculating: boolean;
+    error?: string;
+  } | null>(null);
+
+  // Postcode distance lookup for common areas (fallback)
+  const getDistanceFromPostcode = (address: string): { miles: number; hours: number } | null => {
+    const upperAddress = address.toUpperCase();
+    
+    // Common postcode prefixes and approximate distances from E10 5ZD
+    const postcodeDistances: { [key: string]: { miles: number; hours: number } } = {
+      'BD': { miles: 200, hours: 4.0 }, // Bradford
+      'LS': { miles: 190, hours: 3.8 }, // Leeds  
+      'YO': { miles: 220, hours: 4.2 }, // York
+      'M': { miles: 200, hours: 4.0 },  // Manchester
+      'B': { miles: 120, hours: 2.5 },  // Birmingham
+      'CV': { miles: 100, hours: 2.0 }, // Coventry
+      'OX': { miles: 60, hours: 1.5 },  // Oxford
+      'RG': { miles: 40, hours: 1.0 },  // Reading
+      'SL': { miles: 25, hours: 0.8 },  // Slough
+      'AL': { miles: 25, hours: 0.8 },  // St Albans
+      'WD': { miles: 20, hours: 0.7 },  // Watford
+      'HP': { miles: 30, hours: 1.0 },  // Hemel Hempstead
+      'SG': { miles: 25, hours: 0.8 },  // Stevenage
+      'CM': { miles: 30, hours: 1.0 },  // Chelmsford
+      'SS': { miles: 35, hours: 1.2 },  // Southend
+      'CO': { miles: 50, hours: 1.5 },  // Colchester
+      'IP': { miles: 70, hours: 1.8 },  // Ipswich
+      'NR': { miles: 110, hours: 2.5 }, // Norwich
+      'CB': { miles: 55, hours: 1.5 },  // Cambridge
+      'PE': { miles: 90, hours: 2.0 },  // Peterborough
+      'NN': { miles: 70, hours: 1.8 },  // Northampton
+      'MK': { miles: 50, hours: 1.3 },  // Milton Keynes
+      'LU': { miles: 30, hours: 1.0 },  // Luton
+      'SN': { miles: 80, hours: 2.0 },  // Swindon
+      'BA': { miles: 110, hours: 2.5 }, // Bath
+      'BS': { miles: 120, hours: 2.5 }, // Bristol
+      'GL': { miles: 100, hours: 2.3 }, // Gloucester
+      'HR': { miles: 130, hours: 2.8 }, // Hereford
+      'WR': { miles: 110, hours: 2.5 }, // Worcester
+      'DY': { miles: 120, hours: 2.5 }, // Dudley
+      'WV': { miles: 130, hours: 2.7 }, // Wolverhampton
+      'ST': { miles: 150, hours: 3.0 }, // Stoke
+      'DE': { miles: 130, hours: 2.7 }, // Derby
+      'NG': { miles: 120, hours: 2.5 }, // Nottingham
+      'LE': { miles: 100, hours: 2.2 }, // Leicester
+      'LN': { miles: 130, hours: 2.8 }, // Lincoln
+      'DN': { miles: 160, hours: 3.2 }, // Doncaster
+      'S': { miles: 160, hours: 3.2 },  // Sheffield
+      'HD': { miles: 180, hours: 3.6 }, // Huddersfield
+      'HX': { miles: 190, hours: 3.8 }, // Halifax
+      'OL': { miles: 200, hours: 4.0 }, // Oldham
+      'SK': { miles: 180, hours: 3.6 }, // Stockport
+      'WA': { miles: 190, hours: 3.8 }, // Warrington
+      'CW': { miles: 170, hours: 3.4 }, // Crewe
+      'TF': { miles: 140, hours: 2.8 }, // Telford
+      'SY': { miles: 150, hours: 3.0 }, // Shrewsbury
+      'LD': { miles: 180, hours: 3.8 }, // Llandrindod Wells
+      'NP': { miles: 140, hours: 2.8 }, // Newport
+      'CF': { miles: 150, hours: 3.0 }, // Cardiff
+      'SA': { miles: 200, hours: 4.2 }, // Swansea
+    };
+    
+    for (const [prefix, distance] of Object.entries(postcodeDistances)) {
+      if (upperAddress.includes(prefix)) {
+        return distance;
+      }
+    }
+    
+    return null;
+  };
+
+  // Calculate distance when venue address changes
+  useEffect(() => {
+    if (!formData.venueAddress || formData.venueAddress.length < 3) {
+      setDistanceData(null);
+      return;
+    }
+
+    const calculateDistanceFromVenue = async () => {
+      setDistanceData(prev => ({ ...prev, isCalculating: true, error: undefined } as any));
+      
+      try {
+        // E10 5ZD coordinates (our base)
+        const baseLatLng = { lat: 51.5693, lng: -0.0146 };
+        
+        // Geocode the venue address using Nominatim (free service)
+        const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(formData.venueAddress)}&countrycodes=gb&limit=1`;
+        
+        const response = await fetch(geocodeUrl, {
+          headers: {
+            'User-Agent': 'The-JB-Experience-Website/1.0'
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error(`Geocoding failed: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('Geocoding result for', formData.venueAddress, ':', data);
+        
+        if (data && data.length > 0) {
+          const venueLat = parseFloat(data[0].lat);
+          const venueLng = parseFloat(data[0].lon);
+          
+          const miles = calculateDistance(baseLatLng.lat, baseLatLng.lng, venueLat, venueLng);
+          
+          // Estimate driving time (accounting for different road types)
+          let estimatedHours;
+          if (miles <= 20) {
+            estimatedHours = miles / 15; // City driving
+          } else if (miles <= 50) {
+            estimatedHours = (20 / 15) + ((miles - 20) / 35); // Mix of city and motorway
+          } else {
+            estimatedHours = (20 / 15) + (30 / 35) + ((miles - 50) / 50); // Mostly motorway
+          }
+          
+          setDistanceData({
+            miles: Math.round(miles),
+            hours: Math.round(estimatedHours * 10) / 10,
+            isCalculating: false
+          });
+        } else {
+          // Try postcode lookup fallback
+          const postcodeDistance = getDistanceFromPostcode(formData.venueAddress);
+          if (postcodeDistance) {
+            setDistanceData({
+              miles: postcodeDistance.miles,
+              hours: postcodeDistance.hours,
+              isCalculating: false,
+              error: 'Using postcode area estimate'
+            });
+          } else {
+            setDistanceData({
+              miles: 25, // Default fallback
+              hours: 1.5,
+              isCalculating: false,
+              error: 'Could not calculate exact distance - using default estimate'
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Distance calculation error:', error);
+        // Try postcode lookup fallback
+        const postcodeDistance = getDistanceFromPostcode(formData.venueAddress);
+        if (postcodeDistance) {
+          setDistanceData({
+            miles: postcodeDistance.miles,
+            hours: postcodeDistance.hours,
+            isCalculating: false,
+            error: 'Using postcode area estimate (geocoding failed)'
+          });
+        } else {
+          setDistanceData({
+            miles: 25, // Default fallback
+            hours: 1.5,
+            isCalculating: false,
+            error: 'Could not calculate exact distance - using default estimate'
+          });
+        }
+      }
+    };
+
+    // Debounce the API call
+    const timeoutId = setTimeout(calculateDistanceFromVenue, 1000);
+    return () => clearTimeout(timeoutId);
+  }, [formData.venueAddress]);
+
+  // Calculate quote based on form data and real distance
   const calculateQuote = () => {
-    if (!formData.performanceType || !formData.venueAddress) return null;
+    if (!formData.performanceType || !distanceData) return null;
 
     // Base prices
     const basePrices = {
@@ -66,49 +251,34 @@ export default function BookingForm() {
     };
 
     const basePrice = basePrices[formData.performanceType as keyof typeof basePrices] || 0;
+    const { miles, hours } = distanceData;
     
-    // Mock distance calculation (in a real app, you'd use Google Maps API)
-    // For demo purposes, estimate based on location keywords
-    let estimatedMiles = 0;
-    let estimatedHours = 0;
-    const address = formData.venueAddress.toLowerCase();
-    
-    // Rough distance estimates from E10 5ZD
-    if (address.includes('london') || address.includes('e10') || address.includes('hackney') || address.includes('walthamstow')) {
-      estimatedMiles = Math.random() * 20 + 5; // 5-25 miles
-      estimatedHours = estimatedMiles / 15; // Rough city driving speed
-    } else if (address.includes('essex') || address.includes('hertford') || address.includes('watford') || address.includes('chelmsford')) {
-      estimatedMiles = Math.random() * 25 + 20; // 20-45 miles
-      estimatedHours = estimatedMiles / 25; // Faster outside city
-    } else if (address.includes('kent') || address.includes('surrey') || address.includes('cambridge')) {
-      estimatedMiles = Math.random() * 30 + 30; // 30-60 miles
-      estimatedHours = estimatedMiles / 30;
-    } else {
-      // Default estimate
-      estimatedMiles = 25;
-      estimatedHours = 1.5;
-    }
-
     // Travel costs
-    let travelCost = estimatedMiles * 1; // £1 per mile for 3 cars
+    let travelCost = miles * 1; // £1 per mile for 3 band members
     if (formData.performanceType === 'trio-plus-sax') {
-      travelCost += estimatedMiles * 0.33; // Additional 33p per mile for 4th person
+      travelCost += miles * 0.33; // Additional 33p per mile for 4th person
     }
 
     // Time-based surcharges
     let timeSurcharge = 0;
     let timeNote = '';
-    if (estimatedHours > 5) {
+    if (hours > 5) {
       timeSurcharge = 600;
       timeNote = 'Accommodation may need to be provided for journeys over 5 hours.';
-    } else if (estimatedHours > 2) {
+    } else if (hours > 2) {
       timeSurcharge = 300;
       timeNote = 'We usually don\'t travel over 2 hours from East London but may make exceptions - please inquire for details.';
     }
 
-    // Congestion charge (rough estimate)
+    // Congestion charge (approximate - based on London postal codes and areas)
     let congestionCharge = 0;
-    if (address.includes('central london') || address.includes('city of london') || address.includes('westminster')) {
+    const address = formData.venueAddress.toLowerCase();
+    const londonCentralAreas = [
+      'central london', 'city of london', 'westminster', 'ec1', 'ec2', 'ec3', 'ec4',
+      'wc1', 'wc2', 'sw1', 'w1', 'covent garden', 'shoreditch', 'bank', 'liverpool street'
+    ];
+    
+    if (londonCentralAreas.some(area => address.includes(area))) {
       const numPeople = formData.performanceType === 'trio-plus-sax' ? 4 : 3;
       congestionCharge = 15 * numPeople;
     }
@@ -117,14 +287,15 @@ export default function BookingForm() {
 
     return {
       basePrice,
-      estimatedMiles: Math.round(estimatedMiles),
-      estimatedHours: Math.round(estimatedHours * 10) / 10,
+      estimatedMiles: miles,
+      estimatedHours: hours,
       travelCost: Math.round(travelCost),
       timeSurcharge,
       timeNote,
       congestionCharge,
       totalCost: Math.round(totalCost),
-      hasSax: formData.performanceType === 'trio-plus-sax'
+      hasSax: formData.performanceType === 'trio-plus-sax',
+      distanceError: distanceData.error
     };
   };
 
@@ -411,7 +582,7 @@ export default function BookingForm() {
                 </div>
                 <div>
                   <label htmlFor="venueAddress" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Venue Location *
+                    Venue Location * <span className="text-xs text-gray-500">(for accurate distance calculation)</span>
                   </label>
                   <input
                     type="text"
@@ -421,8 +592,11 @@ export default function BookingForm() {
                     value={formData.venueAddress}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                    placeholder="City, postcode, or full address"
+                    placeholder="e.g. 'Hertford, Hertfordshire' or 'SW1A 1AA' or 'The Savoy Hotel, London'"
                   />
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    Include city/area for best results. More specific = more accurate quote.
+                  </p>
                 </div>
               </div>
             </div>
@@ -494,51 +668,84 @@ export default function BookingForm() {
             </div>
 
             {/* Quote Display */}
-            {quote && (
+            {formData.performanceType && formData.venueAddress && (
               <div className="mb-8 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6">
                 <h4 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">📋 Your Estimated Quote</h4>
-                <div className="space-y-2 text-green-700 dark:text-green-300">
-                  <div className="flex justify-between">
-                    <span>Performance Package ({formData.performanceType}{quote.hasSax ? ' + Sax' : ''}):</span>
-                    <span className="font-medium">£{quote.basePrice}</span>
+                
+                {distanceData?.isCalculating ? (
+                  <div className="flex items-center space-x-3 text-green-700 dark:text-green-300">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-green-700"></div>
+                    <span>Calculating distance from E10 5ZD to your venue...</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>Travel costs ({quote.estimatedMiles} miles from E10):</span>
-                    <span className="font-medium">£{quote.travelCost}</span>
-                  </div>
-                  {quote.hasSax && (
-                    <div className="flex justify-between text-sm">
-                      <span className="ml-4">• Includes extra travel for 4th band member</span>
-                      <span></span>
-                    </div>
-                  )}
-                  {quote.congestionCharge > 0 && (
+                ) : quote ? (
+                  <div className="space-y-2 text-green-700 dark:text-green-300">
                     <div className="flex justify-between">
-                      <span>London Congestion Zone:</span>
-                      <span className="font-medium">£{quote.congestionCharge}</span>
+                      <span>Performance Package ({formData.performanceType}{quote.hasSax ? ' + Sax' : ''}):</span>
+                      <span className="font-medium">£{quote.basePrice}</span>
                     </div>
-                  )}
-                  {quote.timeSurcharge > 0 && (
                     <div className="flex justify-between">
-                      <span>Distance surcharge ({quote.estimatedHours}h journey):</span>
-                      <span className="font-medium">£{quote.timeSurcharge}</span>
+                      <span>Travel costs ({quote.estimatedMiles} miles from E10):</span>
+                      <span className="font-medium">£{quote.travelCost}</span>
                     </div>
-                  )}
-                  <hr className="border-green-300 dark:border-green-700" />
-                  <div className="flex justify-between text-lg font-bold">
-                    <span>Estimated Total:</span>
-                    <span>£{quote.totalCost}</span>
-                  </div>
-                  <div className="text-sm text-green-600 dark:text-green-400 mt-3 space-y-1">
-                    <p>• Parking costs additional (client responsibility)</p>
-                    <p>• Final quote subject to availability confirmation</p>
-                    {quote.timeNote && (
-                      <p className="text-amber-600 dark:text-amber-400 font-medium">
-                        ⚠️ {quote.timeNote}
-                      </p>
+                    {quote.hasSax && (
+                      <div className="flex justify-between text-sm">
+                        <span className="ml-4">• Includes extra travel for 4th band member (33p/mile)</span>
+                        <span></span>
+                      </div>
                     )}
+                    {quote.congestionCharge > 0 && (
+                      <div className="flex justify-between">
+                        <span>London Congestion Zone:</span>
+                        <span className="font-medium">£{quote.congestionCharge}</span>
+                      </div>
+                    )}
+                    {quote.timeSurcharge > 0 && (
+                      <div className="flex justify-between">
+                        <span>Distance surcharge ({quote.estimatedHours}h journey):</span>
+                        <span className="font-medium">£{quote.timeSurcharge}</span>
+                      </div>
+                    )}
+                    <hr className="border-green-300 dark:border-green-700" />
+                    <div className="flex justify-between text-lg font-bold">
+                      <span>Estimated Total:</span>
+                      <span>£{quote.totalCost}</span>
+                    </div>
+                    <div className="text-sm text-green-600 dark:text-green-400 mt-3 space-y-1">
+                      <p>• Parking costs additional (client responsibility)</p>
+                      <p>• Final quote subject to availability confirmation</p>
+                      {quote.distanceError && (
+                        <p className="text-orange-600 dark:text-orange-400 font-medium">
+                          ⚠️ {quote.distanceError} - Please contact us for accurate pricing.
+                        </p>
+                      )}
+                      {quote.timeNote && (
+                        <p className="text-amber-600 dark:text-amber-400 font-medium">
+                          ⚠️ {quote.timeNote}
+                        </p>
+                      )}
+                    </div>
+                    
+                    {/* Quick Submit CTA */}
+                    <div className="mt-6 pt-4 border-t border-green-300 dark:border-green-700">
+                      <div className="text-center">
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                        >
+                          {isSubmitting ? 'Sending...' : 'Submit Inquiry for This Quote →'}
+                        </button>
+                        <p className="text-xs text-green-600 dark:text-green-400 mt-2">
+                          We'll confirm availability within 24 hours
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="text-green-700 dark:text-green-300">
+                    <p>Enter a venue location to see your quote calculation...</p>
+                  </div>
+                )}
               </div>
             )}
 
