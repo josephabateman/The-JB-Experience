@@ -53,6 +53,83 @@ export default function BookingForm() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  // Calculate quote based on form data
+  const calculateQuote = () => {
+    if (!formData.performanceType || !formData.venueAddress) return null;
+
+    // Base prices
+    const basePrices = {
+      'solo': 499,
+      'trio': 1199,
+      'trio-plus-sax': 1199 + 300, // Add £300 for sax player
+      'not-sure': 1199
+    };
+
+    const basePrice = basePrices[formData.performanceType as keyof typeof basePrices] || 0;
+    
+    // Mock distance calculation (in a real app, you'd use Google Maps API)
+    // For demo purposes, estimate based on location keywords
+    let estimatedMiles = 0;
+    let estimatedHours = 0;
+    const address = formData.venueAddress.toLowerCase();
+    
+    // Rough distance estimates from E10 5ZD
+    if (address.includes('london') || address.includes('e10') || address.includes('hackney') || address.includes('walthamstow')) {
+      estimatedMiles = Math.random() * 20 + 5; // 5-25 miles
+      estimatedHours = estimatedMiles / 15; // Rough city driving speed
+    } else if (address.includes('essex') || address.includes('hertford') || address.includes('watford') || address.includes('chelmsford')) {
+      estimatedMiles = Math.random() * 25 + 20; // 20-45 miles
+      estimatedHours = estimatedMiles / 25; // Faster outside city
+    } else if (address.includes('kent') || address.includes('surrey') || address.includes('cambridge')) {
+      estimatedMiles = Math.random() * 30 + 30; // 30-60 miles
+      estimatedHours = estimatedMiles / 30;
+    } else {
+      // Default estimate
+      estimatedMiles = 25;
+      estimatedHours = 1.5;
+    }
+
+    // Travel costs
+    let travelCost = estimatedMiles * 1; // £1 per mile for 3 cars
+    if (formData.performanceType === 'trio-plus-sax') {
+      travelCost += estimatedMiles * 0.33; // Additional 33p per mile for 4th person
+    }
+
+    // Time-based surcharges
+    let timeSurcharge = 0;
+    let timeNote = '';
+    if (estimatedHours > 5) {
+      timeSurcharge = 600;
+      timeNote = 'Accommodation may need to be provided for journeys over 5 hours.';
+    } else if (estimatedHours > 2) {
+      timeSurcharge = 300;
+      timeNote = 'We usually don\'t travel over 2 hours from East London but may make exceptions - please inquire for details.';
+    }
+
+    // Congestion charge (rough estimate)
+    let congestionCharge = 0;
+    if (address.includes('central london') || address.includes('city of london') || address.includes('westminster')) {
+      const numPeople = formData.performanceType === 'trio-plus-sax' ? 4 : 3;
+      congestionCharge = 15 * numPeople;
+    }
+
+    const totalCost = basePrice + travelCost + timeSurcharge + congestionCharge;
+
+    return {
+      basePrice,
+      estimatedMiles: Math.round(estimatedMiles),
+      estimatedHours: Math.round(estimatedHours * 10) / 10,
+      travelCost: Math.round(travelCost),
+      timeSurcharge,
+      timeNote,
+      congestionCharge,
+      totalCost: Math.round(totalCost),
+      hasSax: formData.performanceType === 'trio-plus-sax'
+    };
+  };
+
+  const quote = calculateQuote();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -162,9 +239,10 @@ export default function BookingForm() {
             </p>
             <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-blue-200 dark:border-blue-700">
               <div className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
-                <p>• Performance fee: Based on your selected package</p>
-                <p>• Travel costs: £1 per mile (calculated from venue postcode)</p>
-                <p>• London Congestion Zone: £15 × 3 band members (if applicable)</p>
+                <p>• Solo performance: £499 | Trio: £1,199 | Trio + Sax: £1,499</p>
+                <p>• Travel costs: £1 per mile (+33p per mile if sax player)</p>
+                <p>• London Congestion Zone: £15 per band member (if applicable)</p>
+                <p>• Distance surcharge: £300 (2+ hours) | £600 (5+ hours)</p>
                 <p>• Parking costs: As required by venue (client responsibility)</p>
               </div>
             </div>
@@ -304,9 +382,9 @@ export default function BookingForm() {
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                   >
                     <option value="">Select performance type</option>
-                    <option value="trio">Trio (Lead vocals/guitar, bass, drums)</option>
-                    <option value="trio-plus-sax">Trio + Sax (4-piece with saxophone)</option>
-                    <option value="solo">Solo with Loop Pedal</option>
+                    <option value="trio">Trio - £1,199 (Lead vocals/guitar, bass, drums)</option>
+                    <option value="trio-plus-sax">Trio + Sax - £1,499 (4-piece with saxophone)</option>
+                    <option value="solo">Solo - £499 (Solo with Loop Pedal)</option>
                     <option value="not-sure">Not sure - please advise in your inquiry</option>
                   </select>
                 </div>
@@ -416,32 +494,50 @@ export default function BookingForm() {
             </div>
 
             {/* Quote Display */}
-            {formData.performanceType && formData.venueAddress && (
+            {quote && (
               <div className="mb-8 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6">
                 <h4 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">📋 Your Estimated Quote</h4>
                 <div className="space-y-2 text-green-700 dark:text-green-300">
                   <div className="flex justify-between">
-                    <span>Performance Package ({formData.performanceType}):</span>
-                    <span className="font-medium">From £XXX</span>
+                    <span>Performance Package ({formData.performanceType}{quote.hasSax ? ' + Sax' : ''}):</span>
+                    <span className="font-medium">£{quote.basePrice}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Travel costs (calculated from {formData.venueAddress}):</span>
-                    <span className="font-medium">£XXX</span>
+                    <span>Travel costs ({quote.estimatedMiles} miles from E10):</span>
+                    <span className="font-medium">£{quote.travelCost}</span>
                   </div>
-                  {formData.venueAddress.toLowerCase().includes('london') && (
+                  {quote.hasSax && (
+                    <div className="flex justify-between text-sm">
+                      <span className="ml-4">• Includes extra travel for 4th band member</span>
+                      <span></span>
+                    </div>
+                  )}
+                  {quote.congestionCharge > 0 && (
                     <div className="flex justify-between">
-                      <span>Congestion Zone (if applicable):</span>
-                      <span className="font-medium">£45</span>
+                      <span>London Congestion Zone:</span>
+                      <span className="font-medium">£{quote.congestionCharge}</span>
+                    </div>
+                  )}
+                  {quote.timeSurcharge > 0 && (
+                    <div className="flex justify-between">
+                      <span>Distance surcharge ({quote.estimatedHours}h journey):</span>
+                      <span className="font-medium">£{quote.timeSurcharge}</span>
                     </div>
                   )}
                   <hr className="border-green-300 dark:border-green-700" />
                   <div className="flex justify-between text-lg font-bold">
                     <span>Estimated Total:</span>
-                    <span>£XXX+</span>
+                    <span>£{quote.totalCost}</span>
                   </div>
-                  <p className="text-sm text-green-600 dark:text-green-400 mt-2">
-                    *Parking costs additional. Final quote subject to availability confirmation.
-                  </p>
+                  <div className="text-sm text-green-600 dark:text-green-400 mt-3 space-y-1">
+                    <p>• Parking costs additional (client responsibility)</p>
+                    <p>• Final quote subject to availability confirmation</p>
+                    {quote.timeNote && (
+                      <p className="text-amber-600 dark:text-amber-400 font-medium">
+                        ⚠️ {quote.timeNote}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
