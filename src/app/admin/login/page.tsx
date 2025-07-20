@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
@@ -9,7 +8,6 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -32,7 +30,7 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (response.ok) {
-        router.push('/admin');
+        window.location.href = '/admin';
       } else {
         setError(data.error || 'Login failed');
       }
