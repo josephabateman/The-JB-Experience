@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 
 export default function AdminRedirect() {
   useEffect(() => {
-    // Redirect to the API-based admin login
-    window.location.href = '/api/admin/login';
+    // Redirect to the CMS login
+    window.location.href = '/cms?page=login';
   }, []);
 
   return (
