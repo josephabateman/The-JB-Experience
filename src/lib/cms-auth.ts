@@ -60,6 +60,14 @@ export function destroySession(token: string): void {
 export async function authenticateUser(username: string, password: string): Promise<AdminUser | null> {
   const adminCredentials = getAdminCredentials();
   
+  // Debug logging (remove in production)
+  console.log('Auth attempt:', { 
+    provided_username: username, 
+    expected_username: adminCredentials.username,
+    env_username: process.env.CMS_ADMIN_USERNAME,
+    env_password_set: !!process.env.CMS_ADMIN_PASSWORD 
+  });
+  
   if (username === adminCredentials.username && hashPassword(password) === adminCredentials.passwordHash) {
     return {
       id: adminCredentials.id,
