@@ -45,9 +45,58 @@ export default function BookingForm() {
     hearAboutUs: ""
   });
 
+  const [pricing, setPricing] = useState<any>(null);
+  const [loadingPricing, setLoadingPricing] = useState(true);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
+
+  // Load pricing from CMS
+  useEffect(() => {
+    const loadPricing = async () => {
+      try {
+        const response = await fetch('/api/cms/pricing');
+        const data = await response.json();
+        if (data.success) {
+          setPricing(data.data);
+        } else {
+          // Fallback to default pricing if CMS fails
+          setPricing({
+            soloPrice: 499,
+            trioPrice: 1199,
+            saxPrice: 300,
+            baseTravelCostPerMile: 1.0,
+            additionalPersonTravelCostPerMile: 0.33,
+            distanceSurcharge2Hours: 300,
+            distanceSurcharge5Hours: 600,
+            congestionChargePerPerson: 15,
+            distanceThreshold2Hours: 2,
+            distanceThreshold5Hours: 5,
+          });
+        }
+      } catch (error) {
+        console.error('Failed to load pricing:', error);
+        // Fallback to default pricing
+        setPricing({
+          soloPrice: 499,
+          trioPrice: 1199,
+          saxPrice: 300,
+          baseTravelCostPerMile: 1.0,
+          additionalPersonTravelCostPerMile: 0.33,
+          distanceSurcharge2Hours: 300,
+          distanceSurcharge5Hours: 600,
+          congestionChargePerPerson: 15,
+          distanceThreshold2Hours: 2,
+          distanceThreshold5Hours: 5,
+        });
+      } finally {
+        setLoadingPricing(false);
+      }
+    };
+
+    loadPricing();
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -241,37 +290,37 @@ export default function BookingForm() {
 
   // Calculate quote based on form data and real distance
   const calculateQuote = () => {
-    if (!formData.performanceType || !distanceData) return null;
+    if (!formData.performanceType || !distanceData || !pricing) return null;
 
-    // Base prices
+    // Base prices from CMS
     const basePrices = {
-      'solo': 499,
-      'trio': 1199,
-      'trio-plus-sax': 1199 + 300, // Add £300 for sax player
-      'not-sure': 1199
+      'solo': pricing.soloPrice,
+      'trio': pricing.trioPrice,
+      'trio-plus-sax': pricing.trioPrice + pricing.saxPrice,
+      'not-sure': pricing.trioPrice
     };
 
     const basePrice = basePrices[formData.performanceType as keyof typeof basePrices] || 0;
     const { miles, hours } = distanceData;
     
-    // Travel costs
-    let travelCost = miles * 1; // £1 per mile for 3 band members
+    // Travel costs from CMS
+    let travelCost = miles * pricing.baseTravelCostPerMile;
     if (formData.performanceType === 'trio-plus-sax') {
-      travelCost += miles * 0.33; // Additional 33p per mile for 4th person
+      travelCost += miles * pricing.additionalPersonTravelCostPerMile;
     }
 
-    // Time-based surcharges
+    // Time-based surcharges from CMS
     let timeSurcharge = 0;
     let timeNote = '';
-    if (hours > 5) {
-      timeSurcharge = 600;
+    if (hours >= pricing.distanceThreshold5Hours) {
+      timeSurcharge = pricing.distanceSurcharge5Hours;
       timeNote = 'Accommodation may need to be provided for journeys over 5 hours.';
-    } else if (hours > 2) {
-      timeSurcharge = 300;
-      timeNote = 'We usually don\'t travel over 2 hours from East London but may make exceptions - please inquire for details.';
+    } else if (hours >= pricing.distanceThreshold2Hours) {
+      timeSurcharge = pricing.distanceSurcharge2Hours;
+      timeNote = 'We usually don&apos;t travel over 2 hours from East London but may make exceptions - please inquire for details.';
     }
 
-    // Congestion charge (approximate - based on London postal codes and areas)
+    // Congestion charge from CMS (approximate - based on London postal codes and areas)
     let congestionCharge = 0;
     const address = formData.venueAddress.toLowerCase();
     const londonCentralAreas = [
@@ -281,7 +330,7 @@ export default function BookingForm() {
     
     if (londonCentralAreas.some(area => address.includes(area))) {
       const numPeople = formData.performanceType === 'trio-plus-sax' ? 4 : 3;
-      congestionCharge = 15 * numPeople;
+      congestionCharge = pricing.congestionChargePerPerson * numPeople;
     }
 
     const totalCost = basePrice + travelCost + timeSurcharge + congestionCharge;
@@ -432,11 +481,19 @@ export default function BookingForm() {
             </p>
             <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-blue-200 dark:border-blue-700">
               <div className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
-                <p>• Solo performance: £499 | Trio: £1,199 | Trio + Sax: £1,499</p>
-                <p>• Travel costs: £1 per mile (+33p per mile if sax player)</p>
-                <p>• London Congestion Zone: £15 per band member (if applicable)</p>
-                <p>• Distance surcharge: £300 (2+ hours) | £600 (5+ hours)</p>
-                <p>• Parking costs: As required by venue (client responsibility)</p>
+                {loadingPricing ? (
+                  <p>Loading pricing information...</p>
+                ) : pricing ? (
+                  <>
+                    <p>• Solo performance: £{pricing.soloPrice} | Trio: £{pricing.trioPrice} | Trio + Sax: £{pricing.trioPrice + pricing.saxPrice}</p>
+                    <p>• Travel costs: £{pricing.baseTravelCostPerMile} per mile (+£{pricing.additionalPersonTravelCostPerMile} per mile if sax player)</p>
+                    <p>• London Congestion Zone: £{pricing.congestionChargePerPerson} per band member (if applicable)</p>
+                    <p>• Distance surcharge: £{pricing.distanceSurcharge2Hours} ({pricing.distanceThreshold2Hours}+ hours) | £{pricing.distanceSurcharge5Hours} ({pricing.distanceThreshold5Hours}+ hours)</p>
+                    <p>• Parking costs: As required by venue (client responsibility)</p>
+                  </>
+                ) : (
+                  <p>• Pricing information temporarily unavailable</p>
+                )}
               </div>
             </div>
           </div>
@@ -575,10 +632,21 @@ export default function BookingForm() {
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                   >
                     <option value="">Select performance type</option>
-                    <option value="trio">Trio - £1,199 (Lead vocals/guitar, bass, drums)</option>
-                    <option value="trio-plus-sax">Trio + Sax - £1,499 (4-piece with saxophone)</option>
-                    <option value="solo">Solo - £499 (Solo with Loop Pedal)</option>
-                    <option value="not-sure">Not sure - please advise in your inquiry</option>
+                    {pricing ? (
+                      <>
+                        <option value="trio">Trio - £{pricing.trioPrice} (Lead vocals/guitar, bass, drums)</option>
+                        <option value="trio-plus-sax">Trio + Sax - £{pricing.trioPrice + pricing.saxPrice} (4-piece with saxophone)</option>
+                        <option value="solo">Solo - £{pricing.soloPrice} (Solo with Loop Pedal)</option>
+                        <option value="not-sure">Not sure - please advise in your inquiry</option>
+                      </>
+                    ) : (
+                      <>
+                        <option value="trio">Trio (Lead vocals/guitar, bass, drums)</option>
+                        <option value="trio-plus-sax">Trio + Sax (4-piece with saxophone)</option>
+                        <option value="solo">Solo (Solo with Loop Pedal)</option>
+                        <option value="not-sure">Not sure - please advise in your inquiry</option>
+                      </>
+                    )}
                   </select>
                 </div>
               </div>
