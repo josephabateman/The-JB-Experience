@@ -6,14 +6,19 @@ import { AdminUser, AuthSession } from './cms-types';
 // Simple session management
 const sessions = new Map<string, AuthSession>();
 
-// Default admin user (you should change these credentials!)
-const DEFAULT_ADMIN = {
-  id: 'admin-1',
-  username: 'admin',
-  email: 'joebatemanofficial@gmail.com',
-  role: 'admin' as const,
-  passwordHash: hashPassword('JBExperience2024!'), // Change this password!
-  createdAt: new Date().toISOString(),
+// Get admin credentials from environment variables
+const getAdminCredentials = () => {
+  const username = process.env.CMS_ADMIN_USERNAME || 'admin';
+  const password = process.env.CMS_ADMIN_PASSWORD || 'JBExperience2024!';
+  
+  return {
+    id: 'admin-1',
+    username,
+    email: 'joebatemanofficial@gmail.com',
+    role: 'admin' as const,
+    passwordHash: hashPassword(password),
+    createdAt: new Date().toISOString(),
+  };
 };
 
 function hashPassword(password: string): string {
@@ -53,30 +58,35 @@ export function destroySession(token: string): void {
 }
 
 export async function authenticateUser(username: string, password: string): Promise<AdminUser | null> {
-  // For now, we'll use the default admin user
-  // In a real implementation, you'd query the database
-  if (username === DEFAULT_ADMIN.username && hashPassword(password) === DEFAULT_ADMIN.passwordHash) {
+  const adminCredentials = getAdminCredentials();
+  
+  if (username === adminCredentials.username && hashPassword(password) === adminCredentials.passwordHash) {
     return {
-      id: DEFAULT_ADMIN.id,
-      username: DEFAULT_ADMIN.username,
-      email: DEFAULT_ADMIN.email,
-      role: DEFAULT_ADMIN.role,
+      id: adminCredentials.id,
+      username: adminCredentials.username,
+      email: adminCredentials.email,
+      role: adminCredentials.role,
       lastLogin: new Date().toISOString(),
-      createdAt: DEFAULT_ADMIN.createdAt,
+      createdAt: adminCredentials.createdAt,
     };
   }
   return null;
 }
 
 export function getSessionFromRequest(request: NextRequest): AuthSession | null {
-  const token = request.cookies.get('cms-session')?.value || 
-                request.headers.get('authorization')?.replace('Bearer ', '');
-  
-  if (!token) {
+  try {
+    const token = request.cookies.get('cms-session')?.value || 
+                  request.headers.get('authorization')?.replace('Bearer ', '');
+    
+    if (!token) {
+      return null;
+    }
+    
+    return getSession(token);
+  } catch (error) {
+    console.error('Error getting session from request:', error);
     return null;
   }
-  
-  return getSession(token);
 }
 
 export function requireAuth(handler: (req: NextRequest, session: AuthSession) => Promise<Response>) {

@@ -67,10 +67,10 @@ export async function GET(request: NextRequest) {
         </button>
 
         <div class="info">
-          <strong>Default Login:</strong>
-          Username: admin<br />
-          Password: JBExperience2024!
-          <small>Please change these credentials after first login!</small>
+          <strong>CMS Login:</strong>
+          Use your secure credentials<br />
+          (Set via Vercel environment variables)
+          <small>Contact admin if you don't have credentials</small>
         </div>
       </form>
     </div>

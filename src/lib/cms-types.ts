@@ -79,6 +79,29 @@ export interface ServiceArea {
   updatedAt: string;
 }
 
+export interface PricingSettings {
+  id: 'pricing-settings';
+  // Base prices
+  soloPrice: number;
+  trioPrice: number;
+  saxPrice: number; // Additional cost for sax player
+  
+  // Travel costs
+  baseTravelCostPerMile: number;
+  additionalPersonTravelCostPerMile: number;
+  
+  // Surcharges
+  distanceSurcharge2Hours: number;
+  distanceSurcharge5Hours: number;
+  congestionChargePerPerson: number;
+  
+  // Settings
+  distanceThreshold2Hours: number; // miles
+  distanceThreshold5Hours: number; // miles
+  
+  updatedAt: string;
+}
+
 // CMS Response types
 export interface CMSResponse<T> {
   success: boolean;

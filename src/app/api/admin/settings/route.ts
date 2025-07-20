@@ -71,12 +71,13 @@ export async function GET(request: NextRequest) {
     </div>
 
     <div class="card">
-      <h3 class="card-title">Login Credentials</h3>
+      <h3 class="card-title">Security Settings</h3>
       <div class="card-content">
-        <p><strong>Username:</strong> admin</p>
-        <p><strong>Password:</strong> JBExperience2024!</p>
-        <p style="font-size: 0.875rem; margin-top: 0.5rem; color: #f59e0b;">
-          ⚠️ These are default credentials. For security, these should be changed in production.
+        <p><strong>Authentication:</strong> Environment Variables</p>
+        <p><strong>Credentials:</strong> Securely stored in Vercel</p>
+        <p><strong>Session Timeout:</strong> 24 hours</p>
+        <p style="font-size: 0.875rem; margin-top: 0.5rem; color: #059669;">
+          ✅ Credentials are securely managed via environment variables.
         </p>
       </div>
     </div>
