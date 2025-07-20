@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import CTAButton from "./CTAButton";
@@ -8,7 +9,16 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-const reviews = [
+interface Review {
+  id?: string;
+  name: string;
+  event: string;
+  text: string;
+  rating?: number;
+}
+
+// Fallback reviews (original data)
+const fallbackReviews = [
   {
     name: "Richard C",
     event: "Corporate Event - Hilton, London",
@@ -72,6 +82,28 @@ const reviews = [
 ];
 
 export default function ReviewsSlider() {
+  const [reviews, setReviews] = useState<Review[]>(fallbackReviews);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const response = await fetch('/api/testimonials');
+        const data = await response.json();
+        
+        if (data.success && data.data.length > 0) {
+          setReviews(data.data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch testimonials:', error);
+        // Keep fallback reviews
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTestimonials();
+  }, []);
   return (
     <>
       {/* Review Schema Markup */}
@@ -153,7 +185,9 @@ export default function ReviewsSlider() {
               <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 h-auto min-h-[280px] flex flex-col">
                 <div className="flex-1">
                   <div className="flex mb-4">
-                    <span className="text-yellow-400 text-lg">★★★★★</span>
+                    <span className="text-yellow-400 text-lg">
+                      {'★'.repeat(review.rating || 5)}
+                    </span>
                   </div>
                   <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-6">
                     &ldquo;{review.text}&rdquo;

@@ -74,5 +74,8 @@ When Claude Code is reopened:
 3. **Use**: The stored Vercel webhook URL
 4. **Follow**: The mandatory git workflow for every change
 
+## 🧠 Additional Workflow Guidelines
+- Always create a git commit and push the commit before making new changes when asked to do something new. We need good version control.
+
 ---
 **This file ensures consistent workflow across ALL Claude Code sessions**
