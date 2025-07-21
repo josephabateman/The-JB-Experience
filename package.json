@@ -27,7 +27,6 @@
     "@radix-ui/react-slider": "^1.2.3",
     "@types/uuid": "^10.0.0",
     "@vercel/analytics": "^1.5.0",
-    "contentful": "^11.7.8",
     "hls.js": "^1.5.20",
     "next": "^14.2.23",
     "next-themes": "^0.3.0",
