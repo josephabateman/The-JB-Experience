@@ -54,7 +54,7 @@ const WeddingMusicGuide = () => {
             Everything you need to know about planning the perfect wedding music
           </p>
           <p className="text-lg mb-8 opacity-80 max-w-2xl mx-auto">
-            From first dance songs to reception playlists - expert advice from London's professional wedding musicians
+            From first dance songs to reception playlists - expert advice from London&apos;s professional wedding musicians
           </p>
         </div>
       </section>
@@ -63,7 +63,7 @@ const WeddingMusicGuide = () => {
       <section className="py-12 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-            What's In This Guide
+            What&apos;s In This Guide
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-sm">

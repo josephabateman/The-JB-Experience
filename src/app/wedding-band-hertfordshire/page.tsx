@@ -148,7 +148,7 @@ const HertfordshirePage = () => {
               Top Hertfordshire Wedding Venues We Serve
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              We've had the pleasure of performing at Hertfordshire's most prestigious wedding venues:
+              We&apos;ve had the pleasure of performing at Hertfordshire&apos;s most prestigious wedding venues:
             </p>
           </div>
 
