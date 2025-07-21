@@ -66,7 +66,7 @@ const NewAbout: React.FC = () => {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">Solo Performance</h3>
                 <p className="text-gray-300 mb-6">Perfect for intimate events</p>
-                <div className="text-4xl font-bold text-white mb-2">£499</div>
+                <div className="text-4xl font-bold text-white mb-2">£599</div>
                 <p className="text-sm text-gray-400 mb-6">Starting price, before travel costs</p>
                 <div className="space-y-3 text-left">
                   <div className="flex items-center text-gray-300">
