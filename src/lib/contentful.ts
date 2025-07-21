@@ -80,8 +80,8 @@ export const contentfulFetch = {
       const response = await client.getEntries({
         content_type: 'testimonial',
         'fields.active': true,
-        order: 'fields.displayOrder,fields.name',
-      });
+        order: ['fields.displayOrder', 'fields.name'],
+      } as any);
       return response.items as ContentfulTestimonial[];
     } catch (error) {
       console.error('Error fetching testimonials from Contentful:', error);
@@ -95,7 +95,7 @@ export const contentfulFetch = {
       const response = await client.getEntries({
         content_type: 'pricingSettings',
         limit: 1,
-      });
+      } as any);
       return response.items[0] as ContentfulPricing || null;
     } catch (error) {
       console.error('Error fetching pricing from Contentful:', error);
@@ -109,7 +109,7 @@ export const contentfulFetch = {
       const response = await client.getEntries({
         content_type: 'siteSettings',
         limit: 1,
-      });
+      } as any);
       return response.items[0] as ContentfulSiteSettings || null;
     } catch (error) {
       console.error('Error fetching site settings from Contentful:', error);
