@@ -63,8 +63,8 @@ export default function BookingForm() {
         } else {
           // Fallback to default pricing if CMS fails
           setPricing({
-            soloPrice: 499,
-            trioPrice: 1199,
+            soloPrice: 599,
+            trioPrice: 1499,
             saxPrice: 300,
             baseTravelCostPerMile: 1.0,
             additionalPersonTravelCostPerMile: 0.33,
@@ -79,8 +79,8 @@ export default function BookingForm() {
         console.error('Failed to load pricing:', error);
         // Fallback to default pricing
         setPricing({
-          soloPrice: 499,
-          trioPrice: 1199,
+          soloPrice: 599,
+          trioPrice: 1499,
           saxPrice: 300,
           baseTravelCostPerMile: 1.0,
           additionalPersonTravelCostPerMile: 0.33,

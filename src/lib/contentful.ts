@@ -33,8 +33,8 @@ export interface ContentfulTestimonial {
 export interface ContentfulPricing {
   fields: {
     title: string;
-    soloPrice: number;
-    trioPrice: number;
+    soloPrice: number; // £599
+    trioPrice: number; // £1499
     saxPrice: number;
     travelRate: number;
     congestionCharge: number;
