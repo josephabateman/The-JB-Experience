@@ -86,16 +86,24 @@ export interface PricingSettings {
   trioPrice: number;
   saxPrice: number; // Additional cost for sax player
   
-  // Travel costs
+  // New travel costs (CMS frontend format)
+  travelRate?: number;
+  congestionCharge?: number;
+  weekendSurcharge?: number;
+  holidaySurcharge?: number;
+  freeRadius?: number;
+  maxDistance?: number;
+  
+  // Legacy travel costs (backward compatibility)
   baseTravelCostPerMile: number;
   additionalPersonTravelCostPerMile: number;
   
-  // Surcharges
+  // Legacy surcharges (backward compatibility)
   distanceSurcharge2Hours: number;
   distanceSurcharge5Hours: number;
   congestionChargePerPerson: number;
   
-  // Settings
+  // Legacy settings (backward compatibility)
   distanceThreshold2Hours: number; // miles
   distanceThreshold5Hours: number; // miles
   

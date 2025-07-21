@@ -11,10 +11,16 @@ export async function GET(request: NextRequest) {
     // Return default pricing if none exist
     const defaultPricing: PricingSettings = {
       id: 'pricing-settings',
-      soloPrice: 499,
-      trioPrice: 1199,
+      soloPrice: 1200,
+      trioPrice: 1800,
       saxPrice: 300,
-      baseTravelCostPerMile: 1.0,
+      travelRate: 0.45,
+      congestionCharge: 15,
+      weekendSurcharge: 20,
+      holidaySurcharge: 50,
+      freeRadius: 25,
+      maxDistance: 150,
+      baseTravelCostPerMile: 0.45,
       additionalPersonTravelCostPerMile: 0.33,
       distanceSurcharge2Hours: 300,
       distanceSurcharge5Hours: 600,
@@ -37,8 +43,8 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// PUT /api/cms/pricing - Update pricing settings
-export async function PUT(request: NextRequest) {
+// POST /api/cms/pricing - Create/Update pricing settings
+export async function POST(request: NextRequest) {
   return requireAuth(async (req: NextRequest) => {
     try {
       const data = await request.json();
@@ -50,13 +56,20 @@ export async function PUT(request: NextRequest) {
         soloPrice: Number(data.soloPrice),
         trioPrice: Number(data.trioPrice),
         saxPrice: Number(data.saxPrice),
-        baseTravelCostPerMile: Number(data.baseTravelCostPerMile),
-        additionalPersonTravelCostPerMile: Number(data.additionalPersonTravelCostPerMile),
-        distanceSurcharge2Hours: Number(data.distanceSurcharge2Hours),
-        distanceSurcharge5Hours: Number(data.distanceSurcharge5Hours),
-        congestionChargePerPerson: Number(data.congestionChargePerPerson),
-        distanceThreshold2Hours: Number(data.distanceThreshold2Hours),
-        distanceThreshold5Hours: Number(data.distanceThreshold5Hours),
+        travelRate: Number(data.travelRate),
+        congestionCharge: Number(data.congestionCharge),
+        weekendSurcharge: Number(data.weekendSurcharge),
+        holidaySurcharge: Number(data.holidaySurcharge),
+        freeRadius: Number(data.freeRadius),
+        maxDistance: Number(data.maxDistance),
+        // Keep existing fields for backward compatibility
+        baseTravelCostPerMile: Number(data.travelRate || data.baseTravelCostPerMile || 0.45),
+        additionalPersonTravelCostPerMile: Number(data.additionalPersonTravelCostPerMile || 0.33),
+        distanceSurcharge2Hours: Number(data.distanceSurcharge2Hours || 300),
+        distanceSurcharge5Hours: Number(data.distanceSurcharge5Hours || 600),
+        congestionChargePerPerson: Number(data.congestionCharge || data.congestionChargePerPerson || 15),
+        distanceThreshold2Hours: Number(data.distanceThreshold2Hours || 2),
+        distanceThreshold5Hours: Number(data.distanceThreshold5Hours || 5),
       };
 
       let result: PricingSettings;
@@ -87,4 +100,9 @@ export async function PUT(request: NextRequest) {
       );
     }
   })(request);
+}
+
+// PUT /api/cms/pricing - Update pricing settings (alias for POST)
+export async function PUT(request: NextRequest) {
+  return POST(request);
 }

@@ -1011,8 +1011,8 @@ function getPricingPage() {
       document.getElementById('soloPrice').value = currentPricing.soloPrice || 1200;
       document.getElementById('trioPrice').value = currentPricing.trioPrice || 1800;
       document.getElementById('saxPrice').value = currentPricing.saxPrice || 300;
-      document.getElementById('travelRate').value = currentPricing.travelRate || 0.45;
-      document.getElementById('congestionCharge').value = currentPricing.congestionCharge || 15;
+      document.getElementById('travelRate').value = currentPricing.travelRate || currentPricing.baseTravelCostPerMile || 0.45;
+      document.getElementById('congestionCharge').value = currentPricing.congestionCharge || currentPricing.congestionChargePerPerson || 15;
       document.getElementById('weekendSurcharge').value = currentPricing.weekendSurcharge || 20;
       document.getElementById('holidaySurcharge').value = currentPricing.holidaySurcharge || 50;
       document.getElementById('freeRadius').value = currentPricing.freeRadius || 25;
