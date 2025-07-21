@@ -389,8 +389,8 @@ const EnhancedInquiry = () => {
               required
             >
               <option value="">Select Package</option>
-              <option value="full-band">Full Band (£1,199+)</option>
-              <option value="solo">Solo Performance (£499+)</option>
+              <option value="full-band">Full Band (£1,499+)</option>
+              <option value="solo">Solo Performance (£599+)</option>
               <option value="not-sure">Not Sure - Need Advice</option>
             </select>
           </div>

@@ -115,19 +115,19 @@ export default function RootLayout({
                 "Kent",
                 "Surrey"
               ],
-              "priceRange": "£499-£1199",
+              "priceRange": "£599-£1499",
               "offers": [
                 {
                   "@type": "Offer",
                   "name": "Solo Performance with Loop Pedal",
-                  "price": "499",
+                  "price": "599",
                   "priceCurrency": "GBP",
                   "description": "Solo acoustic performance with live looping technology"
                 },
                 {
                   "@type": "Offer",
                   "name": "Full Band Performance",
-                  "price": "1199",
+                  "price": "1499",
                   "priceCurrency": "GBP",
                   "description": "Three-piece band: vocals/guitar, bass, drums. Saxophone available for additional fee"
                 }
