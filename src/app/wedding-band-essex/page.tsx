@@ -269,7 +269,7 @@ const EssexPage = () => {
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Local Essex Knowledge</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                We know Essex venues inside out. From Gaynes Park's acoustics to Down Hall's layout, we arrive prepared.
+                We know Essex venues inside out. From Gaynes Park&apos;s acoustics to Down Hall&apos;s layout, we arrive prepared.
               </p>
             </div>
 
@@ -277,7 +277,7 @@ const EssexPage = () => {
               <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-3xl text-white">💰</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Book Direct & Save</h3>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Book Direct &amp; Save</h3>
               <p className="text-gray-600 dark:text-gray-300">
                 No agency fees! Save up to 30% compared to booking through wedding band agencies.
               </p>

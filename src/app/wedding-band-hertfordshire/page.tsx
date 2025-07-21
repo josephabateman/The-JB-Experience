@@ -208,7 +208,7 @@ const HertfordshirePage = () => {
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Hertfordshire Specialists</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                We know the best routes to avoid M25 traffic, venue acoustics, and setup requirements for Hertfordshire's top wedding locations.
+                We know the best routes to avoid M25 traffic, venue acoustics, and setup requirements for Hertfordshire&apos;s top wedding locations.
               </p>
             </div>
 

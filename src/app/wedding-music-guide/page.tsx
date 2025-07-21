@@ -92,7 +92,7 @@ const WeddingMusicGuide = () => {
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12 text-center">
-            Live Band vs DJ: What's Best for Your Wedding?
+            Live Band vs DJ: What&apos;s Best for Your Wedding?
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8">
@@ -152,7 +152,7 @@ const WeddingMusicGuide = () => {
                   <ul className="space-y-1 text-gray-700 dark:text-gray-300">
                     <li>• Less interactive performance</li>
                     <li>• Playing recorded versions only</li>
-                    <li>• May feel less "special"</li>
+                    <li>• May feel less &ldquo;special&rdquo;</li>
                     <li>• Quality varies significantly</li>
                     <li>• Limited crowd interaction</li>
                   </ul>
@@ -217,7 +217,7 @@ const WeddingMusicGuide = () => {
             <div className="bg-white dark:bg-gray-700 p-6 rounded-xl">
               <h4 className="font-bold text-gray-900 dark:text-white mb-3">💡 Pro Tip: Song Choice</h4>
               <p className="text-gray-700 dark:text-gray-300 text-sm">
-                Choose a song that means something to you both. Popular doesn't always mean right for your relationship.
+                Choose a song that means something to you both. Popular doesn&apos;t always mean right for your relationship.
               </p>
             </div>
             <div className="bg-white dark:bg-gray-700 p-6 rounded-xl">
@@ -304,10 +304,10 @@ const WeddingMusicGuide = () => {
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-8 rounded-2xl border border-blue-200 dark:border-blue-800">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">🎵 Song Requests & Special Moments</h3>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                Most professional bands can learn new songs with advance notice. Don't be afraid to request something meaningful to you, even if it's not on their standard setlist.
+                Most professional bands can learn new songs with advance notice. Don&apos;t be afraid to request something meaningful to you, even if it&apos;s not on their standard setlist.
               </p>
               <p className="text-gray-700 dark:text-gray-300">
-                <strong>Pro tip:</strong> Give your band a "do not play" list too - some songs might have negative associations you'd rather avoid.
+                <strong>Pro tip:</strong> Give your band a &ldquo;do not play&rdquo; list too - some songs might have negative associations you&apos;d rather avoid.
               </p>
             </div>
             

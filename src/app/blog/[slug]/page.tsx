@@ -247,7 +247,7 @@ const BlogPostPage = ({ params }: PageProps) => {
               💬 What Our Client Said
             </h2>
             <blockquote className="text-lg text-gray-700 dark:text-gray-300 italic mb-4">
-              "{post.clientTestimonial.text}"
+              &ldquo;{post.clientTestimonial.text}&rdquo;
             </blockquote>
             <cite className="text-indigo-600 dark:text-indigo-400 font-semibold">
               - {post.clientTestimonial.client}
