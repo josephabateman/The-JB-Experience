@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sanityFetch, queries } from '@/lib/sanity';
+import { contentfulFetch } from '@/lib/contentful';
 
 // Fallback testimonials data if Sanity is not configured
 const fallbackTestimonials = [
@@ -32,11 +32,11 @@ const fallbackTestimonials = [
 // GET /api/testimonials - Public endpoint for fetching testimonials
 export async function GET(request: NextRequest) {
   try {
-    // Check if Sanity is configured
-    const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+    // Check if Contentful is configured
+    const spaceId = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID;
     
-    if (!projectId || projectId === 'your-project-id') {
-      // Return fallback data if Sanity not configured yet
+    if (!spaceId) {
+      // Return fallback data if Contentful not configured yet
       return NextResponse.json({
         success: true,
         data: fallbackTestimonials,
@@ -45,17 +45,29 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // Fetch from Sanity
-    const testimonials = await sanityFetch<any[]>({
-      query: queries.testimonials,
-      tags: ['testimonial'],
-    });
+    // Fetch from Contentful
+    const contentfulTestimonials = await contentfulFetch.getTestimonials();
+    
+    // Transform Contentful data to match expected format
+    const testimonials = contentfulTestimonials.map(item => ({
+      _id: item.sys.id,
+      name: item.fields.name,
+      event: item.fields.event,
+      text: item.fields.text,
+      rating: item.fields.rating,
+      featured: item.fields.featured,
+      displayOrder: item.fields.displayOrder,
+      image: item.fields.image ? {
+        url: `https:${item.fields.image.fields.file.url}`,
+        alt: item.fields.image.fields.title,
+      } : null,
+    }));
 
     return NextResponse.json({
       success: true,
-      data: testimonials || fallbackTestimonials,
-      total: testimonials?.length || fallbackTestimonials.length,
-      source: 'sanity',
+      data: testimonials.length > 0 ? testimonials : fallbackTestimonials,
+      total: testimonials.length > 0 ? testimonials.length : fallbackTestimonials.length,
+      source: testimonials.length > 0 ? 'contentful' : 'fallback',
     });
   } catch (error) {
     console.error('Error fetching testimonials:', error);
