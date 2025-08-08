@@ -66,21 +66,22 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          {/* Prominent Quote CTA Banner */}
-          <div className="bg-gradient-to-r from-green-500 to-blue-600 text-white p-6 rounded-2xl shadow-xl text-center border-2 border-yellow-300">
-            <div className="text-3xl mb-2">⚡</div>
-            <h3 className="text-2xl font-bold mb-2">Get Your Instant Quote!</h3>
-            <p className="text-lg mb-4 opacity-90">
-              See your exact price in 30 seconds - just enter your postcode & event date
+          {/* Quote Information Banner */}
+          <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800 text-center">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+              Calculate Your Quote
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              Get an accurate price estimate based on your location and event details
             </p>
             <CTAButton 
-              variant="secondary" 
-              size="lg" 
-              text="🎯 Calculate My Price Now"
-              className="bg-white text-gray-900 hover:bg-gray-100 font-bold text-lg px-8 py-4 shadow-lg transform hover:scale-105 transition-all"
+              variant="primary" 
+              size="md" 
+              text="View Pricing Calculator"
+              className="mb-3"
             />
-            <p className="text-sm mt-3 opacity-75">
-              ✓ Includes travel costs ✓ No hidden fees ✓ Instant results
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Includes travel costs and venue-specific requirements
             </p>
           </div>
 
@@ -124,8 +125,8 @@ const About: React.FC = () => {
               <CTAButton 
                 variant="primary" 
                 size="lg" 
-                text="💰 Get Instant Quote - 30 Seconds!"
-                className="animate-pulse bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white font-bold shadow-lg transform hover:scale-105 transition-all"
+                text="Get Your Quote"
+                className=""
               />
             </div>
           </div>
