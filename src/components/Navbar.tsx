@@ -7,10 +7,6 @@ import Image from "next/image";
 export const Navbar: React.FC = () => {
   const navigation = [
     { name: "About", link: "#about" },
-    { name: "Blog", link: "/blog" },
-    { name: "Music Guide", link: "/wedding-music-guide" },
-    { name: "Essex", link: "/wedding-band-essex" },
-    { name: "Hertfordshire", link: "/wedding-band-hertfordshire" },
     { name: "Testimonials", link: "#testimonials" },
     { name: "Contact", link: "#contact" },
   ];

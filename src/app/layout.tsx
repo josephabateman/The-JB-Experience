@@ -15,14 +15,14 @@ const inter = Inter({
 
 export const metadata = {
   title: "Wedding Band London | Book Direct & Save | The JB Experience - No Agency Fees",
-  description: "Professional wedding band London, Essex & Hertfordshire. Book direct from £499 - no agency fees! Live music for weddings, corporate events. Available E10, North London, South Essex. Call 07939 000446",
+  description: "Professional wedding band London, Essex & Hertfordshire. Book direct from £599 - no agency fees! Live music for weddings, corporate events. Available E10, North London, South Essex. Call 07939 000446",
   keywords: "wedding band London, wedding musicians London, live band hire London, wedding entertainment London, function band London, corporate event band London, wedding band Essex, wedding band Hertfordshire, book direct wedding band, no agency fees wedding band, affordable wedding band London, professional wedding band, live music London",
   author: "The JB Experience",
   robots: "index, follow",
-  metadataBase: new URL('https://the-jb-experience.vercel.app'),
+  metadataBase: new URL('https://thejbexperience.co.uk'),
   openGraph: {
     title: "Wedding Band London | Book Direct & Save | The JB Experience",
-    description: "Professional wedding band serving London, Essex & Hertfordshire. Book direct from £499 - no agency fees! Available for weddings, corporate events, private parties.",
+    description: "Professional wedding band serving London, Essex & Hertfordshire. Book direct from £599 - no agency fees! Available for weddings, corporate events, private parties.",
     type: "website",
     locale: "en_GB",
     siteName: "The JB Experience",
@@ -38,11 +38,11 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Wedding Band London | Book Direct & Save | The JB Experience",
-    description: "Professional wedding band serving London, Essex & Hertfordshire. Book direct from £499 - no agency fees!",
+    description: "Professional wedding band serving London, Essex & Hertfordshire. Book direct from £599 - no agency fees!",
     images: ["/images/band-performing.jpg"],
   },
   alternates: {
-    canonical: "https://the-jb-experience.vercel.app",
+    canonical: "https://thejbexperience.co.uk",
   },
 };
 
@@ -83,9 +83,9 @@ export default function RootLayout({
               "name": "The JB Experience",
               "alternateName": "Joe Bateman Band",
               "description": "Professional wedding and event band serving London, Essex, and Hertfordshire. Book direct - no agency fees!",
-              "url": "https://the-jb-experience.vercel.app",
-              "logo": "https://the-jb-experience.vercel.app/images/band-performing.jpg",
-              "image": "https://the-jb-experience.vercel.app/images/band-performing.jpg",
+              "url": "https://thejbexperience.co.uk",
+              "logo": "https://thejbexperience.co.uk/images/band-performing.jpg",
+              "image": "https://thejbexperience.co.uk/images/band-performing.jpg",
               "telephone": "+447939000446",
               "email": "info@thejbexperience.com",
               "genre": ["Pop", "Rock", "Folk", "Funk", "Wedding Music"],
@@ -148,7 +148,7 @@ export default function RootLayout({
                 "@type": "ReserveAction",
                 "target": {
                   "@type": "EntryPoint",
-                  "urlTemplate": "https://the-jb-experience.vercel.app#contact",
+                  "urlTemplate": "https://thejbexperience.co.uk#contact",
                   "actionPlatform": [
                     "http://schema.org/DesktopWebPlatform",
                     "http://schema.org/MobileWebPlatform"
