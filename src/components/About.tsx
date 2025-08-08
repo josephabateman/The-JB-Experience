@@ -66,6 +66,24 @@ const About: React.FC = () => {
             </div>
           </div>
 
+          {/* Prominent Quote CTA Banner */}
+          <div className="bg-gradient-to-r from-green-500 to-blue-600 text-white p-6 rounded-2xl shadow-xl text-center border-2 border-yellow-300">
+            <div className="text-3xl mb-2">⚡</div>
+            <h3 className="text-2xl font-bold mb-2">Get Your Instant Quote!</h3>
+            <p className="text-lg mb-4 opacity-90">
+              See your exact price in 30 seconds - just enter your postcode & event date
+            </p>
+            <CTAButton 
+              variant="secondary" 
+              size="lg" 
+              text="🎯 Calculate My Price Now"
+              className="bg-white text-gray-900 hover:bg-gray-100 font-bold text-lg px-8 py-4 shadow-lg transform hover:scale-105 transition-all"
+            />
+            <p className="text-sm mt-3 opacity-75">
+              ✓ Includes travel costs ✓ No hidden fees ✓ Instant results
+            </p>
+          </div>
+
           {/* Key Info Tiles */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
@@ -90,7 +108,7 @@ const About: React.FC = () => {
           {/* About the band - SEO optimized */}
           <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">
-              London&apos;s Premier Wedding Band - Book Direct & Save
+              London's Premier Wedding Band - Book Direct & Save
             </h2>
             <p className="text-gray-700 dark:text-gray-300 text-center mb-4">
               Based in <strong>East London (E10)</strong>, <strong>The JB Experience</strong> is a professional wedding band serving London, Essex, and Hertfordshire within a 40-mile radius. We deliver high-energy live music performances across pop, rock, folk, and funk genres - perfect for weddings, corporate events, and private celebrations.
@@ -106,8 +124,8 @@ const About: React.FC = () => {
               <CTAButton 
                 variant="primary" 
                 size="lg" 
-                text="Get Your Free Quote Now"
-                className="animate-pulse"
+                text="💰 Get Instant Quote - 30 Seconds!"
+                className="animate-pulse bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white font-bold shadow-lg transform hover:scale-105 transition-all"
               />
             </div>
           </div>
@@ -152,7 +170,7 @@ const About: React.FC = () => {
 
               {/* What's Included - Tiles */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">What&apos;s Included</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">What's Included</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
                     <div className="text-xl mb-2">🎸</div>

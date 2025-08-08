@@ -30,15 +30,18 @@ export default function StickyBanner() {
     <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 animate-slide-up">
       <div className="bg-white dark:bg-gray-800 rounded-full shadow-2xl border border-gray-200 dark:border-gray-700 px-6 py-3 flex items-center space-x-4 max-w-sm mx-auto">
         <div className="flex-1 text-center">
-          <p className="text-sm font-medium text-gray-900 dark:text-white">
-            Book Direct - Better Service!
+          <p className="text-xs font-medium text-gray-900 dark:text-white">
+            💰 Instant Quote Tool
+          </p>
+          <p className="text-xs text-gray-600 dark:text-gray-300">
+            See your price in 30 seconds!
           </p>
         </div>
         <CTAButton 
           variant="primary" 
           size="sm" 
-          text="Get Quote"
-          className="flex-shrink-0"
+          text="Try Now!"
+          className="flex-shrink-0 bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 pulse-animation"
         />
         <button
           onClick={() => setIsDismissed(true)}

@@ -317,7 +317,7 @@ export default function BookingForm() {
       timeNote = 'Accommodation may need to be provided for journeys over 5 hours.';
     } else if (hours >= pricing.distanceThreshold2Hours) {
       timeSurcharge = pricing.distanceSurcharge2Hours;
-      timeNote = 'We usually don&apos;t travel over 2 hours from East London but may make exceptions - please inquire for details.';
+      timeNote = "We usually don't travel over 2 hours from East London but may make exceptions - please inquire for details.";
     }
 
     // Congestion charge from CMS (approximate - based on London postal codes and areas)
