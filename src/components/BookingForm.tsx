@@ -64,6 +64,7 @@ export default function BookingForm() {
           // Fallback to default pricing if CMS fails
           setPricing({
             soloPrice: 599,
+            duoPrice: 1095,
             trioPrice: 1499,
             saxPrice: 300,
             baseTravelCostPerMile: 1.0,
@@ -73,6 +74,9 @@ export default function BookingForm() {
             congestionChargePerPerson: 15,
             distanceThreshold2Hours: 2,
             distanceThreshold5Hours: 5,
+            distanceThreshold3Point5Hours: 3.5,
+            overnightStayPerPerson: 250,
+            corporateMultiplier: 1.3,
           });
         }
       } catch (error) {
@@ -80,6 +84,7 @@ export default function BookingForm() {
         // Fallback to default pricing
         setPricing({
           soloPrice: 599,
+          duoPrice: 1095,
           trioPrice: 1499,
           saxPrice: 300,
           baseTravelCostPerMile: 1.0,
@@ -89,6 +94,9 @@ export default function BookingForm() {
           congestionChargePerPerson: 15,
           distanceThreshold2Hours: 2,
           distanceThreshold5Hours: 5,
+          distanceThreshold3Point5Hours: 3.5,
+          overnightStayPerPerson: 250,
+          corporateMultiplier: 1.3,
         });
       } finally {
         setLoadingPricing(false);
@@ -293,12 +301,24 @@ export default function BookingForm() {
     if (!formData.performanceType || !distanceData || !pricing) return null;
 
     // Base prices from CMS
-    const basePrices = {
+    let basePrices = {
       'solo': pricing.soloPrice,
+      'duo': pricing.duoPrice,
       'trio': pricing.trioPrice,
       'trio-plus-sax': pricing.trioPrice + pricing.saxPrice,
       'not-sure': pricing.trioPrice
     };
+
+    // Apply corporate event multiplier
+    const isCorporateEvent = formData.eventType === 'corporate-event' || 
+                            formData.eventType === 'company-event' || 
+                            formData.eventType === 'business-event';
+    
+    if (isCorporateEvent && pricing.corporateMultiplier) {
+      basePrices = Object.fromEntries(
+        Object.entries(basePrices).map(([key, value]) => [key, Math.round(value * pricing.corporateMultiplier)])
+      );
+    }
 
     const basePrice = basePrices[formData.performanceType as keyof typeof basePrices] || 0;
     const { miles, hours } = distanceData;
@@ -312,12 +332,30 @@ export default function BookingForm() {
     // Time-based surcharges from CMS
     let timeSurcharge = 0;
     let timeNote = '';
+    let overnightStayCharge = 0;
+    
     if (hours >= pricing.distanceThreshold5Hours) {
       timeSurcharge = pricing.distanceSurcharge5Hours;
       timeNote = 'Accommodation may need to be provided for journeys over 5 hours.';
     } else if (hours >= pricing.distanceThreshold2Hours) {
       timeSurcharge = pricing.distanceSurcharge2Hours;
       timeNote = "We usually don't travel over 2 hours from East London but may make exceptions - please inquire for details.";
+    }
+
+    // Overnight stay surcharge for 3.5+ hour journeys
+    if (hours >= pricing.distanceThreshold3Point5Hours) {
+      const numPeople = formData.performanceType === 'solo' ? 1 : 
+                       formData.performanceType === 'duo' ? 2 :
+                       formData.performanceType === 'trio' ? 3 : 
+                       formData.performanceType === 'trio-plus-sax' ? 4 : 3;
+      
+      overnightStayCharge = numPeople * pricing.overnightStayPerPerson;
+      
+      if (!timeNote) {
+        timeNote = `Overnight accommodation required (£${pricing.overnightStayPerPerson} per person).`;
+      } else {
+        timeNote += ` Includes overnight accommodation (£${pricing.overnightStayPerPerson} per person).`;
+      }
     }
 
     // Congestion charge from CMS (approximate - based on London postal codes and areas)
@@ -333,7 +371,7 @@ export default function BookingForm() {
       congestionCharge = pricing.congestionChargePerPerson * numPeople;
     }
 
-    const totalCost = basePrice + travelCost + timeSurcharge + congestionCharge;
+    const totalCost = basePrice + travelCost + timeSurcharge + congestionCharge + overnightStayCharge;
 
     return {
       basePrice,
@@ -343,8 +381,10 @@ export default function BookingForm() {
       timeSurcharge,
       timeNote,
       congestionCharge,
+      overnightStayCharge,
       totalCost: Math.round(totalCost),
       hasSax: formData.performanceType === 'trio-plus-sax',
+      isCorporateEvent,
       distanceError: distanceData.error
     };
   };
@@ -485,10 +525,12 @@ export default function BookingForm() {
                   <p>Loading pricing information...</p>
                 ) : pricing ? (
                   <>
-                    <p>• Solo performance: £{pricing.soloPrice} | Trio: £{pricing.trioPrice} | Trio + Sax: £{pricing.trioPrice + pricing.saxPrice}</p>
+                    <p>• Solo: £{pricing.soloPrice} | Duo: £{pricing.duoPrice} | Trio: £{pricing.trioPrice} | Trio + Sax: £{pricing.trioPrice + pricing.saxPrice}</p>
                     <p>• Travel costs: £{pricing.baseTravelCostPerMile} per mile (+£{pricing.additionalPersonTravelCostPerMile} per mile if sax player)</p>
                     <p>• London Congestion Zone: £{pricing.congestionChargePerPerson} per band member (if applicable)</p>
                     <p>• Distance surcharge: £{pricing.distanceSurcharge2Hours} ({pricing.distanceThreshold2Hours}+ hours) | £{pricing.distanceSurcharge5Hours} ({pricing.distanceThreshold5Hours}+ hours)</p>
+                    <p>• Overnight accommodation: £{pricing.overnightStayPerPerson} per person ({pricing.distanceThreshold3Point5Hours}+ hours)</p>
+                    <p>• Corporate events: +{Math.round((pricing.corporateMultiplier - 1) * 100)}% on base rates</p>
                     <p>• Parking costs: As required by venue (client responsibility)</p>
                   </>
                 ) : (
@@ -636,6 +678,7 @@ export default function BookingForm() {
                       <>
                         <option value="trio">Trio - £{pricing.trioPrice} (Lead vocals/guitar, bass, drums)</option>
                         <option value="trio-plus-sax">Trio + Sax - £{pricing.trioPrice + pricing.saxPrice} (4-piece with saxophone)</option>
+                        <option value="duo">Duo - £{pricing.duoPrice} (Vocals/guitar + guitar/cello/cajon)</option>
                         <option value="solo">Solo - £{pricing.soloPrice} (Solo with Loop Pedal)</option>
                         <option value="not-sure">Not sure - please advise in your inquiry</option>
                       </>
@@ -643,6 +686,7 @@ export default function BookingForm() {
                       <>
                         <option value="trio">Trio (Lead vocals/guitar, bass, drums)</option>
                         <option value="trio-plus-sax">Trio + Sax (4-piece with saxophone)</option>
+                        <option value="duo">Duo (Vocals/guitar + guitar/cello/cajon)</option>
                         <option value="solo">Solo (Solo with Loop Pedal)</option>
                         <option value="not-sure">Not sure - please advise in your inquiry</option>
                       </>
@@ -793,6 +837,18 @@ export default function BookingForm() {
                       <div className="flex justify-between">
                         <span>Distance surcharge ({quote.estimatedHours}h journey):</span>
                         <span className="font-medium">£{quote.timeSurcharge}</span>
+                      </div>
+                    )}
+                    {quote.overnightStayCharge > 0 && (
+                      <div className="flex justify-between">
+                        <span>Overnight accommodation:</span>
+                        <span className="font-medium">£{quote.overnightStayCharge}</span>
+                      </div>
+                    )}
+                    {quote.isCorporateEvent && (
+                      <div className="flex justify-between text-sm">
+                        <span className="ml-4">• Corporate event rate applied</span>
+                        <span></span>
                       </div>
                     )}
                     <hr className="border-green-300 dark:border-green-700" />

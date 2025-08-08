@@ -24,7 +24,7 @@ const About: React.FC = () => {
           </div>
 
           {/* Pricing Tiles with Videos */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">🎸🥁🎤</span>
@@ -42,6 +42,19 @@ const About: React.FC = () => {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
+              </div>
+            </div>
+
+            <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-xl border border-orange-200 dark:border-orange-800">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">🎸🥁</span>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Duo</h3>
+              </div>
+              <p className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">£1,095</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">Vocals/guitar with second guitar, cello, or cajon player.</p>
+              
+              <div className="relative w-full aspect-video bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center">
+                <p className="text-gray-500 dark:text-gray-400 text-sm">Duo Performance Video</p>
               </div>
             </div>
             
@@ -119,7 +132,7 @@ const About: React.FC = () => {
             </p>
             <p className="text-gray-700 dark:text-gray-300 text-center mb-6">
               Led by <strong>Joe Bateman</strong>, a talented multi-instrumentalist and producer with extensive experience performing for high-profile clients including BBC Radio features and corporate events for major London venues. 
-              Whether you need an intimate acoustic solo performance with live loop pedal (from £599) or a full three-piece band experience (from £1,499), we tailor every performance to your event.
+              Whether you need an intimate acoustic solo performance with live loop pedal (from £599), duo performance (from £1,095), or a full three-piece band experience (from £1,499), we tailor every performance to your event.
             </p>
             <div className="text-center">
               <CTAButton 

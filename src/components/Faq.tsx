@@ -109,7 +109,7 @@ const faqdata = [
   },
   {
     question: "How much does it cost to hire The JB Experience for a wedding?",
-    answer: "Our wedding band prices start from £599 for solo acoustic performance with live loop pedal, and £1,499 for our full three-piece band (vocals/guitar, bass, drums). These are direct booking prices with no agency fees. Additional costs include travel (£1 per mile from E10), and parking as required by your venue. London congestion zone charges may apply."
+    answer: "Our wedding band prices start from £599 for solo acoustic performance with live loop pedal, £1,095 for duo performance (vocals/guitar + second guitar/cello/cajon), and £1,499 for our full three-piece band (vocals/guitar, bass, drums). Corporate events attract higher rates. These are direct booking prices with no agency fees. Additional costs include travel (£1 per mile from E10), overnight accommodation for distant venues (3.5+ hours), and parking as required by your venue. London congestion zone charges may apply."
   },
   {
     question: "Can you learn our first dance song for our wedding?",

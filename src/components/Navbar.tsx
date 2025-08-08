@@ -8,7 +8,7 @@ export const Navbar: React.FC = () => {
   const navigation = [
     { name: "About", link: "#about" },
     { name: "Testimonials", link: "#testimonials" },
-    { name: "Contact", link: "#contact" },
+    { name: "Get Quote", link: "#contact" },
   ];
 
   return (
