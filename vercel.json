@@ -1,4 +1,17 @@
 {
+    "redirects": [
+      {
+        "source": "/(.*)",
+        "destination": "https://thejbexperience.co.uk/$1",
+        "permanent": true,
+        "has": [
+          {
+            "type": "host",
+            "value": "the-jb-experience.vercel.app"
+          }
+        ]
+      }
+    ],
     "headers": [
       {
         "source": "/video/:file",
