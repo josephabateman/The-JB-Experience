@@ -2,7 +2,7 @@
     "redirects": [
       {
         "source": "/(.*)",
-        "destination": "https://thejbexperience.co.uk/$1",
+        "destination": "https://www.thejbexperience.co.uk/$1",
         "permanent": true,
         "has": [
           {
