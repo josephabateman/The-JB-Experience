@@ -300,25 +300,21 @@ export default function BookingForm() {
   const calculateQuote = () => {
     if (!formData.performanceType || !distanceData || !pricing) return null;
 
-    // Base prices from CMS
-    let basePrices = {
-      'solo': pricing.soloPrice,
-      'duo': pricing.duoPrice,
-      'trio': pricing.trioPrice,
-      'trio-plus-sax': pricing.trioPrice + pricing.saxPrice,
-      'not-sure': pricing.trioPrice
-    };
-
     // Apply corporate event multiplier
     const isCorporateEvent = formData.eventType === 'corporate-event' || 
                             formData.eventType === 'company-event' || 
                             formData.eventType === 'business-event';
     
-    if (isCorporateEvent && pricing.corporateMultiplier) {
-      basePrices = Object.fromEntries(
-        Object.entries(basePrices).map(([key, value]) => [key, Math.round(value * pricing.corporateMultiplier)])
-      );
-    }
+    const multiplier = isCorporateEvent && pricing.corporateMultiplier ? pricing.corporateMultiplier : 1;
+
+    // Base prices from CMS with corporate multiplier applied
+    const basePrices = {
+      'solo': Math.round(pricing.soloPrice * multiplier),
+      'duo': Math.round(pricing.duoPrice * multiplier),
+      'trio': Math.round(pricing.trioPrice * multiplier),
+      'trio-plus-sax': Math.round((pricing.trioPrice + pricing.saxPrice) * multiplier),
+      'not-sure': Math.round(pricing.trioPrice * multiplier)
+    };
 
     const basePrice = basePrices[formData.performanceType as keyof typeof basePrices] || 0;
     const { miles, hours } = distanceData;
