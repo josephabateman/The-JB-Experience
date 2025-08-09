@@ -47,14 +47,24 @@ const About: React.FC = () => {
 
             <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-xl border border-orange-200 dark:border-orange-800">
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-2xl">🎸🥁</span>
+                <span className="text-2xl">🎸🪕</span>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Duo</h3>
               </div>
               <p className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">£1,095</p>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">Vocals/guitar with second guitar, cello, or cajon player.</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">Vocals/guitar with second guitar, cello, or cajon player. 60-minute performance.</p>
               
-              <div className="relative w-full aspect-video bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center">
-                <p className="text-gray-500 dark:text-gray-400 text-sm">Duo Performance Video</p>
+              <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+                <img
+                  src="/images/joe-cristian-ceremony.jpg"
+                  alt="The JB Experience - Duo Performance at Wedding Ceremony"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                  <div className="text-center text-white">
+                    <div className="text-3xl mb-2">🎥</div>
+                    <p className="text-sm font-medium">Video Coming Soon</p>
+                  </div>
+                </div>
               </div>
             </div>
             
@@ -64,7 +74,7 @@ const About: React.FC = () => {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Solo Performance</h3>
               </div>
               <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">£599</p>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">Solo performance using live loop pedal</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">Solo performance using live loop pedal. 60-minute performance.</p>
               
               <div className="relative w-full aspect-video">
                 <iframe

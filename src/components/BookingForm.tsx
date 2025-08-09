@@ -692,6 +692,52 @@ export default function BookingForm() {
               </div>
             </div>
 
+            {/* Add-on Options */}
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Add-on Options</h3>
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 mb-4">
+                <h4 className="font-medium text-gray-900 dark:text-white mb-3">Additional Performances</h4>
+                <div className="space-y-3">
+                  <label className="flex items-start space-x-3">
+                    <input
+                      type="checkbox"
+                      name="addCeremonySolo"
+                      className="mt-1 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      onChange={handleInputChange}
+                    />
+                    <div>
+                      <span className="text-sm font-medium text-gray-900 dark:text-white">Ceremony Solo Performance</span>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">Solo acoustic for ceremony (30 minutes) - £299</p>
+                    </div>
+                  </label>
+                  <label className="flex items-start space-x-3">
+                    <input
+                      type="checkbox"
+                      name="addCocktailDuo"
+                      className="mt-1 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      onChange={handleInputChange}
+                    />
+                    <div>
+                      <span className="text-sm font-medium text-gray-900 dark:text-white">Cocktail Hour Duo</span>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">Duo acoustic for cocktail reception (60 minutes) - £545</p>
+                    </div>
+                  </label>
+                  <label className="flex items-start space-x-3">
+                    <input
+                      type="checkbox"
+                      name="addAfterpartyDJ"
+                      className="mt-1 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      onChange={handleInputChange}
+                    />
+                    <div>
+                      <span className="text-sm font-medium text-gray-900 dark:text-white">DJ Set After Band</span>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">DJ playlist after band performance (2 hours) - £200</p>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+
             {/* Venue Information */}
             <div className="mb-8">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Venue Information</h3>
