@@ -509,32 +509,6 @@ export default function BookingForm() {
             </p>
           </div>
 
-          {/* Instant Quote Calculator */}
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mb-12">
-            <h3 className="text-xl font-semibold text-blue-900 dark:text-blue-200 mb-4">✨ Get Your Instant Quote</h3>
-            <p className="text-blue-800 dark:text-blue-300 mb-4">
-              Fill out the form below and see your estimated total cost automatically calculated including all travel expenses and fees!
-            </p>
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-blue-200 dark:border-blue-700">
-              <div className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
-                {loadingPricing ? (
-                  <p>Loading pricing information...</p>
-                ) : pricing ? (
-                  <>
-                    <p>• Solo: £{pricing.soloPrice} | Duo: £{pricing.duoPrice} | Trio: £{pricing.trioPrice} | Trio + Sax: £{pricing.trioPrice + pricing.saxPrice}</p>
-                    <p>• Travel costs: £{pricing.baseTravelCostPerMile} per mile (+£{pricing.additionalPersonTravelCostPerMile} per mile if sax player)</p>
-                    <p>• London Congestion Zone: £{pricing.congestionChargePerPerson} per band member (if applicable)</p>
-                    <p>• Distance surcharge: £{pricing.distanceSurcharge2Hours} ({pricing.distanceThreshold2Hours}+ hours) | £{pricing.distanceSurcharge5Hours} ({pricing.distanceThreshold5Hours}+ hours)</p>
-                    <p>• Overnight accommodation: £{pricing.overnightStayPerPerson} per person ({pricing.distanceThreshold3Point5Hours}+ hours)</p>
-                    <p>• Corporate events: +{Math.round((pricing.corporateMultiplier - 1) * 100)}% on base rates</p>
-                    <p>• Parking costs: As required by venue (client responsibility)</p>
-                  </>
-                ) : (
-                  <p>• Pricing information temporarily unavailable</p>
-                )}
-              </div>
-            </div>
-          </div>
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="bg-gray-50 dark:bg-gray-800 rounded-xl p-8">
