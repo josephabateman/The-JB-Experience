@@ -74,11 +74,6 @@ const fallbackReviews = [
     event: "Birthday Party - London",
     text: "Joe's performance was the highlight of the evening at my husband's birthday. The band really brought the party to life, and everyone loved the mix of covers and originals. By the end, the dance floor was packed! The whole experience—the looping, the musicianship—made it extra special.",
   },
-  {
-    name: "Sarah D",
-    event: "Wedding - London",
-    text: "Joe Bateman and his band were exceptional at our wedding! The energy was through the roof, and the whole band had the crowd dancing non-stop. We couldn't have asked for a more perfect performance to cap off our day. Highly recommend!",
-  },
 ];
 
 export default function ReviewsSlider() {
@@ -227,22 +222,6 @@ export default function ReviewsSlider() {
           </button>
         </div>
 
-        {/* CTA after testimonials */}
-        <div className="text-center mt-12">
-          <div className="bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 rounded-xl p-8 border border-indigo-200 dark:border-indigo-800">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-              Join Our Happy Clients
-            </h3>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-              Book direct for personalized service and better communication
-            </p>
-            <CTAButton 
-              variant="outline" 
-              size="lg" 
-              text="Start Your Quote"
-            />
-          </div>
-        </div>
       </div>
     </section>
     </>

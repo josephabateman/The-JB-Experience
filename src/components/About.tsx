@@ -103,20 +103,20 @@ const About: React.FC = () => {
               <div className="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
                 <div className="text-2xl mb-2">💒</div>
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Ceremony Solo Performance</h4>
-                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">£299</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Solo acoustic for ceremony (30 minutes)</p>
+                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">From £199</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Custom quote required</p>
               </div>
               <div className="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
                 <div className="text-2xl mb-2">🍸</div>
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Cocktail Hour Duo</h4>
-                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">£545</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Duo acoustic for cocktail reception (60 minutes)</p>
+                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">From £299</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Custom quote required</p>
               </div>
               <div className="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
                 <div className="text-2xl mb-2">🎧</div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">DJ Set After Band</h4>
-                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">£200</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">DJ playlist after band performance (2 hours)</p>
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Manned DJ Set</h4>
+                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">£129</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">1 hour Spotify playlist with requests after band performance</p>
               </div>
             </div>
           </div>
@@ -149,7 +149,7 @@ const About: React.FC = () => {
               London&apos;s Premier Live Music for Weddings & Corporate Events - Book Direct & Save
             </h2>
             <p className="text-gray-700 dark:text-gray-300 text-center mb-4">
-              Based in <strong>East London</strong>, serving London and surrounding areas including Essex and Hertfordshire. Extended travel available for premium events. We deliver high-energy live music performances across pop, rock, folk, and funk genres - perfect for weddings, corporate events, and private celebrations.
+              Based in <strong>East London (E10)</strong>, <strong>The JB Experience</strong> is a professional wedding band primarily serving London, Essex, and Hertfordshire within a 40-mile radius. We can travel further for premium events with additional travel fees. We deliver high-energy live music performances across pop, rock, folk, and funk genres - perfect for weddings, corporate events, and private celebrations.
             </p>
             <p className="text-gray-700 dark:text-gray-300 text-center mb-4">
               <strong>Why book direct with us instead of agencies?</strong> Save up to 30% by booking directly - no agency commission fees! You get the same professional wedding band entertainment at a better price, with direct communication for your special requests.
