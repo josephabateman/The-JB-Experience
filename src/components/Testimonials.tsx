@@ -146,7 +146,7 @@ export default function ReviewsSlider() {
             What Our Clients Say
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">
-            Real feedback from weddings, corporate events & parties across London
+            Real feedback from weddings, corporate events, and private celebrations across London, Essex & Hertfordshire
           </p>
           <p className="text-sm text-gray-500 dark:text-gray-400">
             ← Swipe or use arrows to see all reviews →

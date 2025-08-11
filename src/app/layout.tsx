@@ -14,15 +14,15 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Wedding Band London | Book Direct & Save | The JB Experience - No Agency Fees",
-  description: "Professional wedding band London, Essex & Hertfordshire. Book direct from £599 - no agency fees! Live music for weddings, corporate events. Available E10, North London, South Essex. Call 07939 000446",
-  keywords: "wedding band London, wedding musicians London, live band hire London, wedding entertainment London, function band London, corporate event band London, wedding band Essex, wedding band Hertfordshire, book direct wedding band, no agency fees wedding band, affordable wedding band London, professional wedding band, live music London",
+  title: "Wedding Band London | Corporate Entertainment | The JB Experience",
+  description: "Professional live music for weddings & corporate events across London, Essex, Hertfordshire. Book direct & save 30%. From £599. Call 07939 000446",
+  keywords: "wedding band London, corporate entertainment London, wedding musicians London, live band hire London, corporate event band London, function band London, wedding band Essex, wedding band Hertfordshire, book direct wedding band, no agency fees wedding band, affordable wedding band London, professional wedding band, live music London",
   author: "The JB Experience",
   robots: "index, follow",
   metadataBase: new URL('https://www.thejbexperience.co.uk'),
   openGraph: {
-    title: "Wedding Band London | Book Direct & Save | The JB Experience",
-    description: "Professional wedding band serving London, Essex & Hertfordshire. Book direct from £599 - no agency fees! Available for weddings, corporate events, private parties.",
+    title: "Wedding Band London | Corporate Entertainment | The JB Experience",
+    description: "Professional live music for weddings & corporate events across London, Essex, Hertfordshire. Book direct & save 30%. From £599.",
     type: "website",
     locale: "en_GB",
     siteName: "The JB Experience",
@@ -37,8 +37,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wedding Band London | Book Direct & Save | The JB Experience",
-    description: "Professional wedding band serving London, Essex & Hertfordshire. Book direct from £599 - no agency fees!",
+    title: "Wedding Band London | Corporate Entertainment | The JB Experience",
+    description: "Professional live music for weddings & corporate events across London, Essex, Hertfordshire. Book direct & save 30%. From £599.",
     images: ["/images/band-performing.jpg"],
   },
   alternates: {

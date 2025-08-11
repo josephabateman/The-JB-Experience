@@ -20,7 +20,7 @@ const About: React.FC = () => {
               The JB Experience
             </h2>
             <p className="dark:invert text-gray-600 text-lg">
-              Professional Live Music • London & UK
+              Wedding Band & Corporate Entertainment • London, Essex & Hertfordshire
             </p>
           </div>
 
@@ -32,7 +32,7 @@ const About: React.FC = () => {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Full Band</h3>
               </div>
               <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">£1,499</p>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">Three piece: lead vocals & guitar, bass, drums. Sax player available for additional fee.</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">2x1 hour OR 3x40 min sets - lead vocals & guitar, bass, drums. Sax player available for additional fee.</p>
               
               <div className="relative w-full aspect-video">
                 <iframe
@@ -52,7 +52,7 @@ const About: React.FC = () => {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Duo</h3>
               </div>
               <p className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">£1,095</p>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">Vocals/guitar with second guitar, cello, or cajon player. 60-minute performance.</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">2x1 hour OR 3x40 min sets - vocals/guitar with second instrument (guitar, cello, or cajon).</p>
               
               <div className="relative w-full aspect-video rounded-lg overflow-hidden">
                 <Image
@@ -79,7 +79,7 @@ const About: React.FC = () => {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Solo Performance</h3>
               </div>
               <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">£599</p>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">Solo performance using live loop pedal. 60-minute performance.</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">2x1 hour OR 3x40 min sets with live loop pedal technology.</p>
               
               <div className="relative w-full aspect-video">
                 <iframe
@@ -94,24 +94,33 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          {/* Quote Information Banner */}
-          <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800 text-center">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-              Calculate Your Quote
+          {/* Add-on Services */}
+          <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+              Add-on Services
             </h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-4">
-              Get an accurate price estimate based on your location and event details
-            </p>
-            <CTAButton 
-              variant="primary" 
-              size="md" 
-              text="View Pricing Calculator"
-              className="mb-3"
-            />
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Includes travel costs and venue-specific requirements
-            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                <div className="text-2xl mb-2">💒</div>
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Ceremony Solo Performance</h4>
+                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">From £199</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Custom quote required</p>
+              </div>
+              <div className="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                <div className="text-2xl mb-2">🍸</div>
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Cocktail Hour Duo</h4>
+                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">From £299</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Custom quote required</p>
+              </div>
+              <div className="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                <div className="text-2xl mb-2">🎧</div>
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Manned DJ Set</h4>
+                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">£129</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">1 hour Spotify playlist with requests</p>
+              </div>
+            </div>
           </div>
+
 
           {/* Key Info Tiles */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -137,10 +146,10 @@ const About: React.FC = () => {
           {/* About the band - SEO optimized */}
           <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">
-              London&apos;s Premier Wedding Band - Book Direct & Save
+              London&apos;s Premier Live Music for Weddings & Corporate Events - Book Direct & Save
             </h2>
             <p className="text-gray-700 dark:text-gray-300 text-center mb-4">
-              Based in <strong>East London (E10)</strong>, <strong>The JB Experience</strong> is a professional wedding band serving London, Essex, and Hertfordshire within a 40-mile radius. We deliver high-energy live music performances across pop, rock, folk, and funk genres - perfect for weddings, corporate events, and private celebrations.
+              Based in <strong>East London</strong>, serving London and surrounding areas including Essex and Hertfordshire. Extended travel available for premium events. We deliver high-energy live music performances across pop, rock, folk, and funk genres - perfect for weddings, corporate events, and private celebrations.
             </p>
             <p className="text-gray-700 dark:text-gray-300 text-center mb-4">
               <strong>Why book direct with us instead of agencies?</strong> Save up to 30% by booking directly - no agency commission fees! You get the same professional wedding band entertainment at a better price, with direct communication for your special requests.

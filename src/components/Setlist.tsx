@@ -73,6 +73,7 @@ const genres = [
 export default function Setlist() {
   const [selectedGenre, setSelectedGenre] = useState("All");
   const [showAll, setShowAll] = useState(false);
+  const [showSetlist, setShowSetlist] = useState(false);
 
   const filteredSongs = selectedGenre === "All" 
     ? setlistSongs 
@@ -86,7 +87,7 @@ export default function Setlist() {
   return (
     <section className="py-12 bg-white dark:bg-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
+        <div className="text-center">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
             Our Setlist
           </h2>
@@ -94,66 +95,79 @@ export default function Setlist() {
             A selection of crowd favorites spanning multiple decades and genres
           </p>
           
-          {/* Genre Filter */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {genres.map((genre) => (
-              <button
-                key={genre.name}
-                onClick={() => setSelectedGenre(genre.name)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  selectedGenre === genre.name
-                    ? "bg-indigo-600 text-white"
-                    : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
-                }`}
-              >
-                {genre.name}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Songs Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-          {songsToShow.map((song, index) => (
-            <div
-              key={index}
-              className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center">
-                  <span className="text-indigo-600 dark:text-indigo-400 font-bold">♪</span>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-gray-900 dark:text-white truncate">
-                    {song.song}
-                  </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
-                    {song.artist}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Show More/Less Button */}
-        {filteredSongs.length > 12 && (
-          <div className="text-center">
+          {!showSetlist && (
             <button
-              onClick={() => setShowAll(!showAll)}
-              className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors"
+              onClick={() => setShowSetlist(true)}
+              className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-all text-lg shadow-lg hover:shadow-xl hover:scale-105"
             >
-              {showAll ? `Show Less` : `Show All Songs`}
+              View Our Setlist
             </button>
+          )}
+        </div>
+
+        {showSetlist && (
+          <div className="mt-8">
+            {/* Genre Filter */}
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
+              {genres.map((genre) => (
+                <button
+                  key={genre.name}
+                  onClick={() => setSelectedGenre(genre.name)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    selectedGenre === genre.name
+                      ? "bg-indigo-600 text-white"
+                      : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                  }`}
+                >
+                  {genre.name}
+                </button>
+              ))}
+            </div>
+
+            {/* Songs Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+              {songsToShow.map((song, index) => (
+                <div
+                  key={index}
+                  className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center">
+                      <span className="text-indigo-600 dark:text-indigo-400 font-bold">♪</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-gray-900 dark:text-white truncate">
+                        {song.song}
+                      </p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
+                        {song.artist}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Show More/Less Button */}
+            {filteredSongs.length > 12 && (
+              <div className="text-center mb-6">
+                <button
+                  onClick={() => setShowAll(!showAll)}
+                  className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors"
+                >
+                  {showAll ? `Show Less` : `Show All Songs`}
+                </button>
+              </div>
+            )}
+
+            {/* Note */}
+            <div className="text-center">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                We can learn your first dance for weddings.
+              </p>
+            </div>
           </div>
         )}
-
-        {/* Note */}
-        <div className="mt-8 text-center">
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            We can learn your first dance for weddings.
-          </p>
-        </div>
       </div>
     </section>
   );

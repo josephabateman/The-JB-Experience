@@ -305,7 +305,8 @@ export default function BookingForm() {
                             formData.eventType === 'company-event' || 
                             formData.eventType === 'business-event';
     
-    const multiplier = isCorporateEvent && pricing.corporateMultiplier ? pricing.corporateMultiplier : 1;
+    // Corporate events get custom pricing - don't show multiplier in quote
+    const multiplier = 1; // Removed automatic corporate surcharge from quote display
 
     // Base prices from CMS with corporate multiplier applied
     const basePrices = {
@@ -863,7 +864,7 @@ export default function BookingForm() {
                     )}
                     {quote.isCorporateEvent && (
                       <div className="flex justify-between text-sm">
-                        <span className="ml-4">• Corporate event rate applied</span>
+                        <span className="ml-4">• Corporate events require custom quote</span>
                         <span></span>
                       </div>
                     )}
@@ -895,7 +896,7 @@ export default function BookingForm() {
                           disabled={isSubmitting}
                           className="bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white px-6 py-3 rounded-lg font-medium transition-colors"
                         >
-                          {isSubmitting ? 'Sending...' : 'Submit Inquiry for This Quote →'}
+                          {isSubmitting ? 'Sending...' : 'Check Availability & Pricing →'}
                         </button>
                         <p className="text-xs text-green-600 dark:text-green-400 mt-2">
                           We&apos;ll confirm availability within 24 hours
@@ -928,7 +929,7 @@ export default function BookingForm() {
                       Sending...
                     </span>
                   ) : (
-                    "Get My Quote"
+                    "Check Availability & Pricing"
                   )}
                 </button>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
