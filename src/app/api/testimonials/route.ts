@@ -90,6 +90,14 @@ const fallbackTestimonials = [
     rating: 5,
     featured: false,
   },
+  {
+    _id: '12',
+    name: 'Sarah D',
+    event: 'Wedding - London',
+    text: 'Joe Bateman and his band were exceptional at our wedding! The energy was through the roof, and the whole band had the crowd dancing non-stop. We couldn\'t have asked for a more perfect performance to cap off our day. Highly recommend!',
+    rating: 5,
+    featured: false,
+  },
 ];
 
 // GET /api/testimonials - Public endpoint for fetching testimonials

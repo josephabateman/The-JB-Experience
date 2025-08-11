@@ -74,6 +74,11 @@ const fallbackReviews = [
     event: "Birthday Party - London",
     text: "Joe's performance was the highlight of the evening at my husband's birthday. The band really brought the party to life, and everyone loved the mix of covers and originals. By the end, the dance floor was packed! The whole experience—the looping, the musicianship—made it extra special.",
   },
+  {
+    name: "Sarah D",
+    event: "Wedding - London",
+    text: "Joe Bateman and his band were exceptional at our wedding! The energy was through the roof, and the whole band had the crowd dancing non-stop. We couldn't have asked for a more perfect performance to cap off our day. Highly recommend!",
+  },
 ];
 
 export default function ReviewsSlider() {
