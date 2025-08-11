@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import CTAButton from "./CTAButton";
 
 const About: React.FC = () => {
@@ -54,12 +55,14 @@ const About: React.FC = () => {
               <p className="text-gray-600 dark:text-gray-300 mb-4">Vocals/guitar with second guitar, cello, or cajon player. 60-minute performance.</p>
               
               <div className="relative w-full aspect-video rounded-lg overflow-hidden">
-                <img
+                <Image
                   src="/images/joe-cristian-ceremony.jpg"
                   alt="The JB Experience - Duo Performance at Wedding Ceremony"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center z-10">
                   <div className="text-center text-white">
                     <div className="text-3xl mb-2">🎥</div>
                     <p className="text-sm font-medium">Video Coming Soon</p>
