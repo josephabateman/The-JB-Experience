@@ -50,14 +50,24 @@ const setlistSongs = [
   { artist: "Ray Charles", song: "Hit The Road Jack" },
   { artist: "Coldplay", song: "Yellow" },
   { artist: "Bill Withers", song: "Ain't No Sunshine" },
+  { artist: "Darius Rucker", song: "Wagon Wheel" },
+  { artist: "Bon Jovi", song: "Livin' on a Prayer" },
+  { artist: "John Denver", song: "Take Me Home, Country Roads" },
+  { artist: "Stealers Wheel", song: "Stuck in the Middle with You" },
+  { artist: "Ben E. King", song: "Stand By Me" },
+  { artist: "The Who", song: "My Generation" },
+  { artist: "Jet", song: "Are You Gonna Be My Girl" },
+  { artist: "The Strokes", song: "Last Nite" },
+  { artist: "Kaiser Chiefs", song: "I Predict a Riot" },
 ];
 
 const genres = [
   { name: "All", count: setlistSongs.length },
-  { name: "Rock", artists: ["Queen", "The Beatles", "Oasis", "Kings of Leon", "The Killers", "Bryan Adams", "Chuck Berry", "Wheatus"] },
+  { name: "Rock", artists: ["Queen", "The Beatles", "Oasis", "Kings of Leon", "The Killers", "Bryan Adams", "Chuck Berry", "Wheatus", "Bon Jovi", "The Who", "Jet", "The Strokes", "Kaiser Chiefs"] },
   { name: "Pop", artists: ["Ed Sheeran", "George Ezra", "Bruno Mars", "Maroon 5", "Harry Styles", "WALK THE MOON", "DNCE"] },
-  { name: "Soul/R&B", artists: ["James Brown", "Stevie Wonder", "Ray Charles", "Bill Withers", "Adele"] },
-  { name: "Classic", artists: ["Elvis Presley", "Frank Sinatra & Count Basie", "Johnny Cash", "Neil Diamond", "Tracy Chapman"] },
+  { name: "Soul/R&B", artists: ["James Brown", "Stevie Wonder", "Ray Charles", "Bill Withers", "Adele", "Ben E. King"] },
+  { name: "Classic", artists: ["Elvis Presley", "Frank Sinatra & Count Basie", "Johnny Cash", "Neil Diamond", "Tracy Chapman", "Stealers Wheel"] },
+  { name: "Country", artists: ["Darius Rucker", "John Denver"] },
 ];
 
 export default function Setlist() {
