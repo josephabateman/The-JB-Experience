@@ -157,8 +157,9 @@ export default function ReviewsSlider() {
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={30}
           slidesPerView={1}
-          loop={true}
+          loop={false}
           grabCursor={true}
+          watchSlidesProgress={true}
           breakpoints={{
             640: {
               slidesPerView: 1,
@@ -181,8 +182,14 @@ export default function ReviewsSlider() {
             clickable: true,
             el: '.swiper-pagination-custom',
             bulletActiveClass: 'swiper-pagination-bullet-active',
+            dynamicBullets: true,
+            dynamicMainBullets: 3,
           }}
-          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          autoplay={{ 
+            delay: 4000, 
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+          }}
           className="testimonials-swiper mb-8"
         >
           {reviews.map((review, index) => (
