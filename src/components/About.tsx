@@ -61,6 +61,8 @@ const About: React.FC = () => {
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  unoptimized
+                  priority
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center z-10">
                   <div className="text-center text-white">
