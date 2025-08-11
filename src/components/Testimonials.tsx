@@ -149,7 +149,7 @@ export default function ReviewsSlider() {
             Real feedback from weddings, corporate events & parties across London
           </p>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            ← Swipe or use arrows to see all 12 reviews →
+            ← Swipe or use arrows to see all reviews →
           </p>
         </div>
         
@@ -218,13 +218,10 @@ export default function ReviewsSlider() {
         <div className="swiper-pagination-custom flex justify-center space-x-2 mb-6"></div>
         
         {/* Custom Navigation Buttons */}
-        <div className="flex justify-center space-x-6">
+        <div className="flex justify-center space-x-4">
           <button className="swiper-button-prev-custom w-12 h-12 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center transition-all shadow-lg hover:shadow-xl hover:scale-105">
             <span className="text-xl">←</span>
           </button>
-          <div className="flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
-            <span className="text-sm text-gray-600 dark:text-gray-400">12 Reviews</span>
-          </div>
           <button className="swiper-button-next-custom w-12 h-12 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center transition-all shadow-lg hover:shadow-xl hover:scale-105">
             <span className="text-xl">→</span>
           </button>
