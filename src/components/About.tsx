@@ -94,29 +94,29 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          {/* Add-on Services */}
+          {/* Additional Performances */}
           <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-              Add-on Services
+              Additional Performances
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
                 <div className="text-2xl mb-2">💒</div>
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Ceremony Solo Performance</h4>
-                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">From £199</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Custom quote required</p>
+                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">£299</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Solo acoustic for ceremony (30 minutes)</p>
               </div>
               <div className="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
                 <div className="text-2xl mb-2">🍸</div>
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Cocktail Hour Duo</h4>
-                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">From £299</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Custom quote required</p>
+                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">£545</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Duo acoustic for cocktail reception (60 minutes)</p>
               </div>
               <div className="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
                 <div className="text-2xl mb-2">🎧</div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Manned DJ Set</h4>
-                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">£129</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">1 hour Spotify playlist with requests</p>
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">DJ Set After Band</h4>
+                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">£200</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">DJ playlist after band performance (2 hours)</p>
               </div>
             </div>
           </div>
