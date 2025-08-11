@@ -23,10 +23,6 @@ const Hero: React.FC = () => {
           <span className="text-indigo-400">Corporate Events</span>
         </h1>
         
-        {/* Book Direct Banner */}
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full px-8 py-3 mb-8 inline-block text-xl font-bold shadow-lg">
-          📞 Book Direct &amp; Save 30%
-        </div>
         
         {/* Supporting Text */}
         <p className="text-xl sm:text-2xl mb-8 leading-relaxed max-w-3xl mx-auto font-light">
