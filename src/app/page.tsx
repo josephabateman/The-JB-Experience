@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { Navbar } from "@/components/Navbar";
-import Hero from "../components/Hero";
+import HostedVideo from "../components/HostedVideo";
 import About from "../components/About";
 import { Faq } from "@/components/Faq";
 import BookingForm from "../components/BookingForm";
@@ -31,8 +31,8 @@ export default function Home() {
   return (
     <div>
       <Navbar />
-      {/* 1. Hero Section - New optimized hero with video background */}
-      <Hero />
+      {/* 1. Hero Video - Clean and impactful */}
+      <HostedVideo />
       
       {/* 2. Social Proof - Build Trust Early */}
       <section id="testimonials">
