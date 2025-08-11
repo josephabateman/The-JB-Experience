@@ -145,8 +145,11 @@ export default function ReviewsSlider() {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
             What Our Clients Say
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">
             Real feedback from weddings, corporate events & parties across London
+          </p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            ← Swipe or use arrows to see all 12 reviews →
           </p>
         </div>
         
@@ -154,6 +157,8 @@ export default function ReviewsSlider() {
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={30}
           slidesPerView={1}
+          loop={true}
+          grabCursor={true}
           breakpoints={{
             640: {
               slidesPerView: 1,
@@ -174,11 +179,11 @@ export default function ReviewsSlider() {
           }}
           pagination={{ 
             clickable: true,
-            bulletClass: 'swiper-pagination-bullet-custom',
-            bulletActiveClass: 'swiper-pagination-bullet-custom-active',
+            el: '.swiper-pagination-custom',
+            bulletActiveClass: 'swiper-pagination-bullet-active',
           }}
           autoplay={{ delay: 5000, disableOnInteraction: false }}
-          className="testimonials-swiper"
+          className="testimonials-swiper mb-8"
         >
           {reviews.map((review, index) => (
             <SwiperSlide key={index}>
@@ -202,13 +207,19 @@ export default function ReviewsSlider() {
           ))}
         </Swiper>
 
+        {/* Pagination Dots */}
+        <div className="swiper-pagination-custom flex justify-center space-x-2 mb-6"></div>
+        
         {/* Custom Navigation Buttons */}
-        <div className="flex justify-center mt-8 space-x-4">
-          <button className="swiper-button-prev-custom w-10 h-10 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center transition-colors">
-            <span className="text-lg">←</span>
+        <div className="flex justify-center space-x-6">
+          <button className="swiper-button-prev-custom w-12 h-12 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center transition-all shadow-lg hover:shadow-xl hover:scale-105">
+            <span className="text-xl">←</span>
           </button>
-          <button className="swiper-button-next-custom w-10 h-10 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center transition-colors">
-            <span className="text-lg">→</span>
+          <div className="flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
+            <span className="text-sm text-gray-600 dark:text-gray-400">12 Reviews</span>
+          </div>
+          <button className="swiper-button-next-custom w-12 h-12 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center transition-all shadow-lg hover:shadow-xl hover:scale-105">
+            <span className="text-xl">→</span>
           </button>
         </div>
 

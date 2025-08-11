@@ -49,3 +49,36 @@ p {
 .animate-slide-up {
   animation: slide-up 0.5s ease-out;
 }
+
+/* Swiper pagination styling for testimonials */
+.swiper-pagination-bullet {
+  width: 12px !important;
+  height: 12px !important;
+  background: #d1d5db !important;
+  opacity: 0.7 !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #4f46e5 !important;
+  opacity: 1 !important;
+  transform: scale(1.2) !important;
+}
+
+.dark .swiper-pagination-bullet {
+  background: #6b7280 !important;
+}
+
+.dark .swiper-pagination-bullet-active {
+  background: #818cf8 !important;
+}
+
+/* Ensure swiper cursor works */
+.testimonials-swiper {
+  cursor: grab;
+}
+
+.testimonials-swiper:active {
+  cursor: grabbing;
+}
