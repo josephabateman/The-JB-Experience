@@ -1,63 +1,86 @@
-import { Navbar } from "@/components/Navbar";
-import HostedVideo from "../components/HostedVideo";
-import { Faq } from "@/components/Faq";
-import Setlist from "../components/Setlist";
-import PhotoGallery from "../components/PhotoGallery";
-import ThemeChanger from "@/components/ThemeChanger";
-import StickyBanner from "@/components/StickyBanner";
+import type { FC } from 'react';
 
-// Import individual section components
-import { AboutSection } from "@/components/sections/AboutSection";
-import { ContactSection } from "@/components/sections/ContactSection";
-import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { BookingFormSection } from "@/components/sections/BookingFormSection";
+// Core UI Components
+import { Navbar } from '@/components/Navbar';
+import { Faq } from '@/components/Faq';
+import ThemeChanger from '@/components/ThemeChanger';
+import StickyBanner from '@/components/StickyBanner';
 
-// 🔧 To change section order, just move the components around below!
-// Current order: About → Contact → Testimonials → Booking Form
+// Content Components  
+import HostedVideo from '@/components/HostedVideo';
+import Setlist from '@/components/Setlist';
+import PhotoGallery from '@/components/PhotoGallery';
 
-export default function Home() {
+// Page Section Components
+import { AboutSection } from '@/components/sections/AboutSection';
+import { ContactSection } from '@/components/sections/ContactSection';
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
+import { BookingFormSection } from '@/components/sections/BookingFormSection';
+
+/**
+ * Home Page Component
+ * 
+ * 🔧 Section Ordering:
+ * To change the order of sections, simply cut and paste the section components
+ * in the "MAIN SECTIONS" area below.
+ * 
+ * Current order: About → Contact → Testimonials → Booking Form
+ */
+const HomePage: FC = () => {
   return (
-    <div>
+    <>
+      {/* Navigation */}
       <Navbar />
       
-      {/* Hero Video */}
+      {/* Hero Section */}
       <HostedVideo />
       
       {/* ========================================
           MAIN SECTIONS - Move these around to reorder!
           ======================================== */}
       
-      {/* 1. ABOUT SECTION - Company info, videos, pricing */}
+      {/* 1. About Section - Company info, videos, pricing */}
       <AboutSection />
       
-      {/* 2. CONTACT SECTION - Phone/email CTA */}
+      {/* 2. Contact Section - Phone/email CTA */}
       <ContactSection />
       
-      {/* 3. TESTIMONIALS SECTION - Client reviews */}
+      {/* 3. Testimonials Section - Client reviews */}
       <TestimonialsSection />
       
-      {/* 4. BOOKING FORM SECTION - Quote calculator */}
+      {/* 4. Booking Form Section - Quote calculator */}
       <BookingFormSection />
       
       {/* ========================================
           ADDITIONAL CONTENT SECTIONS
           ======================================== */}
 
-      <section id="gallery">
+      {/* Photo Gallery */}
+      <section id="gallery" role="region" aria-label="Photo Gallery">
         <PhotoGallery />
       </section>
 
-      <section id="setlist">
+      {/* Setlist */}
+      <section id="setlist" role="region" aria-label="Musical Setlist">
         <Setlist />
       </section>
 
-      <section id="faq">
+      {/* FAQ */}  
+      <section id="faq" role="region" aria-label="Frequently Asked Questions">
         <Faq />
       </section>
 
-      {/* Fixed UI Elements */}
+      {/* ========================================
+          FIXED UI ELEMENTS
+          ======================================== */}
+      
+      {/* Theme Toggle */}
       <ThemeChanger />
+      
+      {/* Sticky CTA Banner */}
       <StickyBanner />
-    </div>
+    </>
   );
-}
+};
+
+export default HomePage;
