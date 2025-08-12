@@ -37,19 +37,30 @@ const HomePage: FC = () => {
       
       {/* ========================================
           MAIN SECTIONS - Move these around to reorder!
+          
+          All sections are consistently wrapped here with semantic
+          <section> tags and proper IDs for navigation.
           ======================================== */}
       
       {/* 1. About Section - Company info, videos, pricing */}
-      <AboutSection />
+      <section id="about" role="region" aria-label="About The JB Experience">
+        <AboutSection />
+      </section>
       
       {/* 2. Contact Section - Phone/email CTA */}
-      <ContactSection />
+      <section id="contact" role="region" aria-label="Contact Information">
+        <ContactSection />
+      </section>
       
       {/* 3. Testimonials Section - Client reviews */}
-      <TestimonialsSection />
+      <section id="testimonials" role="region" aria-label="Client Testimonials">
+        <TestimonialsSection />
+      </section>
       
       {/* 4. Booking Form Section - Quote calculator */}
-      <BookingFormSection />
+      <section id="booking-form" role="region" aria-label="Booking and Quote Form">
+        <BookingFormSection />
+      </section>
       
       {/* ========================================
           ADDITIONAL CONTENT SECTIONS

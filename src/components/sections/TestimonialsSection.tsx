@@ -20,9 +20,5 @@ const Testimonials = dynamic(() => import("../Testimonials"), {
 });
 
 export const TestimonialsSection = () => {
-  return (
-    <section id="testimonials">
-      <Testimonials />
-    </section>
-  );
+  return <Testimonials />;
 };

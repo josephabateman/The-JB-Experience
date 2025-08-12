@@ -9,7 +9,7 @@ export const AboutSection = () => {
   const toggleVisibility = () => setIsVisible((prev) => !prev);
 
   return (
-    <section id="about" className="py-8 relative">
+    <div className="py-8 relative">
       <div className="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
         <div className="space-y-8">
           {/* About Info */}
@@ -179,6 +179,6 @@ export const AboutSection = () => {
           )}
         </div>
       </div>
-    </section>
+    </div>
   );
 };

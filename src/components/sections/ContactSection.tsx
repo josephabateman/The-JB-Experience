@@ -2,7 +2,7 @@
 
 export const ContactSection = () => {
   return (
-    <section id="contact" className="py-8 relative">
+    <div className="py-8 relative">
       <div className="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
         <div className="bg-indigo-600 text-white p-8 rounded-xl text-center">
           <h3 className="text-2xl font-bold mb-4">Ready to Book?</h3>
@@ -29,6 +29,6 @@ export const ContactSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
