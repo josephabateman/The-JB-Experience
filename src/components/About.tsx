@@ -95,32 +95,6 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          {/* Additional Performances */}
-          <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-              Additional Performances
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
-                <div className="text-2xl mb-2">💒</div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Ceremony Solo Performance</h4>
-                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">From £{PRICING.ceremonySoloFrom}</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">{ADDITIONAL_PERFORMANCE_DESCRIPTIONS.ceremonySolo}</p>
-              </div>
-              <div className="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
-                <div className="text-2xl mb-2">🍸</div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Cocktail Hour Duo</h4>
-                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">From £{PRICING.cocktailHourDuoFrom}</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">{ADDITIONAL_PERFORMANCE_DESCRIPTIONS.cocktailHourDuo}</p>
-              </div>
-              <div className="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
-                <div className="text-2xl mb-2">🎧</div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Manned DJ Set</h4>
-                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">£{PRICING.mannedDjSet}</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">{ADDITIONAL_PERFORMANCE_DESCRIPTIONS.mannedDjSet}</p>
-              </div>
-            </div>
-          </div>
 
 
           {/* Key Info Tiles */}
@@ -144,28 +118,93 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          {/* About the band - SEO optimized */}
-          <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">
-              London&apos;s Premier Live Music for Weddings & Corporate Events - Book Direct & Save
-            </h2>
-            <p className="text-gray-700 dark:text-gray-300 text-center mb-4">
-              Based in <strong>East London (E10)</strong>, <strong>The JB Experience</strong> is a professional wedding band primarily serving London, Essex, and Hertfordshire within a 40-mile radius. We can travel further for premium events with additional travel fees. We deliver high-energy live music performances across pop, rock, folk, and funk genres - perfect for weddings, corporate events, and private celebrations.
-            </p>
-            <p className="text-gray-700 dark:text-gray-300 text-center mb-4">
-              <strong>Why book direct with us instead of agencies?</strong> Save up to 30% by booking directly - no agency commission fees! You get the same professional wedding band entertainment at a better price, with direct communication for your special requests.
-            </p>
-            <p className="text-gray-700 dark:text-gray-300 text-center mb-6">
-              Led by <strong>Joe Bateman</strong>, a talented multi-instrumentalist and producer with extensive experience performing for high-profile clients including BBC Radio features and corporate events for major London venues. 
-              Whether you need an intimate acoustic solo performance with live loop pedal (from £{PRICING.soloPrice}), duo performance (from £{PRICING.duoPrice.toLocaleString()}), or a full three-piece band experience (from £{PRICING.trioPrice.toLocaleString()}), we tailor every performance to your event.
-            </p>
-            <div className="text-center">
-              <CTAButton 
-                variant="primary" 
-                size="lg" 
-                text="Get Your Quote"
-                className=""
-              />
+          {/* About the band - Enhanced Visual Design */}
+          <div className="relative bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl border border-indigo-100 dark:border-gray-700 shadow-lg overflow-hidden">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-5">
+              <div className="absolute top-0 left-0 w-full h-full">
+                <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <pattern id="music-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                      <circle cx="10" cy="10" r="1" fill="currentColor"/>
+                    </pattern>
+                  </defs>
+                  <rect width="100" height="100" fill="url(#music-pattern)"/>
+                </svg>
+              </div>
+            </div>
+
+            {/* Main Content */}
+            <div className="relative z-10">
+              {/* Hero Badge */}
+              <div className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-full mb-6 mx-auto block w-fit">
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                </svg>
+                Book Direct & Save 30%
+              </div>
+
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 text-center leading-tight">
+                London&apos;s <span className="text-indigo-600 dark:text-indigo-400">Premier Live Music</span>
+                <br />
+                <span className="text-2xl md:text-3xl text-gray-700 dark:text-gray-300">for Weddings & Corporate Events</span>
+              </h2>
+
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                {/* Location */}
+                <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm p-4 rounded-xl text-center">
+                  <div className="w-12 h-12 bg-indigo-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
+                    </svg>
+                  </div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">East London Based</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Serving London, Essex & Hertfordshire</p>
+                </div>
+
+                {/* Experience */}
+                <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm p-4 rounded-xl text-center">
+                  <div className="w-12 h-12 bg-purple-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                    </svg>
+                  </div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">BBC Radio Featured</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Professional & experienced</p>
+                </div>
+
+                {/* Pricing */}
+                <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm p-4 rounded-xl text-center">
+                  <div className="w-12 h-12 bg-green-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
+                    </svg>
+                  </div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">From £{PRICING.soloPrice}</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Solo to full band options</p>
+                </div>
+              </div>
+
+              <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl mb-6">
+                <p className="text-gray-700 dark:text-gray-300 text-center text-lg mb-4 leading-relaxed">
+                  Led by <strong className="text-indigo-600 dark:text-indigo-400">Joe Bateman</strong>, we deliver high-energy performances across pop, rock, folk, and funk genres. Choose from intimate acoustic solo with live loop pedal <span className="font-semibold">(from £{PRICING.soloPrice})</span>, duo performance <span className="font-semibold">(from £{PRICING.duoPrice.toLocaleString()})</span>, or full three-piece band <span className="font-semibold">(from £{PRICING.trioPrice.toLocaleString()})</span>.
+                </p>
+                <div className="flex items-center justify-center text-sm text-indigo-600 dark:text-indigo-400 font-medium">
+                  <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                  </svg>
+                  No agency fees • Direct communication • Professional service
+                </div>
+              </div>
+
+              <div className="text-center">
+                <CTAButton 
+                  variant="primary" 
+                  size="lg" 
+                  text="Get Your Quote"
+                  className="shadow-lg hover:shadow-xl transition-shadow duration-300"
+                />
+              </div>
             </div>
           </div>
 

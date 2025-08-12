@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { PRICING } from "@/config/pricing";
 
 declare global {
   interface Window {
@@ -68,10 +69,10 @@ const EnhancedInquiry = () => {
         const distance = Math.round(Math.random() * 80 + 15); // 15-95 miles estimate
         const travelTime = distance * 1.5; // Rough estimate in minutes
         
-        const travelCost = distance * 1; // £1 per mile
+        const travelCost = distance * PRICING.baseTravelCostPerMile; // £{PRICING.baseTravelCostPerMile} per mile
         const postcode = address.match(/[A-Z]{1,2}[0-9R][0-9A-Z]?\s?[0-9][A-Z]{2}/i)?.[0] || "";
         const isInZone = isInCongestionZone(postcode);
-        const congestionCharge = isInZone ? 45 : 0; // £15 per car * 3 cars
+        const congestionCharge = isInZone ? (PRICING.congestionChargePerPerson * 3) : 0; // £{PRICING.congestionChargePerPerson} per car * 3 cars
         const parkingEstimate = isInZone ? 60 : 20; // Higher parking in central London
         const isLongDistance = travelTime > 120; // More than 2 hours
         
@@ -389,9 +390,9 @@ const EnhancedInquiry = () => {
               required
             >
               <option value="">Select Package</option>
-              <option value="full-band">Full Band (£1,499+)</option>
-              <option value="duo">Duo Performance (£1,095+)</option>
-              <option value="solo">Solo Performance (£599+)</option>
+              <option value="full-band">Full Band (£{PRICING.trioPrice.toLocaleString()}+)</option>
+              <option value="duo">Duo Performance (£{PRICING.duoPrice.toLocaleString()}+)</option>
+              <option value="solo">Solo Performance (£{PRICING.soloPrice}+)</option>
               <option value="not-sure">Not Sure - Need Advice</option>
             </select>
           </div>

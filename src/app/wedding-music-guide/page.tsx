@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { PRICING } from "@/config/pricing";
 
 export const metadata: Metadata = {
   title: "Complete Wedding Music Guide 2025 | First Dance Songs & Playlists | The JB Experience",
@@ -119,7 +120,7 @@ const WeddingMusicGuide = () => {
                 <div>
                   <h4 className="font-bold text-red-600 dark:text-red-400 mb-2">❌ Considerations:</h4>
                   <ul className="space-y-1 text-gray-700 dark:text-gray-300">
-                    <li>• Higher cost (£599-£1,499+)</li>
+                    <li>• Higher cost (£{PRICING.soloPrice}-£{PRICING.trioPrice.toLocaleString()}+)</li>
                     <li>• Limited to songs they know</li>
                     <li>• Requires more space for setup</li>
                     <li>• Break times needed</li>

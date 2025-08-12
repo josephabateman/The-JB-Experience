@@ -653,7 +653,7 @@ export default function BookingForm() {
                     />
                     <div>
                       <span className="text-sm font-medium text-gray-900 dark:text-white">Ceremony Solo Performance</span>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">Solo acoustic for ceremony (30 minutes) - £299</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">Solo acoustic for ceremony (30 minutes) - from £{PRICING.ceremonySoloFrom}</p>
                     </div>
                   </label>
                   <label className="flex items-start space-x-3">
@@ -665,7 +665,7 @@ export default function BookingForm() {
                     />
                     <div>
                       <span className="text-sm font-medium text-gray-900 dark:text-white">Cocktail Hour Duo</span>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">Duo acoustic for cocktail reception (60 minutes) - £545</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">Duo acoustic for cocktail reception (60 minutes) - from £{PRICING.cocktailHourDuoFrom}</p>
                     </div>
                   </label>
                   <label className="flex items-start space-x-3">
@@ -677,7 +677,7 @@ export default function BookingForm() {
                     />
                     <div>
                       <span className="text-sm font-medium text-gray-900 dark:text-white">DJ Set After Band</span>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">DJ playlist after band performance (2 hours) - £200</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">DJ playlist after band performance (1 hour) - £{PRICING.mannedDjSet}</p>
                     </div>
                   </label>
                 </div>
