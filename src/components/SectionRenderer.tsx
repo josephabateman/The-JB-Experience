@@ -17,7 +17,7 @@ const SECTION_COMPONENTS = {
 } as const;
 
 interface SectionRendererProps {
-  sections?: SectionKey[];
+  sections?: readonly SectionKey[];
 }
 
 export const SectionRenderer = ({ sections = SECTION_ORDER }: SectionRendererProps) => {
