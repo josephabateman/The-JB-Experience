@@ -46,6 +46,11 @@ const HomePage: FC = () => {
       <section id="about" role="region" aria-label="About The JB Experience">
         <AboutSection />
       </section>
+
+            {/* Photo Gallery */}
+      <section id="gallery" role="region" aria-label="Photo Gallery">
+        <PhotoGallery />
+      </section>
       
       {/* 2. Contact Section - Phone/email CTA */}
       <section id="contact" role="region" aria-label="Contact Information">
@@ -60,15 +65,6 @@ const HomePage: FC = () => {
       {/* 4. Booking Form Section - Quote calculator */}
       <section id="booking-form" role="region" aria-label="Booking and Quote Form">
         <BookingFormSection />
-      </section>
-      
-      {/* ========================================
-          ADDITIONAL CONTENT SECTIONS
-          ======================================== */}
-
-      {/* Photo Gallery */}
-      <section id="gallery" role="region" aria-label="Photo Gallery">
-        <PhotoGallery />
       </section>
 
       {/* Setlist */}
