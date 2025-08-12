@@ -97,7 +97,16 @@ const About: React.FC = () => {
 
 
 
-          {/* Key Info Tiles */}
+          {/* About Section - Key Info Tiles */}
+          <div className="mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+              About The JB Experience
+            </h2>
+            <p className="text-gray-700 dark:text-gray-300 text-center mb-8 text-lg">
+              London&apos;s premier wedding band and corporate entertainment. Based in East London, serving London, Essex & Hertfordshire. 
+              Led by Joe Bateman - BBC Radio featured artist with professional experience at major venues.
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
               <div className="text-2xl mb-2">💒</div>
@@ -118,105 +127,36 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          {/* About the band - Enhanced Visual Design */}
-          <div className="relative bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl border border-indigo-100 dark:border-gray-700 shadow-lg overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="absolute top-0 left-0 w-full h-full">
-                <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <pattern id="music-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                      <circle cx="10" cy="10" r="1" fill="currentColor"/>
-                    </pattern>
-                  </defs>
-                  <rect width="100" height="100" fill="url(#music-pattern)"/>
-                </svg>
-              </div>
-            </div>
 
-            {/* Main Content */}
-            <div className="relative z-10">
-              {/* Hero Badge */}
-              <div className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-full mb-6 mx-auto block w-fit">
-                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
-                </svg>
-                Book Direct & Save 30%
-              </div>
 
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 text-center leading-tight">
-                London&apos;s <span className="text-indigo-600 dark:text-indigo-400">Premier Live Music</span>
-                <br />
-                <span className="text-2xl md:text-3xl text-gray-700 dark:text-gray-300">for Weddings & Corporate Events</span>
-              </h2>
-
-              <div className="grid md:grid-cols-3 gap-6 mb-8">
-                {/* Location */}
-                <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm p-4 rounded-xl text-center">
-                  <div className="w-12 h-12 bg-indigo-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
-                    </svg>
-                  </div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">East London Based</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Serving London, Essex & Hertfordshire</p>
-                </div>
-
-                {/* Experience */}
-                <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm p-4 rounded-xl text-center">
-                  <div className="w-12 h-12 bg-purple-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
-                    </svg>
-                  </div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">BBC Radio Featured</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Professional & experienced</p>
-                </div>
-
-                {/* Pricing */}
-                <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm p-4 rounded-xl text-center">
-                  <div className="w-12 h-12 bg-green-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
-                    </svg>
-                  </div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">From £{PRICING.soloPrice}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Solo to full band options</p>
-                </div>
-              </div>
-
-              <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl mb-6">
-                <p className="text-gray-700 dark:text-gray-300 text-center text-lg mb-4 leading-relaxed">
-                  Led by <strong className="text-indigo-600 dark:text-indigo-400">Joe Bateman</strong>, we deliver high-energy performances across pop, rock, folk, and funk genres. Choose from intimate acoustic solo with live loop pedal <span className="font-semibold">(from £{PRICING.soloPrice})</span>, duo performance <span className="font-semibold">(from £{PRICING.duoPrice.toLocaleString()})</span>, or full three-piece band <span className="font-semibold">(from £{PRICING.trioPrice.toLocaleString()})</span>.
-                </p>
-                <div className="flex items-center justify-center text-sm text-indigo-600 dark:text-indigo-400 font-medium">
-                  <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
-                  </svg>
-                  No agency fees • Direct communication • Professional service
-                </div>
-              </div>
-
-              <div className="text-center">
-                <CTAButton 
-                  variant="primary" 
-                  size="lg" 
-                  text="Get Your Quote"
-                  className="shadow-lg hover:shadow-xl transition-shadow duration-300"
-                />
+          {/* Contact Section - CTA */}
+          <div className="bg-indigo-600 text-white p-8 rounded-xl text-center">
+            <h3 className="text-2xl font-bold mb-4">Ready to Book?</h3>
+            <p className="text-lg mb-6 opacity-90">Limited availability - secure your date today!</p>
+            <div className="space-y-4">
+              <p className="flex items-center justify-center gap-2">
+                <span>📍</span>
+                <span>London | UK & International Bookings</span>
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tel:+447939000446" className="bg-white text-indigo-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                  📞 Call +44 7939 000446
+                </a>
+                <a href="#contact" className="border-2 border-white text-white px-6 py-2 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition-colors">
+                  📧 Get Quote
+                </a>
               </div>
             </div>
           </div>
 
-
-          {/* Toggle button */}
+          {/* Testimonials Section - Toggle button */}
           <div className="text-center">
             <button
               className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-md transition-all duration-300"
               onClick={toggleVisibility}
             >
               <span className="flex items-center gap-2">
-                {isVisible ? "Show Less" : "Learn More"}
+                {isVisible ? "Hide Testimonials" : "Show Testimonials & More Info"}
                 <span className="text-sm">{isVisible ? "↑" : "↓"}</span>
               </span>
             </button>
@@ -268,25 +208,6 @@ const About: React.FC = () => {
                 </div>
               </div>
 
-              {/* CTA */}
-              <div className="bg-indigo-600 text-white p-8 rounded-xl text-center">
-                <h3 className="text-2xl font-bold mb-4">Ready to Book?</h3>
-                <p className="text-lg mb-6 opacity-90">Limited availability - secure your date today!</p>
-                <div className="space-y-4">
-                  <p className="flex items-center justify-center gap-2">
-                    <span>📍</span>
-                    <span>London | UK & International Bookings</span>
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="tel:+447939000446" className="bg-white text-indigo-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                      📞 Call +44 7939 000446
-                    </a>
-                    <a href="#contact" className="border-2 border-white text-white px-6 py-2 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition-colors">
-                      📧 Get Quote
-                    </a>
-                  </div>
-                </div>
-              </div>
             </div>
           )}
         </div>
