@@ -15,17 +15,67 @@ const About: React.FC = () => {
       <div className="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
         {/* Main content area */}
         <div className="space-y-8">
-          {/* Header */}
-          <div className="text-center lg:text-left space-y-3">
-            <h2 className="dark:invert text-gray-900 text-3xl font-bold">
-              The JB Experience
+          
+          {/* 1. ABOUT SECTION */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+              About The JB Experience
             </h2>
-            <p className="dark:invert text-gray-600 text-lg">
-              Wedding Band & Corporate Entertainment • London, Essex & Hertfordshire
+            <p className="text-gray-700 dark:text-gray-300 text-center mb-8 text-lg">
+              London&apos;s premier wedding band and corporate entertainment. Based in East London, serving London, Essex & Hertfordshire. 
+              Led by Joe Bateman - BBC Radio featured artist with professional experience at major venues.
             </p>
+            
+            {/* Key Info Tiles */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
+                <div className="text-2xl mb-2">💒</div>
+                <p className="font-semibold text-gray-900 dark:text-white">London Weddings</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">Venues across E10, Essex, Hertfordshire</p>
+              </div>
+              
+              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
+                <div className="text-2xl mb-2">🏢</div>
+                <p className="font-semibold text-gray-900 dark:text-white">Corporate Events</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">Hilton Hotels, Central London venues</p>
+              </div>
+              
+              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
+                <div className="text-2xl mb-2">📻</div>
+                <p className="font-semibold text-gray-900 dark:text-white">Media Features</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">BBC Radio, Featured artist</p>
+              </div>
+            </div>
           </div>
 
-          {/* Pricing Tiles with Videos */}
+          {/* 2. CONTACT SECTION */}
+          <div className="bg-indigo-600 text-white p-8 rounded-xl text-center mb-8">
+            <h3 className="text-2xl font-bold mb-4">Ready to Book?</h3>
+            <p className="text-lg mb-6 opacity-90">Limited availability - secure your date today!</p>
+            <div className="space-y-4">
+              <p className="flex items-center justify-center gap-2">
+                <span>📍</span>
+                <span>London | UK & International Bookings</span>
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tel:+447939000446" className="bg-white text-indigo-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                  📞 Call +44 7939 000446
+                </a>
+                <a href="#contact" className="border-2 border-white text-white px-6 py-2 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition-colors">
+                  📧 Get Quote
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* 3. TESTIMONIALS SECTION */}
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              See Us In Action
+            </h3>
+          </div>
+          
+          {/* Performance Videos/Testimonials */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800">
               <div className="flex items-center gap-3 mb-4">
@@ -62,24 +112,16 @@ const About: React.FC = () => {
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  unoptimized
-                  priority
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center z-10">
-                  <div className="text-center text-white">
-                    <div className="text-3xl mb-2">🎥</div>
-                    <p className="text-sm font-medium">Video Coming Soon</p>
-                  </div>
-                </div>
               </div>
             </div>
-            
+
             <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800">
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-2xl">🎤</span>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Solo Performance</h3>
+                <span className="text-2xl">🎸🎤</span>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Solo</h3>
               </div>
-              <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">£{PRICING.soloPrice.toLocaleString()}</p>
+              <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">£{PRICING.soloPrice}</p>
               <p className="text-gray-600 dark:text-gray-300 mb-4">{PERFORMANCE_DESCRIPTIONS.solo}</p>
               
               <div className="relative w-full aspect-video">
@@ -95,68 +137,14 @@ const About: React.FC = () => {
             </div>
           </div>
 
-
-
-          {/* About Section - Key Info Tiles */}
-          <div className="mb-4">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-              About The JB Experience
-            </h2>
-            <p className="text-gray-700 dark:text-gray-300 text-center mb-8 text-lg">
-              London&apos;s premier wedding band and corporate entertainment. Based in East London, serving London, Essex & Hertfordshire. 
-              Led by Joe Bateman - BBC Radio featured artist with professional experience at major venues.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
-              <div className="text-2xl mb-2">💒</div>
-              <p className="font-semibold text-gray-900 dark:text-white">London Weddings</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Venues across E10, Essex, Hertfordshire</p>
-            </div>
-            
-            <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
-              <div className="text-2xl mb-2">🏢</div>
-              <p className="font-semibold text-gray-900 dark:text-white">Corporate Events</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Hilton Hotels, Central London venues</p>
-            </div>
-            
-            <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
-              <div className="text-2xl mb-2">📻</div>
-              <p className="font-semibold text-gray-900 dark:text-white">Media Features</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">BBC Radio, Featured artist</p>
-            </div>
-          </div>
-
-
-
-          {/* Contact Section - CTA */}
-          <div className="bg-indigo-600 text-white p-8 rounded-xl text-center">
-            <h3 className="text-2xl font-bold mb-4">Ready to Book?</h3>
-            <p className="text-lg mb-6 opacity-90">Limited availability - secure your date today!</p>
-            <div className="space-y-4">
-              <p className="flex items-center justify-center gap-2">
-                <span>📍</span>
-                <span>London | UK & International Bookings</span>
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:+447939000446" className="bg-white text-indigo-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                  📞 Call +44 7939 000446
-                </a>
-                <a href="#contact" className="border-2 border-white text-white px-6 py-2 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition-colors">
-                  📧 Get Quote
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Testimonials Section - Toggle button */}
+          {/* Toggle button for more testimonials */}
           <div className="text-center">
             <button
               className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-md transition-all duration-300"
               onClick={toggleVisibility}
             >
               <span className="flex items-center gap-2">
-                {isVisible ? "Hide Testimonials" : "Show Testimonials & More Info"}
+                {isVisible ? "Hide Testimonials" : "Show More Testimonials & Info"}
                 <span className="text-sm">{isVisible ? "↑" : "↓"}</span>
               </span>
             </button>
@@ -167,21 +155,26 @@ const About: React.FC = () => {
               {/* Why Choose Us - Tiles */}
               <div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">Why Choose Us</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
                     <div className="text-xl mb-2">🎸</div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Professional Musicians</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Experienced, reliable performers</p>
+                    <p className="font-semibold text-gray-900 dark:text-white">Professional Quality</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">High-end equipment & sound</p>
                   </div>
-                  <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800 text-center">
-                    <div className="text-xl mb-2">🎉</div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Dance Floor Guaranteed</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">We know how to get people moving</p>
+                  <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
+                    <div className="text-xl mb-2">⏰</div>
+                    <p className="font-semibold text-gray-900 dark:text-white">Reliable & Punctual</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Always on time, setup included</p>
                   </div>
-                  <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800 text-center">
-                    <div className="text-xl mb-2">⚡</div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Stress-Free Booking</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Professional setup & communication</p>
+                  <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
+                    <div className="text-xl mb-2">🎵</div>
+                    <p className="font-semibold text-gray-900 dark:text-white">Custom Setlists</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Tailored to your event & requests</p>
+                  </div>
+                  <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
+                    <div className="text-xl mb-2">💰</div>
+                    <p className="font-semibold text-gray-900 dark:text-white">Great Value</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Book direct, no agency fees</p>
                   </div>
                 </div>
               </div>
@@ -207,7 +200,6 @@ const About: React.FC = () => {
                   </div>
                 </div>
               </div>
-
             </div>
           )}
         </div>
