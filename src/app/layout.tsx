@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
+import { PRICING } from "@/config/pricing";
 import "./globals.css";
 
 const inter = Inter({ 
@@ -15,14 +16,14 @@ const inter = Inter({
 
 export const metadata = {
   title: "Wedding Band London | Corporate Entertainment | The JB Experience",
-  description: "Professional live music for weddings & corporate events across London, Essex, Hertfordshire. Book direct & save 30%. From £599. Call 07939 000446",
+  description: `Professional live music for weddings & corporate events across London, Essex, Hertfordshire. Book direct & save 30%. From £${PRICING.soloPrice}. Call 07939 000446`,
   keywords: "wedding band London, corporate entertainment London, wedding musicians London, live band hire London, corporate event band London, function band London, wedding band Essex, wedding band Hertfordshire, book direct wedding band, no agency fees wedding band, affordable wedding band London, professional wedding band, live music London",
   author: "The JB Experience",
   robots: "index, follow",
   metadataBase: new URL('https://www.thejbexperience.co.uk'),
   openGraph: {
     title: "Wedding Band London | Corporate Entertainment | The JB Experience",
-    description: "Professional live music for weddings & corporate events across London, Essex, Hertfordshire. Book direct & save 30%. From £599.",
+    description: `Professional live music for weddings & corporate events across London, Essex, Hertfordshire. Book direct & save 30%. From £${PRICING.soloPrice}.`,
     type: "website",
     locale: "en_GB",
     siteName: "The JB Experience",
@@ -38,7 +39,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Wedding Band London | Corporate Entertainment | The JB Experience",
-    description: "Professional live music for weddings & corporate events across London, Essex, Hertfordshire. Book direct & save 30%. From £599.",
+    description: `Professional live music for weddings & corporate events across London, Essex, Hertfordshire. Book direct & save 30%. From £${PRICING.soloPrice}.`,
     images: ["/images/band-performing.jpg"],
   },
   alternates: {
@@ -115,12 +116,12 @@ export default function RootLayout({
                 "Kent",
                 "Surrey"
               ],
-              "priceRange": "£599-£1499",
+              "priceRange": `£${PRICING.soloPrice}-£${PRICING.trioPrice}`,
               "offers": [
                 {
                   "@type": "Offer",
                   "name": "Solo Performance with Loop Pedal",
-                  "price": "599",
+                  "price": `${PRICING.soloPrice}`,
                   "priceCurrency": "GBP",
                   "description": "Solo acoustic performance with live looping technology"
                 },

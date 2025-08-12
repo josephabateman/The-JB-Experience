@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Container } from "@/components/Container";
+import { PRICING } from "../config/pricing";
 
 interface FormData {
   // Contact Info
@@ -61,43 +62,13 @@ export default function BookingForm() {
         if (data.success) {
           setPricing(data.data);
         } else {
-          // Fallback to default pricing if CMS fails
-          setPricing({
-            soloPrice: 599,
-            duoPrice: 1095,
-            trioPrice: 1499,
-            saxPrice: 300,
-            baseTravelCostPerMile: 1.0,
-            additionalPersonTravelCostPerMile: 0.33,
-            distanceSurcharge2Hours: 300,
-            distanceSurcharge5Hours: 600,
-            congestionChargePerPerson: 15,
-            distanceThreshold2Hours: 2,
-            distanceThreshold5Hours: 5,
-            distanceThreshold3Point5Hours: 3.5,
-            overnightStayPerPerson: 250,
-            corporateMultiplier: 1.3,
-          });
+          // Fallback to centralized pricing configuration
+          setPricing(PRICING);
         }
       } catch (error) {
         console.error('Failed to load pricing:', error);
-        // Fallback to default pricing
-        setPricing({
-          soloPrice: 599,
-          duoPrice: 1095,
-          trioPrice: 1499,
-          saxPrice: 300,
-          baseTravelCostPerMile: 1.0,
-          additionalPersonTravelCostPerMile: 0.33,
-          distanceSurcharge2Hours: 300,
-          distanceSurcharge5Hours: 600,
-          congestionChargePerPerson: 15,
-          distanceThreshold2Hours: 2,
-          distanceThreshold5Hours: 5,
-          distanceThreshold3Point5Hours: 3.5,
-          overnightStayPerPerson: 250,
-          corporateMultiplier: 1.3,
-        });
+        // Fallback to centralized pricing configuration
+        setPricing(PRICING);
       } finally {
         setLoadingPricing(false);
       }

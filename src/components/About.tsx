@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import CTAButton from "./CTAButton";
+import { PRICING, PERFORMANCE_DESCRIPTIONS, ADDITIONAL_PERFORMANCE_DESCRIPTIONS } from "../config/pricing";
 
 const About: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,8 +32,8 @@ const About: React.FC = () => {
                 <span className="text-2xl">🎸🥁🎤</span>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Full Band</h3>
               </div>
-              <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">£1,499</p>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">2x1 hour OR 3x40 min sets - lead vocals & guitar, bass, drums. Sax player available for additional fee.</p>
+              <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">£{PRICING.trioPrice.toLocaleString()}</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">{PERFORMANCE_DESCRIPTIONS.trio}</p>
               
               <div className="relative w-full aspect-video">
                 <iframe
@@ -51,8 +52,8 @@ const About: React.FC = () => {
                 <span className="text-2xl">🎸🪕</span>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Duo</h3>
               </div>
-              <p className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">£1,095</p>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">2x1 hour OR 3x40 min sets - vocals/guitar with second instrument (guitar, cello, or cajon).</p>
+              <p className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">£{PRICING.duoPrice.toLocaleString()}</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">{PERFORMANCE_DESCRIPTIONS.duo}</p>
               
               <div className="relative w-full aspect-video rounded-lg overflow-hidden">
                 <Image
@@ -78,8 +79,8 @@ const About: React.FC = () => {
                 <span className="text-2xl">🎤</span>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Solo Performance</h3>
               </div>
-              <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">£599</p>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">2x1 hour OR 3x40 min sets with live loop pedal technology.</p>
+              <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">£{PRICING.soloPrice.toLocaleString()}</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">{PERFORMANCE_DESCRIPTIONS.solo}</p>
               
               <div className="relative w-full aspect-video">
                 <iframe
@@ -103,20 +104,20 @@ const About: React.FC = () => {
               <div className="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
                 <div className="text-2xl mb-2">💒</div>
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Ceremony Solo Performance</h4>
-                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">From £199</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Custom quote required</p>
+                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">From £{PRICING.ceremonySoloFrom}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{ADDITIONAL_PERFORMANCE_DESCRIPTIONS.ceremonySolo}</p>
               </div>
               <div className="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
                 <div className="text-2xl mb-2">🍸</div>
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Cocktail Hour Duo</h4>
-                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">From £299</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Custom quote required</p>
+                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">From £{PRICING.cocktailHourDuoFrom}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{ADDITIONAL_PERFORMANCE_DESCRIPTIONS.cocktailHourDuo}</p>
               </div>
               <div className="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
                 <div className="text-2xl mb-2">🎧</div>
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Manned DJ Set</h4>
-                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">£129</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">1 hour Spotify playlist with requests after band performance</p>
+                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">£{PRICING.mannedDjSet}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{ADDITIONAL_PERFORMANCE_DESCRIPTIONS.mannedDjSet}</p>
               </div>
             </div>
           </div>
@@ -156,7 +157,7 @@ const About: React.FC = () => {
             </p>
             <p className="text-gray-700 dark:text-gray-300 text-center mb-6">
               Led by <strong>Joe Bateman</strong>, a talented multi-instrumentalist and producer with extensive experience performing for high-profile clients including BBC Radio features and corporate events for major London venues. 
-              Whether you need an intimate acoustic solo performance with live loop pedal (from £599), duo performance (from £1,095), or a full three-piece band experience (from £1,499), we tailor every performance to your event.
+              Whether you need an intimate acoustic solo performance with live loop pedal (from £{PRICING.soloPrice}), duo performance (from £{PRICING.duoPrice.toLocaleString()}), or a full three-piece band experience (from £{PRICING.trioPrice.toLocaleString()}), we tailor every performance to your event.
             </p>
             <div className="text-center">
               <CTAButton 

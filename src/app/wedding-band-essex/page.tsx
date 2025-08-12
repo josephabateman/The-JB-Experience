@@ -1,10 +1,11 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { PRICING } from "@/config/pricing";
 
 export const metadata: Metadata = {
   title: "Wedding Band Essex | Live Music for Essex Weddings | The JB Experience",
-  description: "Professional wedding band serving all of Essex. Live music for weddings in Chelmsford, Colchester, Southend, Brentwood & across Essex. Book direct from £599 - no agency fees!",
+  description: `Professional wedding band serving all of Essex. Live music for weddings in Chelmsford, Colchester, Southend, Brentwood & across Essex. Book direct from £${PRICING.soloPrice} - no agency fees!`,
   keywords: "wedding band Essex, wedding music Essex, live band hire Essex, Essex wedding entertainment, wedding musicians Essex, Chelmsford wedding band, Colchester wedding band, Southend wedding band, Brentwood wedding band",
   openGraph: {
     title: "Wedding Band Essex | Live Music for Essex Weddings | The JB Experience",
@@ -130,7 +131,7 @@ const EssexPage = () => {
               </div>
               <div>
                 <p className="font-semibold text-gray-900 dark:text-white mb-2">Travel Costs</p>
-                <p className="text-gray-600 dark:text-gray-300">£1 per mile from base</p>
+                <p className="text-gray-600 dark:text-gray-300">£{PRICING.baseTravelCostPerMile} per mile from base</p>
               </div>
               <div>
                 <p className="font-semibold text-gray-900 dark:text-white mb-2">Coverage Radius</p>
@@ -211,7 +212,7 @@ const EssexPage = () => {
               <div className="text-center">
                 <span className="text-4xl mb-4 block">🎤</span>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Solo Performance</h3>
-                <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-4">£599</div>
+                <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-4">£{PRICING.soloPrice}</div>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">+ travel costs</p>
                 <ul className="space-y-3 text-left text-gray-700 dark:text-gray-300">
                   <li>✅ Live looping with stompbox technology</li>
@@ -227,13 +228,13 @@ const EssexPage = () => {
               <div className="text-center">
                 <span className="text-4xl mb-4 block">🎸</span>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Full Band</h3>
-                <div className="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-4">£1,499</div>
+                <div className="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-4">£{PRICING.trioPrice.toLocaleString()}</div>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">+ travel costs</p>
                 <ul className="space-y-3 text-left text-gray-700 dark:text-gray-300">
                   <li>✅ Guitar, Bass, Drums, Vocals</li>
                   <li>✅ Professional sound system</li>
                   <li>✅ Full lighting setup</li>
-                  <li>✅ Optional saxophone (+£200)</li>
+                  <li>✅ Optional saxophone (+£{PRICING.saxPrice})</li>
                 </ul>
               </div>
             </div>
@@ -241,7 +242,7 @@ const EssexPage = () => {
 
           <div className="mt-8 text-center">
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Travel calculated at £1 per mile from E10. All prices include VAT.
+              Travel calculated at £{PRICING.baseTravelCostPerMile} per mile from E10. All prices include VAT.
             </p>
             <Link
               href="/#inquiry"

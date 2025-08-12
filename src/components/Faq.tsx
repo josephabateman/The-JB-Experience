@@ -3,6 +3,7 @@ import React from "react";
 import { Container } from "@/components/Container";
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { PRICING } from "../config/pricing";
 
 export const Faq = () => {
   const getIcon = (question: string) => {
@@ -105,11 +106,11 @@ const faqdata = [
   },
   {
     question: "Coverage areas from East London base?",
-    answer: "Based in East London, serving London and surrounding areas including Essex and Hertfordshire. Extended travel available for premium events. Travel costs calculated at £1 per mile from our E10 base."
+    answer: `Based in East London, serving London and surrounding areas including Essex and Hertfordshire. Extended travel available for premium events. Travel costs calculated at £${PRICING.baseTravelCostPerMile} per mile from our E10 base.`
   },
   {
     question: "Cost for hiring?",
-    answer: "Wedding band prices: £599 (solo with loop pedal), £1,095 (duo), £1,499 (full band). Corporate events are custom quoted. These are direct booking prices with no agency fees. Travel and venue requirements may apply."
+    answer: `Wedding band prices: £${PRICING.soloPrice} (solo with loop pedal), £${PRICING.duoPrice.toLocaleString()} (duo), £${PRICING.trioPrice.toLocaleString()} (full band). Corporate events are custom quoted. These are direct booking prices with no agency fees. Travel and venue requirements may apply.`
   },
   {
     question: "Can you learn first dance/special songs?",

@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { PRICING } from "@/config/pricing";
 
 export const metadata: Metadata = {
   title: "Wedding Band Hertfordshire | Live Music for Hertfordshire Weddings | The JB Experience",
-  description: "Professional wedding band serving all of Hertfordshire. Live music for weddings in St Albans, Watford, Hertford, Stevenage & across Hertfordshire. Book direct from £599!",
+  description: `Professional wedding band serving all of Hertfordshire. Live music for weddings in St Albans, Watford, Hertford, Stevenage & across Hertfordshire. Book direct from £${PRICING.soloPrice}!`,
   keywords: "wedding band Hertfordshire, wedding music Hertfordshire, live band hire Hertfordshire, Hertfordshire wedding entertainment, wedding musicians Hertfordshire, St Albans wedding band, Watford wedding band, Hertford wedding band, Stevenage wedding band",
   openGraph: {
     title: "Wedding Band Hertfordshire | Live Music for Hertfordshire Weddings",
@@ -133,7 +134,7 @@ const HertfordshirePage = () => {
               </div>
               <div>
                 <p className="font-semibold text-gray-900 dark:text-white mb-2">Travel Cost</p>
-                <p className="text-gray-600 dark:text-gray-300">£15-£35 (£1/mile)</p>
+                <p className="text-gray-600 dark:text-gray-300">£15-£35 (£{PRICING.baseTravelCostPerMile}/mile)</p>
               </div>
             </div>
           </div>
@@ -253,7 +254,7 @@ const HertfordshirePage = () => {
               <div className="text-center">
                 <span className="text-4xl mb-4 block">🎤</span>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Solo Performance</h3>
-                <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">£599</div>
+                <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">£{PRICING.soloPrice}</div>
                 <p className="text-gray-600 dark:text-gray-300 mb-2">+ travel (typically £15-35)</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Perfect for intimate Hertfordshire venues</p>
                 <ul className="space-y-3 text-left text-gray-700 dark:text-gray-300">
@@ -270,14 +271,14 @@ const HertfordshirePage = () => {
               <div className="text-center">
                 <span className="text-4xl mb-4 block">🎸</span>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Full Band</h3>
-                <div className="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">£1,499</div>
+                <div className="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">£{PRICING.trioPrice.toLocaleString()}</div>
                 <p className="text-gray-600 dark:text-gray-300 mb-2">+ travel (typically £15-35)</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Perfect for larger Hertfordshire celebrations</p>
                 <ul className="space-y-3 text-left text-gray-700 dark:text-gray-300">
                   <li>✅ 3-piece band (guitar, bass, drums)</li>
                   <li>✅ Professional PA system</li>
                   <li>✅ Full lighting setup</li>
-                  <li>✅ Optional saxophone (+£200)</li>
+                  <li>✅ Optional saxophone (+£{PRICING.saxPrice})</li>
                 </ul>
               </div>
             </div>

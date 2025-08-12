@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { PRICING } from "@/config/pricing";
 
 const NewAbout: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -66,7 +67,7 @@ const NewAbout: React.FC = () => {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">Solo Performance</h3>
                 <p className="text-gray-300 mb-6">Perfect for intimate events</p>
-                <div className="text-4xl font-bold text-white mb-2">£599</div>
+                <div className="text-4xl font-bold text-white mb-2">£{PRICING.soloPrice}</div>
                 <p className="text-sm text-gray-400 mb-6">Starting price, before travel costs</p>
                 <div className="space-y-3 text-left">
                   <div className="flex items-center text-gray-300">
@@ -102,7 +103,7 @@ const NewAbout: React.FC = () => {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">Full Band</h3>
                 <p className="text-gray-300 mb-6">High-energy live entertainment</p>
-                <div className="text-4xl font-bold text-white mb-2">£1,499</div>
+                <div className="text-4xl font-bold text-white mb-2">£{PRICING.trioPrice.toLocaleString()}</div>
                 <p className="text-sm text-gray-400 mb-6">Starting price, before travel costs</p>
                 <div className="space-y-3 text-left">
                   <div className="flex items-center text-gray-300">
@@ -121,7 +122,7 @@ const NewAbout: React.FC = () => {
                     <svg className="w-5 h-5 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    Optional saxophone player (+£200)
+                    Optional saxophone player (+£{PRICING.saxPrice})
                   </div>
                 </div>
               </div>
