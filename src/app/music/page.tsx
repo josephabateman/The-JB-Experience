@@ -71,15 +71,12 @@ export default function MusicPage() {
       <section className="relative overflow-hidden px-4 pt-32 pb-16 text-center sm:px-6">
         <div className="pointer-events-none absolute -top-24 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-gold-500/20 blur-3xl" />
         <div className="relative mx-auto max-w-3xl">
-          <p className="eyebrow mb-4 text-gold-300">Solo artist · London pop-soul</p>
+          <p className="eyebrow mb-4 text-gold-300">Singer-songwriter · London</p>
           <h1 className="font-serif text-5xl font-bold leading-[1.05] text-white sm:text-6xl">
             Joe Bateman
           </h1>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-neutral-300">
-            Guitar-led, half-time pop-soul — aching vocals with electric guitar bleeding through every
-            section. For fans of <span className="text-white">John Mayer</span>,{" "}
-            <span className="text-white">Paolo Nutini</span> and{" "}
-            <span className="text-white">Mk.gee</span>.
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-neutral-400">
+            Debut single &ldquo;You Can&apos;t Win&rdquo; — out now.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a href={SPOTIFY_ARTIST} target="_blank" rel="noopener noreferrer" className="btn-gold w-full sm:w-auto">
