@@ -2,19 +2,21 @@
 
 import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const navigation = [
+const bandNav = [
   { name: "About", link: "/#about" },
   { name: "Gallery", link: "/#gallery" },
   { name: "Reviews", link: "/#testimonials" },
   { name: "Setlist", link: "/#setlist" },
   { name: "FAQ", link: "/#faq" },
-  { name: "Music", link: "/music" },
 ];
 
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isMusic = pathname?.startsWith("/music");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -23,10 +25,45 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // On the solo-artist page the bar is always solid (dark page), elsewhere it's
+  // transparent over the hero until you scroll.
+  const solid = scrolled || isMusic;
+
+  // ---------------------------------------------------------------------------
+  // SOLO ARTIST MODE — distinct branding so it never feels like a band section
+  // ---------------------------------------------------------------------------
+  if (isMusic) {
+    return (
+      <header className="fixed top-0 left-0 z-50 w-full border-b border-neutral-800 bg-ink-900/90 backdrop-blur-md">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+          <Link href="/music" className="flex items-baseline gap-2" aria-label="Joe Bateman — solo artist">
+            <span className="font-serif text-lg font-semibold text-white">Joe Bateman</span>
+            <span className="hidden text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-gold-400 sm:inline">
+              Solo Artist
+            </span>
+          </Link>
+
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 rounded-full border border-neutral-700 px-4 py-2 text-sm font-medium text-neutral-200 transition-colors hover:border-gold-400 hover:text-white"
+          >
+            <span aria-hidden="true">←</span>
+            <span className="hidden sm:inline">The JB Experience</span>
+            <span className="sm:hidden">Wedding band</span>
+            <span className="hidden text-neutral-500 md:inline">· wedding &amp; events</span>
+          </Link>
+        </nav>
+      </header>
+    );
+  }
+
+  // ---------------------------------------------------------------------------
+  // BAND MODE (default)
+  // ---------------------------------------------------------------------------
   return (
     <header
       className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${
-        scrolled
+        solid
           ? "bg-white/90 dark:bg-ink-900/90 backdrop-blur-md shadow-sm border-b border-neutral-200/70 dark:border-neutral-800"
           : "bg-transparent"
       }`}
@@ -36,7 +73,7 @@ export const Navbar: React.FC = () => {
         <Link
           href="/"
           className={`font-serif text-lg font-semibold tracking-tight transition-colors ${
-            scrolled ? "text-ink-900 dark:text-white" : "text-white"
+            solid ? "text-ink-900 dark:text-white" : "text-white"
           }`}
           aria-label="The JB Experience — home"
         >
@@ -44,14 +81,14 @@ export const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop menu */}
-        <div className="hidden items-center gap-8 lg:flex">
-          <ul className="flex items-center gap-7">
-            {navigation.map((item) => (
+        <div className="hidden items-center gap-6 lg:flex">
+          <ul className="flex items-center gap-6">
+            {bandNav.map((item) => (
               <li key={item.name}>
                 <Link
                   href={item.link}
                   className={`text-sm font-medium transition-colors hover:text-gold-500 ${
-                    scrolled ? "text-ink-800 dark:text-neutral-200" : "text-white/90"
+                    solid ? "text-ink-800 dark:text-neutral-200" : "text-white/90"
                   }`}
                 >
                   {item.name}
@@ -59,10 +96,21 @@ export const Navbar: React.FC = () => {
               </li>
             ))}
           </ul>
+
+          {/* Divider + distinct solo-artist link */}
+          <span className={`h-5 w-px ${solid ? "bg-neutral-300 dark:bg-neutral-700" : "bg-white/30"}`} aria-hidden="true" />
+          <Link
+            href="/music"
+            className="inline-flex items-center gap-1.5 rounded-full border border-gold-400/60 px-3 py-1.5 text-sm font-medium text-gold-500 transition-colors hover:bg-gold-500 hover:text-ink-900"
+          >
+            Joe Bateman · Solo
+            <span aria-hidden="true" className="text-xs">↗</span>
+          </Link>
+
           <a
             href="tel:+447939000446"
             className={`text-sm font-semibold transition-colors hover:text-gold-500 ${
-              scrolled ? "text-ink-900 dark:text-white" : "text-white"
+              solid ? "text-ink-900 dark:text-white" : "text-white"
             }`}
           >
             07939&nbsp;000446
@@ -78,7 +126,7 @@ export const Navbar: React.FC = () => {
             <>
               <Disclosure.Button
                 className={`relative z-50 rounded-md p-2 transition-colors ${
-                  scrolled ? "text-ink-900 dark:text-white" : "text-white"
+                  solid ? "text-ink-900 dark:text-white" : "text-white"
                 }`}
                 aria-label="Toggle menu"
               >
@@ -93,8 +141,8 @@ export const Navbar: React.FC = () => {
                 )}
               </Disclosure.Button>
 
-              <Disclosure.Panel className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-7 bg-ink-900">
-                {navigation.map((item) => (
+              <Disclosure.Panel className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-6 bg-ink-900">
+                {bandNav.map((item) => (
                   <Link
                     key={item.name}
                     href={item.link}
@@ -104,18 +152,24 @@ export const Navbar: React.FC = () => {
                     {item.name}
                   </Link>
                 ))}
+
+                <span className="my-1 h-px w-24 bg-neutral-700" aria-hidden="true" />
+                <Link
+                  href="/music"
+                  className="inline-flex items-center gap-2 rounded-full border border-gold-400/60 px-5 py-2 font-serif text-xl text-gold-400 transition-colors hover:bg-gold-500 hover:text-ink-900"
+                  onClick={() => close()}
+                >
+                  Joe Bateman · Solo ↗
+                </Link>
+
                 <a
                   href="tel:+447939000446"
-                  className="mt-2 text-lg font-semibold text-neutral-300"
+                  className="mt-1 text-lg font-semibold text-neutral-300"
                   onClick={() => close()}
                 >
                   📞 07939 000446
                 </a>
-                <Link
-                  href="/#booking-form"
-                  className="btn-gold mt-2"
-                  onClick={() => close()}
-                >
+                <Link href="/#booking-form" className="btn-gold" onClick={() => close()}>
                   Get a Quote
                 </Link>
               </Disclosure.Panel>

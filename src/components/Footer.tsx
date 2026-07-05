@@ -1,8 +1,36 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
+import { usePathname } from "next/navigation";
 import { Container } from "@/components/Container";
 
 export function Footer() {
+  const pathname = usePathname();
+
+  // Slim, solo-branded footer on the Joe Bateman page — keeps the two projects distinct.
+  if (pathname?.startsWith("/music")) {
+    return (
+      <footer className="bg-ink-900 border-t border-neutral-800">
+        <Container>
+          <div className="flex flex-col items-center gap-4 py-10 text-center">
+            <span className="font-serif text-lg font-semibold text-white">Joe Bateman</span>
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-neutral-400">
+              <a href="https://open.spotify.com/artist/6h3c0qpAfr6AiM53MFozVQ" target="_blank" rel="noopener noreferrer" className="hover:text-gold-400">Spotify</a>
+              <a href="https://www.youtube.com/@JoeBatemanOfficialYouTube" target="_blank" rel="noopener noreferrer" className="hover:text-gold-400">YouTube</a>
+              <a href="https://www.instagram.com/joebatemanofficial" target="_blank" rel="noopener noreferrer" className="hover:text-gold-400">Instagram</a>
+              <a href="https://linktr.ee/joebatemanofficial" target="_blank" rel="noopener noreferrer" className="hover:text-gold-400">Linktree</a>
+            </div>
+            <Link href="/" className="text-sm text-neutral-500 hover:text-gold-400">
+              ← The JB Experience (wedding &amp; function band)
+            </Link>
+            <p className="text-xs text-neutral-600">© {new Date().getFullYear()} Joe Bateman</p>
+          </div>
+        </Container>
+      </footer>
+    );
+  }
+
   return (
     <footer className="bg-white dark:bg-ink-900 border-t border-neutral-200 dark:border-neutral-800">
       <Container>
