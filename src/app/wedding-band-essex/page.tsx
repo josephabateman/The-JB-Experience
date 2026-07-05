@@ -8,9 +8,14 @@ export const metadata: Metadata = {
   title: "Wedding Band Essex | Live Music for Essex Weddings | The JB Experience",
   description: `Professional wedding band serving all of Essex. Live music for weddings in Chelmsford, Colchester, Southend, Brentwood & across Essex. Book direct from £${PRICING.soloPrice} - no agency fees!`,
   keywords: "wedding band Essex, wedding music Essex, live band hire Essex, Essex wedding entertainment, wedding musicians Essex, Chelmsford wedding band, Colchester wedding band, Southend wedding band, Brentwood wedding band",
+  alternates: { canonical: "https://www.thejbexperience.co.uk/wedding-band-essex" },
   openGraph: {
     title: "Wedding Band Essex | Live Music for Essex Weddings | The JB Experience",
     description: "Professional wedding band serving all of Essex. Live music for weddings in Chelmsford, Colchester, Southend, Brentwood & across Essex. Book direct - no agency fees!",
+    url: "https://www.thejbexperience.co.uk/wedding-band-essex",
+    type: "website",
+    locale: "en_GB",
+    images: [{ url: "/images/band-performing.jpg", width: 1200, height: 630, alt: "The JB Experience wedding band performing in Essex" }],
   },
 };
 

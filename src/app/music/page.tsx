@@ -23,11 +23,13 @@ export const metadata: Metadata = {
     locale: "en_GB",
     url: "https://www.thejbexperience.co.uk/music",
     siteName: "Joe Bateman",
+    images: [{ url: "/images/band-profile.jpg", width: 1200, height: 630, alt: "Joe Bateman — London pop-soul artist" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Joe Bateman | London Pop-Soul Artist",
     description: "Debut single 'You Can't Win' out now — the first of four leading to an EP.",
+    images: ["/images/band-profile.jpg"],
   },
 };
 

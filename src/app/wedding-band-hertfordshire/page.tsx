@@ -7,9 +7,14 @@ export const metadata: Metadata = {
   title: "Wedding Band Hertfordshire | Live Music for Hertfordshire Weddings | The JB Experience",
   description: `Professional wedding band serving all of Hertfordshire. Live music for weddings in St Albans, Watford, Hertford, Stevenage & across Hertfordshire. Book direct from £${PRICING.soloPrice}!`,
   keywords: "wedding band Hertfordshire, wedding music Hertfordshire, live band hire Hertfordshire, Hertfordshire wedding entertainment, wedding musicians Hertfordshire, St Albans wedding band, Watford wedding band, Hertford wedding band, Stevenage wedding band",
+  alternates: { canonical: "https://www.thejbexperience.co.uk/wedding-band-hertfordshire" },
   openGraph: {
     title: "Wedding Band Hertfordshire | Live Music for Hertfordshire Weddings",
     description: "Professional wedding band serving all of Hertfordshire. Live music for weddings in St Albans, Watford, Hertford & across Hertfordshire. Book direct - no agency fees!",
+    url: "https://www.thejbexperience.co.uk/wedding-band-hertfordshire",
+    type: "website",
+    locale: "en_GB",
+    images: [{ url: "/images/band-performing.jpg", width: 1200, height: 630, alt: "The JB Experience wedding band performing in Hertfordshire" }],
   },
 };
 

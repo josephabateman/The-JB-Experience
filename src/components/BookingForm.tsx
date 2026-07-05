@@ -390,6 +390,16 @@ export default function BookingForm() {
     }
   };
 
+  // On success (or error), bring the confirmation/message into view — otherwise
+  // it renders at the top of the booking section, above where the user submitted.
+  useEffect(() => {
+    if (submitStatus === "success" || submitStatus === "error") {
+      document
+        .getElementById("booking-form")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [submitStatus]);
+
   const eventTypes = [
     "Wedding",
     "Corporate Event",

@@ -7,9 +7,14 @@ export const metadata: Metadata = {
   title: "Complete Wedding Music Guide 2025 | First Dance Songs & Playlists | The JB Experience",
   description: "The ultimate guide to wedding music for 2025. First dance songs, reception playlists, ceremony music & band vs DJ advice from London wedding music experts.",
   keywords: "wedding music guide, first dance songs 2025, wedding playlist, ceremony music, reception music, wedding band vs DJ, best wedding songs, wedding music planning",
+  alternates: { canonical: "https://www.thejbexperience.co.uk/wedding-music-guide" },
   openGraph: {
     title: "Complete Wedding Music Guide 2025 | Wedding Music Planning",
     description: "Everything you need to know about planning your wedding music - from first dance songs to reception playlists. Expert advice from London wedding band.",
+    url: "https://www.thejbexperience.co.uk/wedding-music-guide",
+    type: "article",
+    locale: "en_GB",
+    images: [{ url: "/images/band-performing.jpg", width: 1200, height: 630, alt: "The JB Experience — wedding music guide" }],
   },
 };
 

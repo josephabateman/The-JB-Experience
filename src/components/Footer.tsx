@@ -35,7 +35,7 @@ export function Footer() {
   return (
     <footer className="bg-white dark:bg-ink-900 border-t border-neutral-200 dark:border-neutral-800">
       <Container>
-        <div className="py-10 grid gap-8 sm:grid-cols-3 sm:items-start">
+        <div className="py-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 sm:items-start">
           {/* Brand */}
           <div>
             <Link href="/" className="font-serif text-lg font-semibold text-ink-900 dark:text-white">
@@ -55,6 +55,16 @@ export function Footer() {
               <li><Link href="/#testimonials" className="hover:text-gold-500">Reviews</Link></li>
               <li><Link href="/#booking-form" className="hover:text-gold-500">Get a quote</Link></li>
               <li><Link href="/music" className="hover:text-gold-500">Joe Bateman (solo artist)</Link></li>
+            </ul>
+          </div>
+
+          {/* Areas we cover — internal links to location/landing pages for local SEO */}
+          <div className="text-sm">
+            <p className="mb-3 font-semibold text-ink-900 dark:text-white">Areas we cover</p>
+            <ul className="space-y-2 text-neutral-500 dark:text-neutral-400">
+              <li><Link href="/wedding-band-essex" className="hover:text-gold-500">Wedding band Essex</Link></li>
+              <li><Link href="/wedding-band-hertfordshire" className="hover:text-gold-500">Wedding band Hertfordshire</Link></li>
+              <li><Link href="/wedding-music-guide" className="hover:text-gold-500">Wedding music guide</Link></li>
             </ul>
           </div>
 
