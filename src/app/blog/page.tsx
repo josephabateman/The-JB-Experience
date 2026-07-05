@@ -216,7 +216,7 @@ const BlogPage = () => {
               📞 Call +44 7939 000446
             </Link>
             <Link
-              href="/#inquiry"
+              href="/#booking-form"
               className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-indigo-600 transition-colors"
             >
               📧 Get Your Quote

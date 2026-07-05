@@ -270,7 +270,7 @@ const NewAbout: React.FC = () => {
                 Call: +447939000446
               </a>
               <a
-                href="#inquiry"
+                href="/#booking-form"
                 className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
               >
                 <span className="mr-2">📧</span>

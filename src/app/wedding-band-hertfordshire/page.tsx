@@ -88,7 +88,7 @@ const HertfordshirePage = () => {
                 📞 Call +44 7939 000446
               </Link>
               <Link
-                href="/#inquiry"
+                href="/#booking-form"
                 className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transition-all duration-300 transform hover:scale-105"
               >
                 📧 Get Hertfordshire Quote
@@ -180,7 +180,7 @@ const HertfordshirePage = () => {
                   
                   <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                     <Link
-                      href="/#inquiry"
+                      href="/#booking-form"
                       className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-semibold"
                     >
                       Get Quote for {venue.name} →
@@ -292,7 +292,7 @@ const HertfordshirePage = () => {
               </p>
             </div>
             <Link
-              href="/#inquiry"
+              href="/#booking-form"
               className="inline-flex items-center bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
             >
               Get Your Hertfordshire Quote →
@@ -318,7 +318,7 @@ const HertfordshirePage = () => {
               📞 Call +44 7939 000446
             </Link>
             <Link
-              href="/#inquiry"
+              href="/#booking-form"
               className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transition-colors"
             >
               📧 Get Hertfordshire Quote

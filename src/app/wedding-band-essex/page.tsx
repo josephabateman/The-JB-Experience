@@ -89,7 +89,7 @@ const EssexPage = () => {
                 📞 Call +44 7939 000446
               </Link>
               <Link
-                href="/#inquiry"
+                href="/#booking-form"
                 className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transition-all duration-300 transform hover:scale-105"
               >
                 📧 Get Essex Quote
@@ -181,7 +181,7 @@ const EssexPage = () => {
                   
                   <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                     <Link
-                      href="/#inquiry"
+                      href="/#booking-form"
                       className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-semibold"
                     >
                       Get Quote for {venue.name} →
@@ -245,7 +245,7 @@ const EssexPage = () => {
               Travel calculated at £{PRICING.baseTravelCostPerMile} per mile from E10. All prices include VAT.
             </p>
             <Link
-              href="/#inquiry"
+              href="/#booking-form"
               className="inline-flex items-center bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
             >
               Get Your Essex Wedding Quote →
@@ -314,7 +314,7 @@ const EssexPage = () => {
               📞 Call +44 7939 000446
             </Link>
             <Link
-              href="/#inquiry"
+              href="/#booking-form"
               className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transition-colors"
             >
               📧 Get Essex Quote

@@ -95,7 +95,7 @@ export default function RootLayout({
               "logo": "https://www.thejbexperience.co.uk/images/band-performing.jpg",
               "image": "https://www.thejbexperience.co.uk/images/band-performing.jpg",
               "telephone": "+447939000446",
-              "email": "info@thejbexperience.com",
+              "email": "joebatemanofficial@gmail.com",
               "genre": ["Pop", "Rock", "Folk", "Funk", "Wedding Music"],
               "foundingLocation": {
                 "@type": "Place",
@@ -148,9 +148,8 @@ export default function RootLayout({
                 }
               ],
               "sameAs": [
-                "https://www.youtube.com/channel/UCexample",
-                "https://www.instagram.com/thejbexperience",
-                "https://www.facebook.com/thejbexperience"
+                "https://www.instagram.com/joebatemanofficial",
+                "https://www.youtube.com/@JoeBatemanOfficialYouTube"
               ],
               "potentialAction": {
                 "@type": "ReserveAction",

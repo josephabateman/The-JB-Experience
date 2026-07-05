@@ -1,8 +1,8 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://the-jb-experience.vercel.app'
-  
+  const baseUrl = 'https://www.thejbexperience.co.uk'
+
   return {
     rules: {
       userAgent: '*',
