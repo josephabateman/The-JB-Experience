@@ -2,83 +2,127 @@
 
 import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
-import Image from "next/image";
+import { useEffect, useState } from "react";
+
+const navigation = [
+  { name: "About", link: "/#about" },
+  { name: "Gallery", link: "/#gallery" },
+  { name: "Reviews", link: "/#testimonials" },
+  { name: "Setlist", link: "/#setlist" },
+  { name: "FAQ", link: "/#faq" },
+  { name: "Music", link: "/music" },
+];
 
 export const Navbar: React.FC = () => {
-  const navigation = [
-    { name: "About", link: "#about" },
-    { name: "Testimonials", link: "#testimonials" },
-    { name: "Get Quote", link: "#contact" },
-  ];
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <div className="w-full">
-      <nav className="absolute top-0 left-0 w-full z-10 flex flex-wrap items-center justify-between p-4 transition-all duration-300">
-        {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2 text-white rounded-md">
-          <span>The</span>
-          <Image src="/images/favicon.svg" width="32" height="32" alt="Logo" className="w-8 invert" />
-          <span>Experience</span>
+    <header
+      className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? "bg-white/90 dark:bg-ink-900/90 backdrop-blur-md shadow-sm border-b border-neutral-200/70 dark:border-neutral-800"
+          : "bg-transparent"
+      }`}
+    >
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        {/* Logo / wordmark */}
+        <Link
+          href="/"
+          className={`font-serif text-lg font-semibold tracking-tight transition-colors ${
+            scrolled ? "text-ink-900 dark:text-white" : "text-white"
+          }`}
+          aria-label="The JB Experience — home"
+        >
+          The JB Experience
         </Link>
 
-        {/* Mobile Navigation */}
-        <Disclosure as="div" className="lg:hidden">
-          {({ open, close }) => (
-            <>
-              {/* Menu Button */}
-              <Disclosure.Button className="relative z-20 p-2 text-white rounded-md focus:outline-none">
-                {open ? (
-                  <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                ) : (
-                  <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 5h16M4 12h16M4 19h16" />
-                  </svg>
-                )}
-              </Disclosure.Button>
-
-              {/* Mobile Menu Panel */}
-              <Disclosure.Panel className="fixed top-0 left-0 w-full h-screen bg-gray-900 bg-opacity-90 z-20 flex flex-col items-center justify-center space-y-6">
-                {/* Close Button in Top Right */}
-                <button
-                  onClick={() => close()} 
-                  className="absolute top-5 right-5 text-white hover:text-red-400 transition"
+        {/* Desktop menu */}
+        <div className="hidden items-center gap-8 lg:flex">
+          <ul className="flex items-center gap-7">
+            {navigation.map((item) => (
+              <li key={item.name}>
+                <Link
+                  href={item.link}
+                  className={`text-sm font-medium transition-colors hover:text-gold-500 ${
+                    scrolled ? "text-ink-800 dark:text-neutral-200" : "text-white/90"
+                  }`}
                 >
-                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-
-                {/* Menu Items */}
-                {navigation.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.link}
-                    className="text-white text-2xl px-6 py-3 rounded-md hover:text-indigo-400 transition"
-                    onClick={() => close()} // Close menu when clicking an item
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </Disclosure.Panel>
-            </>
-          )}
-        </Disclosure>
-
-        {/* Desktop Menu */}
-        <div className="hidden lg:flex">
-          <ul className="flex space-x-6">
-            {navigation.map((item, index) => (
-              <li key={index}>
-                <Link href={item.link} className="text-white hover:text-indigo-500 transition">
                   {item.name}
                 </Link>
               </li>
             ))}
           </ul>
+          <a
+            href="tel:+447939000446"
+            className={`text-sm font-semibold transition-colors hover:text-gold-500 ${
+              scrolled ? "text-ink-900 dark:text-white" : "text-white"
+            }`}
+          >
+            07939&nbsp;000446
+          </a>
+          <Link href="/#booking-form" className="btn-gold px-5 py-2.5 text-sm">
+            Get a Quote
+          </Link>
         </div>
+
+        {/* Mobile menu */}
+        <Disclosure as="div" className="lg:hidden">
+          {({ open, close }) => (
+            <>
+              <Disclosure.Button
+                className={`relative z-50 rounded-md p-2 transition-colors ${
+                  scrolled ? "text-ink-900 dark:text-white" : "text-white"
+                }`}
+                aria-label="Toggle menu"
+              >
+                {open ? (
+                  <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
+              </Disclosure.Button>
+
+              <Disclosure.Panel className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-7 bg-ink-900/97 backdrop-blur-sm">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.link}
+                    className="font-serif text-2xl text-white transition-colors hover:text-gold-400"
+                    onClick={() => close()}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+                <a
+                  href="tel:+447939000446"
+                  className="mt-2 text-lg font-semibold text-neutral-300"
+                  onClick={() => close()}
+                >
+                  📞 07939 000446
+                </a>
+                <Link
+                  href="/#booking-form"
+                  className="btn-gold mt-2"
+                  onClick={() => close()}
+                >
+                  Get a Quote
+                </Link>
+              </Disclosure.Panel>
+            </>
+          )}
+        </Disclosure>
       </nav>
-    </div>
+    </header>
   );
 };

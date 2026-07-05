@@ -2,179 +2,164 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { PRICING, PERFORMANCE_DESCRIPTIONS } from "@/config/pricing";
 
+const packages = [
+  {
+    key: "trio",
+    name: "Full Band",
+    price: PRICING.trioPrice,
+    tagline: "Lead vocals & guitar, bass, drums",
+    description: PERFORMANCE_DESCRIPTIONS.trio,
+    media: { type: "video" as const, src: "https://www.youtube.com/embed/b7RNiZ3eUxc", title: "The JB Experience — Full Band Performance" },
+    featured: true,
+  },
+  {
+    key: "duo",
+    name: "Duo",
+    price: PRICING.duoPrice,
+    tagline: "Vocals/guitar + second instrument",
+    description: PERFORMANCE_DESCRIPTIONS.duo,
+    media: { type: "image" as const, src: "/images/joe-cristian-ceremony.jpg", title: "The JB Experience — Duo performance at a wedding ceremony" },
+    featured: false,
+  },
+  {
+    key: "solo",
+    name: "Solo",
+    price: PRICING.soloPrice,
+    tagline: "Solo with live loop-pedal technology",
+    description: PERFORMANCE_DESCRIPTIONS.solo,
+    media: { type: "video" as const, src: "https://www.youtube.com/embed/OVvikoc0chk", title: "Joe Bateman — Solo performance with live looping" },
+    featured: false,
+  },
+];
+
+const included = [
+  { title: "Professional PA & lighting", body: "Full sound system and stage lighting included as standard." },
+  { title: "Live looping technology", body: "Innovative stompbox setup for a bigger sound from fewer players." },
+  { title: "Your first dance, learned free", body: "We learn your special songs and read the room all night." },
+  { title: "Book direct, no agency fees", body: "Deal with the band directly and save up to 30%." },
+];
+
 export const AboutSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const toggleVisibility = () => setIsVisible((prev) => !prev);
+  const [showDetails, setShowDetails] = useState(false);
 
   return (
-    <div className="py-8 relative">
-      <div className="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
-        <div className="space-y-8">
-          {/* About Info */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-              About The JB Experience
-            </h2>
-            <p className="text-gray-700 dark:text-gray-300 text-center mb-8 text-lg">
-              London&apos;s premier wedding band and corporate entertainment. Based in East London, serving London, Essex & Hertfordshire. 
-              Led by Joe Bateman - BBC Radio featured artist with professional experience at major venues.
-            </p>
-            
-            {/* Key Info Tiles */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
-                <div className="text-2xl mb-2">💒</div>
-                <p className="font-semibold text-gray-900 dark:text-white">London Weddings</p>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Venues across E10, Essex, Hertfordshire</p>
+    <div className="section bg-white dark:bg-ink-900">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Intro */}
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="eyebrow mb-3">About the band</p>
+          <h2 className="text-3xl font-bold text-ink-900 dark:text-white sm:text-4xl">
+            London&apos;s wedding &amp; event band
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
+            Based in East London and serving London, Essex &amp; Hertfordshire, The JB Experience is
+            led by Joe Bateman — a BBC Radio-featured artist with years of experience at major venues
+            including Hilton Hotels. From intimate ceremonies to packed dance floors, we tailor every
+            performance to your event.
+          </p>
+        </div>
+
+        {/* Package cards */}
+        <div className="mt-14">
+          <h3 className="mb-8 text-center text-2xl font-bold text-ink-900 dark:text-white">
+            Choose your line-up
+          </h3>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {packages.map((pkg) => (
+              <div
+                key={pkg.key}
+                className={`flex flex-col overflow-hidden rounded-2xl border bg-white shadow-sm transition-all hover:shadow-lg dark:bg-ink-800 ${
+                  pkg.featured
+                    ? "border-gold-400 ring-1 ring-gold-400"
+                    : "border-neutral-200 dark:border-neutral-700"
+                }`}
+              >
+                <div className="relative aspect-video w-full overflow-hidden bg-neutral-100 dark:bg-ink-700">
+                  {pkg.media.type === "video" ? (
+                    <iframe
+                      className="h-full w-full"
+                      src={pkg.media.src}
+                      title={pkg.media.title}
+                      loading="lazy"
+                      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <Image
+                      src={pkg.media.src}
+                      alt={pkg.media.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                    />
+                  )}
+                </div>
+
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-serif text-xl font-bold text-ink-900 dark:text-white">
+                      {pkg.name}
+                    </h4>
+                    {pkg.featured && (
+                      <span className="rounded-full bg-gold-100 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-gold-700 dark:bg-gold-900/40 dark:text-gold-300">
+                        Most popular
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">{pkg.tagline}</p>
+                  <p className="mt-4 font-serif text-3xl font-bold text-ink-900 dark:text-white">
+                    £{pkg.price.toLocaleString()}
+                    <span className="ml-1 text-sm font-normal text-neutral-500 dark:text-neutral-400">
+                      from
+                    </span>
+                  </p>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
+                    {pkg.description}
+                  </p>
+                  <Link
+                    href="/#booking-form"
+                    className={`mt-6 ${pkg.featured ? "btn-gold" : "btn-ghost"} w-full`}
+                  >
+                    Check availability
+                  </Link>
+                </div>
               </div>
-              
-              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
-                <div className="text-2xl mb-2">🏢</div>
-                <p className="font-semibold text-gray-900 dark:text-white">Corporate Events</p>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Hilton Hotels, Central London venues</p>
-              </div>
-              
-              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
-                <div className="text-2xl mb-2">📻</div>
-                <p className="font-semibold text-gray-900 dark:text-white">Media Features</p>
-                <p className="text-sm text-gray-600 dark:text-gray-300">BBC Radio, Featured artist</p>
-              </div>
-            </div>
+            ))}
           </div>
+          <p className="mt-6 text-center text-sm text-neutral-500 dark:text-neutral-400">
+            Saxophone available with the full band for an extra £{PRICING.saxPrice}. Corporate events quoted individually.
+          </p>
+        </div>
 
-          {/* Performance Videos */}
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-              See Us In Action
-            </h3>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">🎸🥁🎤</span>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">Full Band</h3>
-                </div>
-                <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">£{PRICING.trioPrice.toLocaleString()}</p>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">{PERFORMANCE_DESCRIPTIONS.trio}</p>
-                
-                <div className="relative w-full aspect-video">
-                  <iframe
-                    className="w-full h-full rounded-lg"
-                    src="https://www.youtube.com/embed/b7RNiZ3eUxc"
-                    title="The JB Experience - Full Band Performance"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              </div>
-
-              <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-xl border border-orange-200 dark:border-orange-800">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">🎸🪕</span>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">Duo</h3>
-                </div>
-                <p className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">£{PRICING.duoPrice.toLocaleString()}</p>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">{PERFORMANCE_DESCRIPTIONS.duo}</p>
-                
-                <div className="relative w-full aspect-video rounded-lg overflow-hidden">
-                  <Image
-                    src="/images/joe-cristian-ceremony.jpg"
-                    alt="The JB Experience - Duo Performance at Wedding Ceremony"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                </div>
-              </div>
-
-              <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">🎸🎤</span>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">Solo</h3>
-                </div>
-                <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">£{PRICING.soloPrice}</p>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">{PERFORMANCE_DESCRIPTIONS.solo}</p>
-                
-                <div className="relative w-full aspect-video">
-                  <iframe
-                    className="w-full h-full rounded-lg"
-                    src="https://www.youtube.com/embed/OVvikoc0chk"
-                    title="Joe Bateman Solo Performance with Live Looping"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Toggle button for more info */}
+        {/* What's included */}
+        <div className="mt-16">
           <div className="text-center">
             <button
-              className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-md transition-all duration-300"
-              onClick={toggleVisibility}
+              onClick={() => setShowDetails((v) => !v)}
+              className="btn-ghost"
+              aria-expanded={showDetails}
             >
-              <span className="flex items-center gap-2">
-                {isVisible ? "Hide Details" : "Show More Details"}
-                <span className="text-sm">{isVisible ? "↑" : "↓"}</span>
-              </span>
+              {showDetails ? "Hide what's included" : "See what's included"}
+              <span className="text-xs">{showDetails ? "↑" : "↓"}</span>
             </button>
           </div>
 
-          {isVisible && (
-            <div className="space-y-8">
-              {/* Why Choose Us - Tiles */}
-              <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">Why Choose Us</h3>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                  <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
-                    <div className="text-xl mb-2">🎸</div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Professional Quality</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">High-end equipment & sound</p>
-                  </div>
-                  <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
-                    <div className="text-xl mb-2">⏰</div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Reliable & Punctual</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Always on time, setup included</p>
-                  </div>
-                  <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
-                    <div className="text-xl mb-2">🎵</div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Custom Setlists</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Tailored to your event & requests</p>
-                  </div>
-                  <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
-                    <div className="text-xl mb-2">💰</div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Great Value</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Book direct, no agency fees</p>
-                  </div>
+          {showDetails && (
+            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {included.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-xl border border-neutral-200 bg-neutral-50 p-5 dark:border-neutral-700 dark:bg-ink-800"
+                >
+                  <h4 className="font-serif text-base font-bold text-ink-900 dark:text-white">
+                    {item.title}
+                  </h4>
+                  <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">{item.body}</p>
                 </div>
-              </div>
-
-              {/* What's Included - Tiles */}
-              <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">What&apos;s Included</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
-                    <div className="text-xl mb-2">🎸</div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Full Band Setup</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Professional sound & lighting</p>
-                  </div>
-                  <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
-                    <div className="text-xl mb-2">🎤</div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Live Looping</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Innovative stomp box tech</p>
-                  </div>
-                  <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center">
-                    <div className="text-xl mb-2">💝</div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Special Requests</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">First dance & favorites</p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           )}
         </div>
