@@ -131,14 +131,15 @@ export default function PhotoGallery() {
   }, [selectedImage, availableImages.length]);
 
   return (
-    <section className="py-12 bg-gray-50 dark:bg-gray-900">
+    <section className="section bg-white dark:bg-ink-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Photo Gallery
+          <p className="eyebrow mb-3">Gallery</p>
+          <h2 className="text-3xl font-bold text-ink-900 dark:text-white mb-4 sm:text-4xl">
+            See us in action
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-            See us in action at weddings and events across London
+          <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-6">
+            Weddings, corporate events and parties across London, Essex &amp; Hertfordshire.
           </p>
         </div>
 
@@ -212,10 +213,10 @@ export default function PhotoGallery() {
 
             {/* Custom Navigation */}
             <div className="flex justify-center mt-8 space-x-4">
-              <button className="gallery-prev w-12 h-12 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-800 dark:text-white rounded-full flex items-center justify-center shadow-lg border border-gray-200 dark:border-gray-600 transition-colors">
+              <button className="gallery-prev w-12 h-12 bg-white dark:bg-ink-800 hover:border-gold-400 text-ink-800 dark:text-white rounded-full flex items-center justify-center shadow-md border border-neutral-200 dark:border-neutral-600 transition-colors" aria-label="Previous images">
                 <span className="text-xl">←</span>
               </button>
-              <button className="gallery-next w-12 h-12 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-800 dark:text-white rounded-full flex items-center justify-center shadow-lg border border-gray-200 dark:border-gray-600 transition-colors">
+              <button className="gallery-next w-12 h-12 bg-white dark:bg-ink-800 hover:border-gold-400 text-ink-800 dark:text-white rounded-full flex items-center justify-center shadow-md border border-neutral-200 dark:border-neutral-600 transition-colors" aria-label="Next images">
                 <span className="text-xl">→</span>
               </button>
             </div>
@@ -224,12 +225,12 @@ export default function PhotoGallery() {
 
         {/* CTA after gallery */}
         <div className="text-center mt-8">
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-lg">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-              Ready to Create Memories Like These?
+          <div className="bg-neutral-50 dark:bg-ink-800 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-700 shadow-sm">
+            <h3 className="text-2xl font-bold text-ink-900 dark:text-white mb-3">
+              Ready to create memories like these?
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
-              Professional wedding entertainment with personal service
+            <p className="text-neutral-600 dark:text-neutral-300 mb-5">
+              Professional entertainment with a personal touch.
             </p>
             <CTAButton 
               variant="secondary" 

@@ -443,7 +443,7 @@ export default function BookingForm() {
 
   if (submitStatus === "success") {
     return (
-      <section id="contact" className="py-16 bg-white dark:bg-gray-900">
+      <section className="section bg-white dark:bg-ink-900">
         <Container>
           <div className="max-w-2xl mx-auto text-center">
             <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-8">
@@ -454,11 +454,8 @@ export default function BookingForm() {
               <p className="text-green-700 dark:text-green-300 mb-6">
                 We&apos;ve received your quote request and will get back to you within 24 hours with availability and detailed pricing including all travel costs.
               </p>
-              <button
-                onClick={() => setSubmitStatus("idle")}
-                className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-              >
-                Request Another Quote
+              <button onClick={() => setSubmitStatus("idle")} className="btn-gold">
+                Request another quote
               </button>
             </div>
           </div>
@@ -468,25 +465,26 @@ export default function BookingForm() {
   }
 
   return (
-    <section id="contact" className="py-16 bg-white dark:bg-gray-900">
+    <section className="section bg-white dark:bg-ink-900">
       <Container>
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Get Your Custom Quote
+            <p className="eyebrow mb-3">Booking</p>
+            <h2 className="text-3xl font-bold text-ink-900 dark:text-white mb-4 sm:text-4xl">
+              Get your custom quote
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Fill out our booking inquiry form below and get an instant estimate! We&apos;ll also get back to you with availability confirmation within 24 hours.
+            <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto">
+              Fill in the form for an instant estimate — we&apos;ll confirm availability and final pricing within 24 hours.
             </p>
           </div>
 
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="bg-gray-50 dark:bg-gray-800 rounded-xl p-8">
+          <form onSubmit={handleSubmit} className="bg-neutral-50 dark:bg-ink-800 rounded-2xl border border-neutral-200 dark:border-neutral-700 p-6 sm:p-8">
             {/* Contact Information */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Contact Information</h3>
+              <h3 className="text-xl font-semibold text-ink-900 dark:text-white mb-6">Contact Information</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -499,7 +497,7 @@ export default function BookingForm() {
                     required
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent dark:bg-ink-700 dark:text-white"
                     placeholder="Your full name"
                   />
                 </div>
@@ -514,7 +512,7 @@ export default function BookingForm() {
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent dark:bg-ink-700 dark:text-white"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -523,7 +521,7 @@ export default function BookingForm() {
 
             {/* Event Details */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Event Details</h3>
+              <h3 className="text-xl font-semibold text-ink-900 dark:text-white mb-6">Event Details</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="eventType" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -535,7 +533,7 @@ export default function BookingForm() {
                     required
                     value={formData.eventType}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent dark:bg-ink-700 dark:text-white"
                   >
                     <option value="">Select event type</option>
                     {eventTypes.map(type => (
@@ -554,7 +552,7 @@ export default function BookingForm() {
                     required
                     value={formData.eventDate}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent dark:bg-ink-700 dark:text-white"
                   />
                 </div>
                 <div>
@@ -567,7 +565,7 @@ export default function BookingForm() {
                     name="eventTime"
                     value={formData.eventTime}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent dark:bg-ink-700 dark:text-white"
                   />
                 </div>
                 <div>
@@ -579,7 +577,7 @@ export default function BookingForm() {
                     name="duration"
                     value={formData.duration}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent dark:bg-ink-700 dark:text-white"
                   >
                     <option value="">Select duration</option>
                     {durations.map(duration => (
@@ -596,7 +594,7 @@ export default function BookingForm() {
                     name="guestCount"
                     value={formData.guestCount}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent dark:bg-ink-700 dark:text-white"
                   >
                     <option value="">Select guest count</option>
                     {guestCounts.map(count => (
@@ -613,7 +611,7 @@ export default function BookingForm() {
                     name="performanceType"
                     value={formData.performanceType}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent dark:bg-ink-700 dark:text-white"
                   >
                     <option value="">Select performance type</option>
                     {pricing ? (
@@ -640,7 +638,7 @@ export default function BookingForm() {
 
             {/* Add-on Options */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Add-on Options</h3>
+              <h3 className="text-xl font-semibold text-ink-900 dark:text-white mb-6">Add-on Options</h3>
               <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 mb-4">
                 <h4 className="font-medium text-gray-900 dark:text-white mb-3">Additional Performances</h4>
                 <div className="space-y-3">
@@ -648,7 +646,7 @@ export default function BookingForm() {
                     <input
                       type="checkbox"
                       name="addCeremonySolo"
-                      className="mt-1 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="mt-1 rounded border-gray-300 text-gold-600 focus:ring-gold-500"
                       onChange={handleInputChange}
                     />
                     <div>
@@ -660,7 +658,7 @@ export default function BookingForm() {
                     <input
                       type="checkbox"
                       name="addCocktailDuo"
-                      className="mt-1 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="mt-1 rounded border-gray-300 text-gold-600 focus:ring-gold-500"
                       onChange={handleInputChange}
                     />
                     <div>
@@ -672,7 +670,7 @@ export default function BookingForm() {
                     <input
                       type="checkbox"
                       name="addAfterpartyDJ"
-                      className="mt-1 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="mt-1 rounded border-gray-300 text-gold-600 focus:ring-gold-500"
                       onChange={handleInputChange}
                     />
                     <div>
@@ -686,7 +684,7 @@ export default function BookingForm() {
 
             {/* Venue Information */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Venue Information</h3>
+              <h3 className="text-xl font-semibold text-ink-900 dark:text-white mb-6">Venue Information</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="venue" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -698,7 +696,7 @@ export default function BookingForm() {
                     name="venue"
                     value={formData.venue}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent dark:bg-ink-700 dark:text-white"
                     placeholder="Hotel, restaurant, private home, etc."
                   />
                 </div>
@@ -713,7 +711,7 @@ export default function BookingForm() {
                     required
                     value={formData.venueAddress}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent dark:bg-ink-700 dark:text-white"
                     placeholder="e.g. 'Hertford, Hertfordshire' or 'SW1A 1AA' or 'The Savoy Hotel, London'"
                   />
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -725,7 +723,7 @@ export default function BookingForm() {
 
             {/* Special Requests */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Special Requests</h3>
+              <h3 className="text-xl font-semibold text-ink-900 dark:text-white mb-6">Special Requests</h3>
               
               {/* First Dance - Only show for weddings */}
               {formData.eventType === "Wedding" && (
@@ -739,7 +737,7 @@ export default function BookingForm() {
                     name="firstDance"
                     value={formData.firstDance}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent dark:bg-ink-700 dark:text-white"
                     placeholder="Song title and artist"
                   />
                 </div>
@@ -756,7 +754,7 @@ export default function BookingForm() {
                   rows={4}
                   value={formData.additionalNotes}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent dark:bg-ink-700 dark:text-white"
                   placeholder="Any special song requests, venue requirements, questions about the performance, or other details about your event..."
                 />
               </div>
@@ -764,7 +762,7 @@ export default function BookingForm() {
 
             {/* Additional Information */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Additional Information</h3>
+              <h3 className="text-xl font-semibold text-ink-900 dark:text-white mb-6">Additional Information</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="hearAboutUs" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -775,7 +773,7 @@ export default function BookingForm() {
                     name="hearAboutUs"
                     value={formData.hearAboutUs}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent dark:bg-ink-700 dark:text-white"
                   >
                     <option value="">Select source</option>
                     <option value="google">Google Search</option>
@@ -889,7 +887,7 @@ export default function BookingForm() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white px-8 py-4 rounded-lg font-medium text-lg transition-colors min-w-[200px]"
+                  className="btn-gold min-w-[220px] px-8 py-4 text-lg disabled:opacity-60"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center justify-center">
@@ -917,14 +915,14 @@ export default function BookingForm() {
                 <div className="text-center">
                   <a 
                     href="mailto:joebatemanofficial@gmail.com" 
-                    className="text-indigo-600 dark:text-indigo-400 hover:underline font-medium"
+                    className="text-gold-600 dark:text-gold-400 hover:underline font-medium"
                   >
                     joebatemanofficial@gmail.com
                   </a>
                   <span className="mx-2 text-gray-400">|</span>
                   <a 
                     href="tel:+447939000446" 
-                    className="text-indigo-600 dark:text-indigo-400 hover:underline font-medium"
+                    className="text-gold-600 dark:text-gold-400 hover:underline font-medium"
                   >
                     07939 000446
                   </a>

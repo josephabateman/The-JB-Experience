@@ -85,22 +85,24 @@ export default function Setlist() {
   const songsToShow = showAll ? filteredSongs : filteredSongs.slice(0, 12);
 
   return (
-    <section className="py-12 bg-white dark:bg-gray-800">
+    <section className="section bg-neutral-50 dark:bg-ink-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          <p className="eyebrow mb-3">The music</p>
+          <h2 className="text-3xl font-bold text-ink-900 dark:text-white mb-4 sm:text-4xl">
             Our Setlist
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-            A selection of crowd favorites spanning multiple decades and genres
+          <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-8">
+            Crowd favourites spanning multiple decades and genres — from first-dance classics to
+            floor-fillers.
           </p>
-          
+
           {!showSetlist && (
             <button
               onClick={() => setShowSetlist(true)}
-              className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-all text-lg shadow-lg hover:shadow-xl hover:scale-105"
+              className="btn-gold text-lg"
             >
-              View Our Setlist
+              View our setlist
             </button>
           )}
         </div>
@@ -115,8 +117,8 @@ export default function Setlist() {
                   onClick={() => setSelectedGenre(genre.name)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                     selectedGenre === genre.name
-                      ? "bg-indigo-600 text-white"
-                      : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      ? "bg-gold-500 text-ink-900"
+                      : "bg-white dark:bg-ink-700 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-600 hover:border-gold-400"
                   }`}
                 >
                   {genre.name}
@@ -129,17 +131,17 @@ export default function Setlist() {
               {songsToShow.map((song, index) => (
                 <div
                   key={index}
-                  className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                  className="bg-white dark:bg-ink-700 p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-gold-400 transition-colors"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center">
-                      <span className="text-indigo-600 dark:text-indigo-400 font-bold">♪</span>
+                    <div className="w-10 h-10 bg-gold-100 dark:bg-gold-900/40 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-gold-600 dark:text-gold-400 font-bold">♪</span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-gray-900 dark:text-white truncate">
+                      <p className="font-semibold text-ink-900 dark:text-white truncate">
                         {song.song}
                       </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
+                      <p className="text-sm text-neutral-500 dark:text-neutral-400 truncate">
                         {song.artist}
                       </p>
                     </div>
@@ -151,11 +153,8 @@ export default function Setlist() {
             {/* Show More/Less Button */}
             {filteredSongs.length > 12 && (
               <div className="text-center mb-6">
-                <button
-                  onClick={() => setShowAll(!showAll)}
-                  className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors"
-                >
-                  {showAll ? `Show Less` : `Show All Songs`}
+                <button onClick={() => setShowAll(!showAll)} className="btn-ghost">
+                  {showAll ? `Show less` : `Show all songs`}
                 </button>
               </div>
             )}

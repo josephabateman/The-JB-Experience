@@ -39,38 +39,39 @@ export const Faq = () => {
         }}
       />
 
-      <section className="py-12">
+      <section className="section">
       <div className="text-center mb-10">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+        <p className="eyebrow mb-3">Good to know</p>
+        <h2 className="text-3xl font-bold text-ink-900 dark:text-white mb-4 sm:text-4xl">
           Frequently Asked Questions
         </h2>
-        <p className="text-lg text-gray-600 dark:text-gray-300">
-          Everything you need to know about booking London&apos;s best wedding band direct - no agency fees!
+        <p className="text-lg text-neutral-600 dark:text-neutral-300">
+          Everything you need to know about booking direct — no agency fees.
         </p>
       </div>
 
       <Container className="!p-0">
         <div className="w-full space-y-2">
           {faqdata.map((item, index) => (
-            <div key={item.question} className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+            <div key={item.question} className="bg-white dark:bg-ink-800 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-700 overflow-hidden">
               <Disclosure>
                 {({ open }) => (
                   <>
-                    <DisclosureButton className="flex items-center justify-between w-full px-5 py-4 text-left hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-opacity-50 transition-colors">
+                    <DisclosureButton className="flex items-center justify-between w-full px-5 py-4 text-left hover:bg-neutral-50 dark:hover:bg-ink-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-opacity-50 transition-colors">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center flex-shrink-0">
+                        <div className="w-8 h-8 bg-gold-100 dark:bg-gold-900/40 rounded-full flex items-center justify-center flex-shrink-0">
                           <span className="text-sm">{getIcon(item.question)}</span>
                         </div>
-                        <span className="text-base font-semibold text-gray-900 dark:text-white">
+                        <span className="text-base font-semibold text-ink-900 dark:text-white">
                           {item.question}
                         </span>
                       </div>
                       <ChevronDownIcon
-                        className={`${open ? "transform rotate-180" : ""} w-4 h-4 text-indigo-600 dark:text-indigo-400 transition-transform duration-200 flex-shrink-0 ml-3`}
+                        className={`${open ? "transform rotate-180" : ""} w-4 h-4 text-gold-600 dark:text-gold-400 transition-transform duration-200 flex-shrink-0 ml-3`}
                       />
                     </DisclosureButton>
                     <DisclosurePanel className="px-5 pb-4">
-                      <div className="ml-11 text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
+                      <div className="ml-11 text-neutral-600 dark:text-neutral-300 leading-relaxed text-sm">
                         {item.answer}
                       </div>
                     </DisclosurePanel>
@@ -82,15 +83,11 @@ export const Faq = () => {
         </div>
         
         <div className="mt-10 text-center">
-          <p className="text-gray-600 dark:text-gray-400 mb-4">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">
             Have a different question?
           </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors"
-          >
-            <span>💬</span>
-            Get in Touch
+          <a href="#booking-form" className="btn-gold">
+            Get in touch
           </a>
         </div>
       </Container>

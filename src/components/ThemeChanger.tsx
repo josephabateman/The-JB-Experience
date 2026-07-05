@@ -12,11 +12,11 @@ const ThemeChanger = () => {
   if (!mounted) return null;
 
   return (
-    <div className="fixed bottom-4 right-4 z-20">
+    <div className="fixed bottom-4 left-4 z-30">
       {theme === "dark" ? (
         <button
           onClick={() => setTheme("light")}
-          className="text-gray-300 rounded-full outline-none focus:outline-none p-2 bg-gray-800 dark:bg-gray-700">
+          className="rounded-full border border-neutral-700 bg-ink-800 p-2 text-gold-400 shadow-lg outline-none transition-colors hover:text-gold-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500">
           <span className="sr-only">Light Mode</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ const ThemeChanger = () => {
       ) : (
         <button
           onClick={() => setTheme("dark")}
-          className="text-gray-500 rounded-full outline-none focus:outline-none p-2 bg-gray-800 dark:bg-gray-700">
+          className="rounded-full border border-neutral-200 bg-white p-2 text-ink-700 shadow-lg outline-none transition-colors hover:text-gold-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500">
           <span className="sr-only">Dark Mode</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"

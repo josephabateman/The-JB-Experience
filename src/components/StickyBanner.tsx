@@ -27,25 +27,20 @@ export default function StickyBanner() {
   if (!isVisible || isDismissed) return null;
 
   return (
-    <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 animate-slide-up">
-      <div className="bg-white dark:bg-gray-800 rounded-full shadow-2xl border border-gray-200 dark:border-gray-700 px-6 py-3 flex items-center space-x-4 max-w-sm mx-auto">
-        <div className="flex-1 text-center">
-          <p className="text-sm font-medium text-gray-900 dark:text-white">
-            Get a Quote
+    <div className="fixed bottom-6 left-1/2 z-40 w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 transform animate-slide-up">
+      <div className="flex items-center gap-3 rounded-full border border-neutral-200 bg-white/95 px-5 py-3 shadow-2xl backdrop-blur dark:border-neutral-700 dark:bg-ink-800/95">
+        <div className="flex-1">
+          <p className="text-sm font-semibold text-ink-900 dark:text-white">
+            Check your date &amp; price
           </p>
         </div>
-        <CTAButton 
-          variant="primary" 
-          size="sm" 
-          text="Calculate"
-          className="flex-shrink-0"
-        />
+        <CTAButton variant="primary" size="sm" text="Get a quote" className="flex-shrink-0" />
         <button
           onClick={() => setIsDismissed(true)}
-          className="flex-shrink-0 w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 flex items-center justify-center transition-colors"
+          className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-neutral-200 transition-colors hover:bg-neutral-300 dark:bg-neutral-600 dark:hover:bg-neutral-500"
           aria-label="Dismiss banner"
         >
-          <span className="text-xs text-gray-600 dark:text-gray-300">✕</span>
+          <span className="text-xs text-neutral-600 dark:text-neutral-300">✕</span>
         </button>
       </div>
     </div>

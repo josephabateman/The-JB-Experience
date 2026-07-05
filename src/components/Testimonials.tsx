@@ -139,12 +139,19 @@ export default function ReviewsSlider() {
         }}
       />
       
-      <section className="py-12 bg-gray-50 dark:bg-gray-900">
+      <section className="section bg-neutral-50 dark:bg-ink-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            What Our Clients Say
+          <p className="eyebrow mb-3">Reviews</p>
+          <h2 className="text-3xl font-bold text-ink-900 dark:text-white mb-4 sm:text-4xl">
+            What our clients say
           </h2>
+          <div className="mb-3 flex items-center justify-center gap-2 text-sm text-neutral-600 dark:text-neutral-300">
+            <span className="text-lg text-gold-500">★★★★★</span>
+            <span className="font-semibold">5-star rated</span>
+            <span className="text-neutral-400">·</span>
+            <span>{reviews.length} reviews</span>
+          </div>
           <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">
             Real feedback from weddings, corporate events, and private celebrations across London, Essex & Hertfordshire
           </p>
@@ -194,20 +201,20 @@ export default function ReviewsSlider() {
         >
           {reviews.map((review, index) => (
             <SwiperSlide key={index}>
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 h-auto min-h-[280px] flex flex-col">
+              <div className="bg-white dark:bg-ink-900 rounded-2xl shadow-sm border border-neutral-200 dark:border-neutral-700 p-6 h-auto min-h-[280px] flex flex-col">
                 <div className="flex-1">
                   <div className="flex mb-4">
-                    <span className="text-yellow-400 text-lg">
+                    <span className="text-gold-500 text-lg">
                       {'★'.repeat(review.rating || 5)}
                     </span>
                   </div>
-                  <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-6">
+                  <p className="text-neutral-700 dark:text-neutral-300 text-base leading-relaxed mb-6">
                     &ldquo;{review.text}&rdquo;
                   </p>
                 </div>
-                <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-                  <div className="font-semibold text-gray-900 dark:text-white">{review.name}</div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">{review.event}</div>
+                <div className="border-t border-neutral-200 dark:border-neutral-700 pt-4">
+                  <div className="font-semibold text-ink-900 dark:text-white">{review.name}</div>
+                  <div className="text-sm text-neutral-500 dark:text-neutral-400">{review.event}</div>
                 </div>
               </div>
             </SwiperSlide>
@@ -219,10 +226,10 @@ export default function ReviewsSlider() {
         
         {/* Custom Navigation Buttons */}
         <div className="flex justify-center space-x-4">
-          <button className="swiper-button-prev-custom w-12 h-12 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center transition-all shadow-lg hover:shadow-xl hover:scale-105">
+          <button className="swiper-button-prev-custom w-12 h-12 bg-gold-500 hover:bg-gold-400 text-ink-900 rounded-full flex items-center justify-center transition-all shadow-md hover:scale-105" aria-label="Previous review">
             <span className="text-xl">←</span>
           </button>
-          <button className="swiper-button-next-custom w-12 h-12 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center transition-all shadow-lg hover:shadow-xl hover:scale-105">
+          <button className="swiper-button-next-custom w-12 h-12 bg-gold-500 hover:bg-gold-400 text-ink-900 rounded-full flex items-center justify-center transition-all shadow-md hover:scale-105" aria-label="Next review">
             <span className="text-xl">→</span>
           </button>
         </div>

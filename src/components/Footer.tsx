@@ -1,41 +1,57 @@
 import Link from "next/link";
-import Image from "next/image";
 import React from "react";
 import { Container } from "@/components/Container";
 
 export function Footer() {
   return (
-    <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+    <footer className="bg-white dark:bg-ink-900 border-t border-neutral-200 dark:border-neutral-800">
       <Container>
-        <div className="py-8 flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            <span className="text-lg font-semibold text-gray-900 dark:text-white">The</span>
-            <Image
-              src="/images/favicon.svg"
-              alt="Logo"
-              width="28"
-              height="28"
-              className="w-7 dark:invert group-hover:scale-110 transition-transform"
-            />
-            <span className="text-lg font-semibold text-gray-900 dark:text-white">Experience</span>
-          </Link>
-
-          {/* Social & Copyright */}
-          <div className="flex items-center space-x-6">
-            <a
-              href="https://www.instagram.com/joebatemanofficial"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-indigo-500 transition-colors"
-              aria-label="Follow on Instagram"
-            >
-              <Instagram size={20} />
-            </a>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              © {new Date().getFullYear()} The JB Experience
-            </span>
+        <div className="py-10 grid gap-8 sm:grid-cols-3 sm:items-start">
+          {/* Brand */}
+          <div>
+            <Link href="/" className="font-serif text-lg font-semibold text-ink-900 dark:text-white">
+              The JB Experience
+            </Link>
+            <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
+              London wedding &amp; function band. Solo, duo &amp; full band for weddings, corporate
+              events and parties across London, Essex &amp; Hertfordshire.
+            </p>
           </div>
+
+          {/* Explore */}
+          <div className="text-sm">
+            <p className="mb-3 font-semibold text-ink-900 dark:text-white">Explore</p>
+            <ul className="space-y-2 text-neutral-500 dark:text-neutral-400">
+              <li><Link href="/#about" className="hover:text-gold-500">The band</Link></li>
+              <li><Link href="/#testimonials" className="hover:text-gold-500">Reviews</Link></li>
+              <li><Link href="/#booking-form" className="hover:text-gold-500">Get a quote</Link></li>
+              <li><Link href="/music" className="hover:text-gold-500">Joe Bateman (solo artist)</Link></li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="text-sm">
+            <p className="mb-3 font-semibold text-ink-900 dark:text-white">Get in touch</p>
+            <ul className="space-y-2 text-neutral-500 dark:text-neutral-400">
+              <li><a href="tel:+447939000446" className="hover:text-gold-500">📞 07939 000446</a></li>
+              <li><a href="mailto:joebatemanofficial@gmail.com" className="hover:text-gold-500">✉ joebatemanofficial@gmail.com</a></li>
+            </ul>
+            <div className="mt-4 flex items-center gap-4">
+              <a
+                href="https://www.instagram.com/joebatemanofficial"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-400 hover:text-gold-500 transition-colors"
+                aria-label="Follow on Instagram"
+              >
+                <Instagram size={20} />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-neutral-200 dark:border-neutral-800 py-6 text-center text-sm text-neutral-500 dark:text-neutral-400">
+          © {new Date().getFullYear()} The JB Experience. All rights reserved.
         </div>
       </Container>
     </footer>
