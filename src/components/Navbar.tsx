@@ -93,7 +93,7 @@ export const Navbar: React.FC = () => {
                 )}
               </Disclosure.Button>
 
-              <Disclosure.Panel className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-7 bg-ink-900/97 backdrop-blur-sm">
+              <Disclosure.Panel className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-7 bg-ink-900">
                 {navigation.map((item) => (
                   <Link
                     key={item.name}

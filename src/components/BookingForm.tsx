@@ -46,36 +46,12 @@ export default function BookingForm() {
     hearAboutUs: ""
   });
 
-  const [pricing, setPricing] = useState<any>(null);
-  const [loadingPricing, setLoadingPricing] = useState(true);
+  // Pricing is centralised in src/config/pricing.ts (single source of truth)
+  const pricing = PRICING;
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
-
-  // Load pricing from CMS
-  useEffect(() => {
-    const loadPricing = async () => {
-      try {
-        const response = await fetch('/api/cms/pricing');
-        const data = await response.json();
-        if (data.success) {
-          setPricing(data.data);
-        } else {
-          // Fallback to centralized pricing configuration
-          setPricing(PRICING);
-        }
-      } catch (error) {
-        console.error('Failed to load pricing:', error);
-        // Fallback to centralized pricing configuration
-        setPricing(PRICING);
-      } finally {
-        setLoadingPricing(false);
-      }
-    };
-
-    loadPricing();
-  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
