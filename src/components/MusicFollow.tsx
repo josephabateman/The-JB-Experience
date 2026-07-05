@@ -11,14 +11,10 @@ export default function MusicFollow() {
     if (!email) return;
     setStatus("sending");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: "Mailing list signup",
-          email,
-          message: "New Joe Bateman mailing-list signup (from /music page).",
-        }),
+        body: JSON.stringify({ email }),
       });
       if (!res.ok) throw new Error("Failed");
       setStatus("success");
@@ -31,7 +27,7 @@ export default function MusicFollow() {
   if (status === "success") {
     return (
       <p className="rounded-full bg-gold-500/15 px-6 py-3 text-center text-sm font-medium text-gold-200">
-        🎉 You&apos;re on the list — new music coming your way soon.
+        🎉 Thanks — you&apos;ll be first to hear the next single.
       </p>
     );
   }
