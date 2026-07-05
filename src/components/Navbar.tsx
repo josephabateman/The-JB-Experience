@@ -4,6 +4,7 @@ import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { WHATSAPP_URL } from "@/config/contact";
 
 const bandNav = [
   { name: "About", link: "/#about" },
@@ -108,12 +109,14 @@ export const Navbar: React.FC = () => {
           </Link>
 
           <a
-            href="tel:+447939000446"
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className={`text-sm font-semibold transition-colors hover:text-gold-500 ${
               solid ? "text-ink-900 dark:text-white" : "text-white"
             }`}
           >
-            07939&nbsp;000446
+            WhatsApp
           </a>
           <Link href="/#booking-form" className="btn-gold px-5 py-2.5 text-sm">
             Get a Quote
@@ -163,11 +166,13 @@ export const Navbar: React.FC = () => {
                 </Link>
 
                 <a
-                  href="tel:+447939000446"
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-1 text-lg font-semibold text-neutral-300"
                   onClick={() => close()}
                 >
-                  📞 07939 000446
+                  Message on WhatsApp
                 </a>
                 <Link href="/#booking-form" className="btn-gold" onClick={() => close()}>
                   Get a Quote

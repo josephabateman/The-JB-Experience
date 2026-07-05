@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { WHATSAPP_URL } from "@/config/contact";
 
 export const ContactSection = () => {
   return (
@@ -24,10 +25,12 @@ export const ContactSection = () => {
                 Get your free quote
               </Link>
               <a
-                href="tel:+447939000446"
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-white/10 sm:w-auto"
               >
-                📞 Call 07939 000446
+                Message on WhatsApp
               </a>
             </div>
 

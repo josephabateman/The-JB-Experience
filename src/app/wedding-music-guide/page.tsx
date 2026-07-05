@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { PRICING } from "@/config/pricing";
+import { WHATSAPP_URL } from "@/config/contact";
 
 export const metadata: Metadata = {
   title: "Complete Wedding Music Guide 2025 | First Dance Songs & Playlists | The JB Experience",
@@ -346,10 +347,10 @@ const WeddingMusicGuide = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="tel:+447939000446"
+              href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
               className="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors"
             >
-              📞 Call +44 7939 000446
+              Message on WhatsApp
             </Link>
             <Link
               href="/#booking-form"

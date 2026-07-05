@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Container } from "@/components/Container";
 import { PRICING } from "../config/pricing";
+import { WHATSAPP_URL } from "@/config/contact";
 
 interface FormData {
   // Contact Info
@@ -886,21 +887,16 @@ export default function BookingForm() {
             {submitStatus === "error" && (
               <div className="mt-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
                 <p className="text-red-700 dark:text-red-300 text-center mb-3">
-                  {errorMessage || "Sorry, there was an error sending your inquiry. Please try again or contact us directly:"}
+                  {errorMessage || "Sorry, there was an error sending your enquiry. Please try again in a moment, or message us on WhatsApp and we'll get straight back to you."}
                 </p>
                 <div className="text-center">
-                  <a 
-                    href="mailto:joebatemanofficial@gmail.com" 
+                  <a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gold-600 dark:text-gold-400 hover:underline font-medium"
                   >
-                    joebatemanofficial@gmail.com
-                  </a>
-                  <span className="mx-2 text-gray-400">|</span>
-                  <a 
-                    href="tel:+447939000446" 
-                    className="text-gold-600 dark:text-gold-400 hover:underline font-medium"
-                  >
-                    07939 000446
+                    Message us on WhatsApp
                   </a>
                 </div>
               </div>

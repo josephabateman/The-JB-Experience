@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/Container";
+import { WHATSAPP_URL } from "@/config/contact";
 
 export function Footer() {
   const pathname = usePathname();
@@ -61,8 +62,8 @@ export function Footer() {
           <div className="text-sm">
             <p className="mb-3 font-semibold text-ink-900 dark:text-white">Get in touch</p>
             <ul className="space-y-2 text-neutral-500 dark:text-neutral-400">
-              <li><a href="tel:+447939000446" className="hover:text-gold-500">📞 07939 000446</a></li>
-              <li><a href="mailto:joebatemanofficial@gmail.com" className="hover:text-gold-500">✉ joebatemanofficial@gmail.com</a></li>
+              <li><Link href="/#booking-form" className="hover:text-gold-500">Get a quote / enquire</Link></li>
+              <li><a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-gold-500">Message on WhatsApp</a></li>
             </ul>
             <div className="mt-4 flex items-center gap-4">
               <a

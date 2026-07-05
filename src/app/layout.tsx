@@ -23,7 +23,7 @@ const playfair = Playfair_Display({
 
 export const metadata = {
   title: "Wedding Band London | Corporate Entertainment | The JB Experience",
-  description: `Professional live music for weddings & corporate events across London, Essex, Hertfordshire. Book direct & save 30%. From £${PRICING.soloPrice}. Call 07939 000446`,
+  description: `Professional live music for weddings & corporate events across London, Essex, Hertfordshire. Book direct & save 30%. From £${PRICING.soloPrice}. Get a free quote online.`,
   keywords: "wedding band London, corporate entertainment London, wedding musicians London, live band hire London, corporate event band London, function band London, wedding band Essex, wedding band Hertfordshire, book direct wedding band, no agency fees wedding band, affordable wedding band London, professional wedding band, live music London",
   author: "The JB Experience",
   robots: "index, follow",
@@ -94,8 +94,6 @@ export default function RootLayout({
               "url": "https://www.thejbexperience.co.uk",
               "logo": "https://www.thejbexperience.co.uk/images/band-performing.jpg",
               "image": "https://www.thejbexperience.co.uk/images/band-performing.jpg",
-              "telephone": "+447939000446",
-              "email": "joebatemanofficial@gmail.com",
               "genre": ["Pop", "Rock", "Folk", "Funk", "Wedding Music"],
               "foundingLocation": {
                 "@type": "Place",

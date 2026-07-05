@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     // Check environment variables
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
       console.error('Missing email environment variables');
-      throw new Error('Email service not configured. Please contact us directly at joebatemanofficial@gmail.com or 07939 000446.');
+      throw new Error('Sorry, our enquiry service is temporarily unavailable. Please try again shortly, or message us on WhatsApp.');
     }
 
     // Configure the email transporter
