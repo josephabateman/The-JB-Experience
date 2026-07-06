@@ -11,14 +11,14 @@ const LINKTREE = "https://linktr.ee/joebatemanofficial";
 export const metadata: Metadata = {
   title: "Joe Bateman | London Pop-Soul Artist — 'You Can't Win' Out Now",
   description:
-    "Joe Bateman is a London pop-soul artist with a guitar-led, half-time sound — aching vocals over electric guitar. For fans of John Mayer, Paolo Nutini and Mk.gee. Debut single 'You Can't Win' out now.",
+    "Joe Bateman is a London pop-soul artist with a guitar-led, half-time sound — aching vocals over electric guitar. For fans of John Mayer, Paolo Nutini and Mk.gee. Single 'You Can't Win' out now.",
   keywords:
     "Joe Bateman, Joe Bateman artist, London pop soul, guitar-led singer songwriter, You Can't Win, John Mayer, Paolo Nutini, Mk.gee, new music London",
   alternates: { canonical: "https://www.thejbexperience.co.uk/music" },
   openGraph: {
     title: "Joe Bateman | London Pop-Soul Artist — 'You Can't Win' Out Now",
     description:
-      "London pop-soul, guitar-led, half-time. Aching vocals over electric guitar. For fans of John Mayer, Paolo Nutini and Mk.gee. Debut single 'You Can't Win' out now.",
+      "London pop-soul, guitar-led, half-time. Aching vocals over electric guitar. For fans of John Mayer, Paolo Nutini and Mk.gee. Single 'You Can't Win' out now.",
     type: "profile",
     locale: "en_GB",
     url: "https://www.thejbexperience.co.uk/music",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Joe Bateman | London Pop-Soul Artist",
-    description: "Debut single 'You Can't Win' out now — the first of four leading to an EP.",
+    description: "Single 'You Can't Win' out now.",
     images: ["/images/band-profile.jpg"],
   },
 };
@@ -43,7 +43,7 @@ const socials = [
 export default function MusicPage() {
   return (
     <main className="bg-ink-900 text-neutral-100">
-      {/* JSON-LD: solo artist + debut single */}
+      {/* JSON-LD: solo artist + single */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -76,7 +76,7 @@ export default function MusicPage() {
             Joe Bateman
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-neutral-400">
-            Debut single &ldquo;You Can&apos;t Win&rdquo; — out now.
+            &ldquo;You Can&apos;t Win&rdquo; — out now.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a href={SPOTIFY_ARTIST} target="_blank" rel="noopener noreferrer" className="btn-gold w-full sm:w-auto">
@@ -115,17 +115,16 @@ export default function MusicPage() {
           {/* Bio */}
           <div>
             <p className="eyebrow mb-3 text-gold-300">The story</p>
-            <h2 className="font-serif text-3xl font-bold text-white">Debut single out now</h2>
+            <h2 className="font-serif text-3xl font-bold text-white">&ldquo;You Can&apos;t Win&rdquo; — out now</h2>
             <p className="mt-5 leading-relaxed text-neutral-300">
               Joe Bateman is a London pop-soul artist with a guitar-led, half-time sound — aching
               vocals over electric guitar that bleeds through every section. For fans of John Mayer,
-              Paolo Nutini and Mk.gee. His debut single &ldquo;You Can&apos;t Win&rdquo; is out now,
-              the first of four leading to an EP.
+              Paolo Nutini and Mk.gee. His single &ldquo;You Can&apos;t Win&rdquo; is out now.
             </p>
             <div className="mt-8 rounded-2xl border border-neutral-800 bg-ink-800 p-6">
               <p className="font-serif text-lg font-semibold text-white">Follow the journey</p>
               <p className="mt-1 text-sm text-neutral-400">
-                Be first to hear each new single as it drops on the way to the EP.
+                Be first to hear each new single as it drops.
               </p>
               <div className="mt-4">
                 <MusicFollow />

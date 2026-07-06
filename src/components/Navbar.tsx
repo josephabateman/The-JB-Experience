@@ -1,6 +1,5 @@
 "use client";
 
-import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -16,6 +15,7 @@ const bandNav = [
 
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const isMusic = pathname?.startsWith("/music");
 
@@ -25,6 +25,19 @@ export const Navbar: React.FC = () => {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Close the mobile menu whenever the route/hash changes.
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  // Lock background scroll while the mobile menu is open.
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   // On the solo-artist page the bar is always solid (dark page), elsewhere it's
   // transparent over the hero until you scroll.
@@ -64,7 +77,9 @@ export const Navbar: React.FC = () => {
   return (
     <header
       className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${
-        solid
+        menuOpen
+          ? "bg-transparent" // no backdrop-filter while open — it would clip the fixed overlay
+          : solid
           ? "bg-white/90 dark:bg-ink-900/90 backdrop-blur-md shadow-sm border-b border-neutral-200/70 dark:border-neutral-800"
           : "bg-transparent"
       }`}
@@ -73,8 +88,9 @@ export const Navbar: React.FC = () => {
         {/* Logo / wordmark */}
         <Link
           href="/"
-          className={`font-serif text-lg font-semibold tracking-tight transition-colors ${
-            solid ? "text-ink-900 dark:text-white" : "text-white"
+          onClick={() => setMenuOpen(false)}
+          className={`relative z-50 font-serif text-lg font-semibold tracking-tight transition-colors ${
+            solid && !menuOpen ? "text-ink-900 dark:text-white" : "text-white"
           }`}
           aria-label="The JB Experience — home"
         >
@@ -123,65 +139,65 @@ export const Navbar: React.FC = () => {
           </Link>
         </div>
 
-        {/* Mobile menu */}
-        <Disclosure as="div" className="lg:hidden">
-          {({ open, close }) => (
-            <>
-              <Disclosure.Button
-                className={`relative z-50 rounded-md p-2 transition-colors ${
-                  solid ? "text-ink-900 dark:text-white" : "text-white"
-                }`}
-                aria-label="Toggle menu"
-              >
-                {open ? (
-                  <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                ) : (
-                  <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 6h16M4 12h16M4 18h16" />
-                  </svg>
-                )}
-              </Disclosure.Button>
-
-              <Disclosure.Panel className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-6 bg-ink-900">
-                {bandNav.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.link}
-                    className="font-serif text-2xl text-white transition-colors hover:text-gold-400"
-                    onClick={() => close()}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-
-                <span className="my-1 h-px w-24 bg-neutral-700" aria-hidden="true" />
-                <Link
-                  href="/music"
-                  className="inline-flex items-center gap-2 rounded-full border border-gold-400/60 px-5 py-2 font-serif text-xl text-gold-400 transition-colors hover:bg-gold-500 hover:text-ink-900"
-                  onClick={() => close()}
-                >
-                  Joe Bateman · Solo ↗
-                </Link>
-
-                <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-1 text-lg font-semibold text-neutral-300"
-                  onClick={() => close()}
-                >
-                  Message on WhatsApp
-                </a>
-                <Link href="/#booking-form" className="btn-gold" onClick={() => close()}>
-                  Get a Quote
-                </Link>
-              </Disclosure.Panel>
-            </>
+        {/* Mobile toggle button */}
+        <button
+          type="button"
+          onClick={() => setMenuOpen((o) => !o)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          className={`relative z-50 rounded-md p-2 transition-colors lg:hidden ${
+            solid && !menuOpen ? "text-ink-900 dark:text-white" : "text-white"
+          }`}
+        >
+          {menuOpen ? (
+            <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
           )}
-        </Disclosure>
+        </button>
       </nav>
+
+      {/* Mobile menu overlay */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-6 bg-ink-900 lg:hidden">
+          {bandNav.map((item) => (
+            <Link
+              key={item.name}
+              href={item.link}
+              className="font-serif text-2xl text-white transition-colors hover:text-gold-400"
+              onClick={() => setMenuOpen(false)}
+            >
+              {item.name}
+            </Link>
+          ))}
+
+          <span className="my-1 h-px w-24 bg-neutral-700" aria-hidden="true" />
+          <Link
+            href="/music"
+            className="inline-flex items-center gap-2 rounded-full border border-gold-400/60 px-5 py-2 font-serif text-xl text-gold-400 transition-colors hover:bg-gold-500 hover:text-ink-900"
+            onClick={() => setMenuOpen(false)}
+          >
+            Joe Bateman · Solo ↗
+          </Link>
+
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-1 text-lg font-semibold text-neutral-300"
+            onClick={() => setMenuOpen(false)}
+          >
+            Message on WhatsApp
+          </a>
+          <Link href="/#booking-form" className="btn-gold" onClick={() => setMenuOpen(false)}>
+            Get a Quote
+          </Link>
+        </div>
+      )}
     </header>
   );
 };
