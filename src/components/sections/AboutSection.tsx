@@ -52,13 +52,33 @@ export const AboutSection = () => {
         <div className="mx-auto max-w-3xl text-center">
           <p className="eyebrow mb-3">About the band</p>
           <h2 className="text-3xl font-bold text-ink-900 dark:text-white sm:text-4xl">
-            London&apos;s wedding &amp; event band
+            London&apos;s band for weddings, corporate events &amp; parties
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
             Based in East London and serving London, Essex &amp; Hertfordshire, The JB Experience is
             led by Joe Bateman — a BBC Radio-featured artist with years of experience at major venues
-            including Hilton Hotels. From intimate ceremonies to packed dance floors, we tailor every
-            performance to your event.
+            including Hilton Hotels. From intimate ceremonies to packed corporate dance floors, we
+            tailor every performance to your event.
+          </p>
+
+          {/* Event types — signals versatility & year-round availability */}
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-2">
+            {["Weddings", "Corporate events", "Christmas parties", "Birthdays", "Anniversaries", "Private parties"].map(
+              (tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-sm font-medium text-neutral-700 dark:border-neutral-700 dark:bg-ink-800 dark:text-neutral-300"
+                >
+                  {tag}
+                </span>
+              )
+            )}
+          </div>
+          <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400">
+            Planning a company event or Christmas party?{" "}
+            <Link href="/corporate-events" className="font-medium text-gold-600 underline-offset-2 hover:underline dark:text-gold-400">
+              See corporate entertainment →
+            </Link>
           </p>
         </div>
 

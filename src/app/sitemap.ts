@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: baseUrl, lastModified: now, changeFrequency: 'weekly', priority: 1 },
+    { url: `${baseUrl}/corporate-events`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/wedding-band-essex`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/wedding-band-hertfordshire`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/wedding-music-guide`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },

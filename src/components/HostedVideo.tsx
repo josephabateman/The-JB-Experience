@@ -63,14 +63,15 @@ const HostedVideo: React.FC = () => {
       {/* Hero content */}
       <div className="relative z-10 mx-auto w-full max-w-5xl px-4 pt-24 pb-16 text-center sm:px-6">
         <p className="eyebrow mb-4 animate-fade-up text-gold-300">
-          London Wedding &amp; Function Band
+          London Live Band · Weddings · Corporate · Parties
         </p>
         <h1 className="mx-auto max-w-4xl animate-fade-up font-serif text-4xl font-bold leading-[1.1] text-white sm:text-5xl lg:text-6xl">
           Live music that fills your dance floor
         </h1>
         <p className="mx-auto mt-6 max-w-2xl animate-fade-up text-lg leading-relaxed text-neutral-200">
-          Wedding &amp; event entertainment across London, Essex &amp; Hertfordshire.
-          Solo, duo or full band — booked direct, with no agency fees.
+          Live entertainment for weddings, corporate events, Christmas parties and celebrations
+          across London, Essex &amp; Hertfordshire — solo, duo or full band, booked direct with no
+          agency fees.
         </p>
 
         {/* Trust row */}

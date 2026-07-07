@@ -7,9 +7,9 @@ import { WHATSAPP_URL } from "@/config/contact";
 
 const bandNav = [
   { name: "About", link: "/#about" },
+  { name: "Corporate", link: "/corporate-events" },
   { name: "Gallery", link: "/#gallery" },
   { name: "Reviews", link: "/#testimonials" },
-  { name: "Setlist", link: "/#setlist" },
   { name: "FAQ", link: "/#faq" },
 ];
 
