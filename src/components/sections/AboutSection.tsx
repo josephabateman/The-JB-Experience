@@ -155,7 +155,7 @@ export const AboutSection = () => {
         </div>
 
         {/* What's included */}
-        <div className="mt-16">
+        <div className="mt-10">
           <div className="text-center">
             <button
               onClick={() => setShowDetails((v) => !v)}
