@@ -34,6 +34,12 @@ export const PRICING = {
   corporateMultiplier: 1.3,
 } as const;
 
+// Corporate events are priced above the wedding/base rate by the standard
+// ~30% market premium (PRICING.corporateMultiplier). Rounded to the nearest £5
+// for clean "from" pricing on the corporate/Christmas pages.
+export const corporatePrice = (base: number): number =>
+  Math.round((base * PRICING.corporateMultiplier) / 5) * 5;
+
 // Performance package descriptions
 export const PERFORMANCE_DESCRIPTIONS = {
   solo: "2x1 hour OR 3x40 min sets with live loop pedal technology",

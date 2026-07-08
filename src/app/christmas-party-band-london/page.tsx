@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { PRICING } from "@/config/pricing";
+import { PRICING, corporatePrice } from "@/config/pricing";
 import { WHATSAPP_URL } from "@/config/contact";
 
 export const metadata: Metadata = {
   title: "Christmas Party Band London | Festive Corporate & Office Party Entertainment | The JB Experience",
-  description: `Live Christmas party band for hire in London — office parties, corporate festive events & private celebrations. Festive classics plus floor-fillers, PA & lighting included. Book direct from £${PRICING.soloPrice}.`,
+  description: `Live Christmas party band for hire in London — office parties, corporate festive events & private celebrations. Festive classics plus floor-fillers, PA & lighting included. Book direct from £${corporatePrice(PRICING.soloPrice)}.`,
   keywords:
     "Christmas party band London, office Christmas party entertainment, corporate Christmas party band, festive band hire London, Christmas party live music, company Christmas party band, December party band London",
   alternates: { canonical: "https://www.thejbexperience.co.uk/christmas-party-band-london" },
@@ -97,7 +97,7 @@ export default function ChristmasPartyBandPage() {
           </div>
           <div className="mt-10 text-center">
             <p className="text-sm text-neutral-500 dark:text-neutral-400">
-              Solo from £{PRICING.soloPrice.toLocaleString()} · Duo from £{PRICING.duoPrice.toLocaleString()} · Full band from £{PRICING.trioPrice.toLocaleString()}. Corporate bookings quoted individually.
+              Solo from £{corporatePrice(PRICING.soloPrice).toLocaleString()} · Duo from £{corporatePrice(PRICING.duoPrice).toLocaleString()} · Full band from £{corporatePrice(PRICING.trioPrice).toLocaleString()}. Corporate &amp; festive bookings quoted individually.
             </p>
             <div className="mt-6">
               <Link href="/corporate-events" className="font-medium text-gold-600 underline-offset-2 hover:underline dark:text-gold-400">

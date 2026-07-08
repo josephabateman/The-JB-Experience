@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { PRICING } from "@/config/pricing";
+import { PRICING, corporatePrice } from "@/config/pricing";
 import { WHATSAPP_URL } from "@/config/contact";
 
 export const metadata: Metadata = {
   title: "Corporate Event Band London | Christmas & Company Party Entertainment | The JB Experience",
-  description: `Professional live band for corporate events across London — Christmas parties, summer parties, product launches, awards dinners & conferences. Trusted by clients including Hilton. Book direct from £${PRICING.soloPrice}.`,
+  description: `Professional live band for corporate events across London — Christmas parties, summer parties, product launches, awards dinners & conferences. Trusted by clients including Hilton. Book direct from £${corporatePrice(PRICING.soloPrice)}.`,
   keywords:
     "corporate event band London, corporate entertainment London, Christmas party band London, company party band, product launch band, awards dinner entertainment, conference band, summer party band London, office party live music, corporate function band",
   alternates: { canonical: "https://www.thejbexperience.co.uk/corporate-events" },
@@ -134,22 +134,22 @@ export default function CorporateEventsPage() {
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
             <div className="rounded-2xl border border-neutral-200 p-6 dark:border-neutral-700">
               <h3 className="font-serif text-xl font-bold text-ink-900 dark:text-white">Solo</h3>
-              <p className="mt-2 font-serif text-2xl font-bold text-ink-900 dark:text-white">£{PRICING.soloPrice.toLocaleString()}<span className="text-sm font-normal text-neutral-500"> from</span></p>
+              <p className="mt-2 font-serif text-2xl font-bold text-ink-900 dark:text-white">£{corporatePrice(PRICING.soloPrice).toLocaleString()}<span className="text-sm font-normal text-neutral-500"> from</span></p>
               <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Live looping — ideal for receptions &amp; smaller functions.</p>
             </div>
             <div className="rounded-2xl border border-gold-400 p-6 ring-1 ring-gold-400">
               <h3 className="font-serif text-xl font-bold text-ink-900 dark:text-white">Full Band</h3>
-              <p className="mt-2 font-serif text-2xl font-bold text-ink-900 dark:text-white">£{PRICING.trioPrice.toLocaleString()}<span className="text-sm font-normal text-neutral-500"> from</span></p>
+              <p className="mt-2 font-serif text-2xl font-bold text-ink-900 dark:text-white">£{corporatePrice(PRICING.trioPrice).toLocaleString()}<span className="text-sm font-normal text-neutral-500"> from</span></p>
               <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Vocals/guitar, bass &amp; drums — maximum dance-floor energy.</p>
             </div>
             <div className="rounded-2xl border border-neutral-200 p-6 dark:border-neutral-700">
               <h3 className="font-serif text-xl font-bold text-ink-900 dark:text-white">Duo</h3>
-              <p className="mt-2 font-serif text-2xl font-bold text-ink-900 dark:text-white">£{PRICING.duoPrice.toLocaleString()}<span className="text-sm font-normal text-neutral-500"> from</span></p>
+              <p className="mt-2 font-serif text-2xl font-bold text-ink-900 dark:text-white">£{corporatePrice(PRICING.duoPrice).toLocaleString()}<span className="text-sm font-normal text-neutral-500"> from</span></p>
               <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Vocals/guitar plus a second instrument — versatile &amp; polished.</p>
             </div>
           </div>
           <p className="mt-6 text-sm text-neutral-500 dark:text-neutral-400">
-            Corporate bookings are quoted individually to fit your venue, timings and requirements. Saxophone available with the full band for an extra £{PRICING.saxPrice}.
+            Corporate rates; each booking is quoted individually to fit your venue, timings and requirements. Saxophone available with the full band for an extra £{PRICING.saxPrice}.
           </p>
         </div>
       </section>
