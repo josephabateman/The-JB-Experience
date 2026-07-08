@@ -364,6 +364,18 @@ export default function BookingForm() {
       }
       
       setSubmitStatus("success");
+
+      // Conversion tracking — records each enquiry as a lead in Google Analytics / Ads
+      // so you can monitor genuine interest, not just page views.
+      if (typeof window !== "undefined") {
+        const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+        w.gtag?.("event", "generate_lead", {
+          event_category: "booking",
+          event_label: formData.eventType || "enquiry",
+          value: 1,
+        });
+      }
+
       // Reset form after successful submission
       setFormData({
         name: "",
