@@ -53,6 +53,7 @@ export function Footer() {
             <ul className="space-y-2 text-neutral-500 dark:text-neutral-400">
               <li><Link href="/#about" className="hover:text-gold-500">The band</Link></li>
               <li><Link href="/corporate-events" className="hover:text-gold-500">Corporate events</Link></li>
+              <li><Link href="/christmas-party-band-london" className="hover:text-gold-500">Christmas parties</Link></li>
               <li><Link href="/#testimonials" className="hover:text-gold-500">Reviews</Link></li>
               <li><Link href="/#booking-form" className="hover:text-gold-500">Get a quote</Link></li>
               <li><Link href="/music" className="hover:text-gold-500">Joe Bateman (solo artist)</Link></li>
