@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
+import AnalyticsEvents from "@/components/AnalyticsEvents";
 import { PRICING } from "@/config/pricing";
 import { SITE, jsonLd, musicGroupSchema, websiteSchema } from "@/config/site";
 import "./globals.css";
@@ -136,6 +137,7 @@ export default function RootLayout({
           <div>{children}</div>
           <Footer />
           <Analytics />
+          <AnalyticsEvents />
         </ThemeProvider>
       </body>
     </html>

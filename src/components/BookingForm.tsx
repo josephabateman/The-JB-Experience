@@ -5,6 +5,9 @@ import { Container } from "@/components/Container";
 import { PRICING } from "../config/pricing";
 import { WHATSAPP_URL } from "@/config/contact";
 
+// Google Ads conversion action for a submitted enquiry (account AW-16871323737).
+const GOOGLE_ADS_CONVERSION = "AW-16871323737/3ig2CIyTmp4aENnw7-w-";
+
 interface FormData {
   // Contact Info
   name: string;
@@ -365,14 +368,30 @@ export default function BookingForm() {
       
       setSubmitStatus("success");
 
-      // Conversion tracking — records each enquiry as a lead in Google Analytics / Ads
-      // so you can monitor genuine interest, not just page views.
+      // Conversion tracking.
+      //
+      // Two separate things have to fire here:
+      //   1. generate_lead  -> GA4, for reporting.
+      //   2. conversion + send_to -> Google Ads, which is what Smart Bidding
+      //      and keyword-level optimisation actually read. Without this, an
+      //      Ads campaign records zero conversions and cannot optimise.
+      //
+      // The conversion label below is the one already registered for this
+      // account (it was sitting in an unused Contact component). Confirm the
+      // action is still Active in Google Ads before spending on campaigns.
       if (typeof window !== "undefined") {
         const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+
         w.gtag?.("event", "generate_lead", {
           event_category: "booking",
           event_label: formData.eventType || "enquiry",
           value: 1,
+        });
+
+        w.gtag?.("event", "conversion", {
+          send_to: GOOGLE_ADS_CONVERSION,
+          event_category: "booking",
+          event_label: formData.eventType || "enquiry",
         });
       }
 
