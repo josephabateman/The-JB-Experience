@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { PRICING, corporatePrice } from "@/config/pricing";
 import { WHATSAPP_URL } from "@/config/contact";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Christmas Party Band London | Festive Corporate & Office Party Entertainment | The JB Experience",
@@ -75,6 +76,14 @@ export default function ChristmasPartyBandPage() {
           <p className="mt-6 text-sm text-neutral-400">★★★★★ 5-star rated · BBC Radio featured · December dates book up fast — enquire early</p>
         </div>
       </section>
+
+      <Breadcrumbs trail={[["Christmas parties", "/christmas-party-band-london"]]} />
+
+      <div className="mx-auto max-w-7xl px-4 pb-2 sm:px-6 lg:px-8">
+        <Link href="/blog/corporate-event-band-hire-london-cost" className="text-sm font-medium text-gold-600 underline-offset-2 hover:underline dark:text-gold-400">
+          How to brief and budget a corporate band &rarr;
+        </Link>
+      </div>
 
       {/* Highlights */}
       <section className="section">

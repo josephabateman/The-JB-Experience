@@ -5,6 +5,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { PRICING } from "@/config/pricing";
+import { SITE, jsonLd, musicGroupSchema, websiteSchema } from "@/config/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -80,146 +81,17 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.youtube.com" />
         
-        {/* Local Business Schema Markup */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "MusicGroup",
-              "name": "The JB Experience",
-              "alternateName": "Joe Bateman Band",
-              "description": "Professional wedding and event band serving London, Essex, and Hertfordshire. Book direct - no agency fees!",
-              "url": "https://www.thejbexperience.co.uk",
-              "logo": "https://www.thejbexperience.co.uk/images/band-performing.jpg",
-              "image": "https://www.thejbexperience.co.uk/images/band-performing.jpg",
-              "genre": ["Pop", "Rock", "Folk", "Funk", "Wedding Music"],
-              "foundingLocation": {
-                "@type": "Place",
-                "address": {
-                  "@type": "PostalAddress",
-                  "addressLocality": "London",
-                  "addressRegion": "Greater London",
-                  "postalCode": "E10",
-                  "addressCountry": "GB"
-                }
-              },
-              "areaServed": [
-                {
-                  "@type": "GeoCircle",
-                  "geoMidpoint": {
-                    "@type": "GeoCoordinates",
-                    "latitude": 51.5693,
-                    "longitude": -0.0146
-                  },
-                  "geoRadius": "64374"
-                },
-                "London",
-                "Essex",
-                "Hertfordshire",
-                "Kent",
-                "Surrey"
-              ],
-              "priceRange": `£${PRICING.soloPrice}-£${PRICING.trioPrice}`,
-              "offers": [
-                {
-                  "@type": "Offer",
-                  "name": "Solo Performance with Loop Pedal",
-                  "price": `${PRICING.soloPrice}`,
-                  "priceCurrency": "GBP",
-                  "description": "Solo acoustic performance with live looping technology"
-                },
-                {
-                  "@type": "Offer",
-                  "name": "Full Band Performance",
-                  "price": "1499",
-                  "priceCurrency": "GBP",
-                  "description": "Three-piece band: vocals/guitar, bass, drums. Saxophone available for additional fee"
-                }
-              ],
-              "member": [
-                {
-                  "@type": "Person",
-                  "name": "Joe Bateman",
-                  "jobTitle": "Lead Vocalist & Guitarist"
-                }
-              ],
-              "sameAs": [
-                "https://www.instagram.com/joebatemanofficial",
-                "https://www.youtube.com/@JoeBatemanOfficialYouTube"
-              ],
-              "potentialAction": {
-                "@type": "ReserveAction",
-                "target": {
-                  "@type": "EntryPoint",
-                  "urlTemplate": "https://www.thejbexperience.co.uk#contact",
-                  "actionPlatform": [
-                    "http://schema.org/DesktopWebPlatform",
-                    "http://schema.org/MobileWebPlatform"
-                  ]
-                },
-                "result": {
-                  "@type": "Reservation",
-                  "name": "Wedding Band Booking"
-                }
-              }
-            })
-          }}
-        />
-        
-        {/* Service Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Service",
-              "name": "Wedding Band Services",
-              "provider": {
-                "@type": "MusicGroup",
-                "name": "The JB Experience"
-              },
-              "areaServed": ["London", "Essex", "Hertfordshire", "Kent", "Surrey"],
-              "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": "Wedding & Event Music Services",
-                "itemListElement": [
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Wedding Reception Music",
-                      "description": "Live music for wedding receptions, ceremony, and first dance"
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Corporate Event Entertainment",
-                      "description": "Professional live music for corporate events, parties, and functions"
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Private Party Music",
-                      "description": "Live entertainment for birthday parties, anniversaries, and celebrations"
-                    }
-                  }
-                ]
-              }
-            })
-          }}
-        />
-        
-        {/* Geo Location Meta Tags */}
+        {/* Site-wide structured data, built from src/config/site.ts so the
+            business facts stay identical across every page. */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(musicGroupSchema())} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(websiteSchema())} />
+
+        {/* Geo hints (Bing still reads these) */}
         <meta name="geo.region" content="GB-LND" />
         <meta name="geo.placename" content="London" />
-        <meta name="geo.position" content="51.5693;-0.0146" />
-        <meta name="ICBM" content="51.5693, -0.0146" />
-        
+        <meta name="geo.position" content={`${SITE.latitude};${SITE.longitude}`} />
+        <meta name="ICBM" content={`${SITE.latitude}, ${SITE.longitude}`} />
+
         {/* Google Ads Conversion Tracking */}
         <Script
           async

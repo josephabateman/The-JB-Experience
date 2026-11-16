@@ -1,4 +1,4 @@
-import { PRICING } from "@/config/pricing";
+import { PRICING, corporatePrice } from "@/config/pricing";
 
 export interface BlogPost {
   slug: string;
@@ -177,6 +177,139 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
 
+  {
+    slug: "corporate-event-band-hire-london-cost",
+    title: "Corporate event entertainment in London: what it costs and how to brief a band",
+    metaTitle: "Corporate Band Hire London: Costs & How to Brief a Band",
+    description:
+      "What live music for a corporate event actually costs in London, why it is priced above weddings, and the brief that gets you an accurate quote first time.",
+    excerpt:
+      "Corporate bookings are quoted differently from weddings, and most briefs leave out the three things that actually determine the price. Here is what to send.",
+    date: "2026-11-04",
+    category: "Corporate",
+    readingMinutes: 6,
+    image: "/images/jb-experience-full-band-london-event.jpg",
+    imageAlt: "The JB Experience performing at a corporate event in London",
+    body: [
+      { type: "p", text: "Booking entertainment for a company event is a different job from booking it for a wedding. You are working to a budget someone else signs off, a venue you may not have seen, and an audience whose taste you cannot survey. The quotes you get back are often hard to compare because every band prices corporate work slightly differently." },
+      { type: "p", text: "Here is how the pricing works, and what to put in your brief so the number you get back is one you can actually take to finance." },
+
+      { type: "h2", text: "Why corporate is priced above weddings" },
+      { type: "p", text: `Most professional bands apply a premium of roughly 20–35% over their wedding rate for corporate work. Ours is ${Math.round((PRICING.corporateMultiplier - 1) * 100)}%, which puts the full band from ${gbp(corporatePrice(PRICING.trioPrice))}. That is not opportunism — it reflects real differences:` },
+      {
+        type: "ul",
+        items: [
+          "Longer days. Corporate events frequently want background music through a drinks reception or dinner as well as an evening set.",
+          "Stricter logistics. Load-in windows, security clearance, risk assessments, method statements and insurance certificates all take time that weddings rarely require.",
+          "More stakeholders. Briefs change. A wedding has two decision-makers; a company event can have five, and the running order often shifts twice before the day.",
+          "Earlier setup. You usually cannot sound-check in front of delegates, so the band arrives and sets up well before guests do.",
+          "Invoice terms. Corporate bookings are typically invoiced with payment terms rather than paid by deposit and balance, which carries cost.",
+        ],
+      },
+      { type: "p", text: "If a band quotes you the same as their wedding price for a corporate event, check what they have assumed about timings — they may have priced an evening set only." },
+
+      { type: "h2", text: "What a London corporate booking typically costs" },
+      {
+        type: "table",
+        head: ["Format", "Typical use", "From"],
+        rows: [
+          ["Solo / acoustic", "Drinks reception, dinner background, awards interludes", gbp(corporatePrice(PRICING.soloPrice))],
+          ["Duo", "Relaxed evening, summer socials, smaller venues", gbp(corporatePrice(PRICING.duoPrice))],
+          ["Full band", "Christmas parties, launches, post-awards dance floor", gbp(corporatePrice(PRICING.trioPrice))],
+        ],
+      },
+      { type: "p", text: "Those figures include PA, lighting, setup and a playlist service between sets. Travel is added from our East London base and shown separately in the quote. Some agencies quote the band fee alone and add production later — always ask what is excluded, not just what is included." },
+
+      { type: "h2", text: "The brief that gets an accurate quote first time" },
+      { type: "p", text: "Most enquiries arrive with a date and a guest count, which is not enough to price. These seven lines are:" },
+      {
+        type: "ul",
+        items: [
+          "Date, venue name and postcode.",
+          "Event type — Christmas party, awards dinner, launch, conference close, summer social.",
+          "Guest numbers, and whether they are staff, clients or a mix.",
+          "The exact music windows you want covered: reception, dinner, post-speeches, evening.",
+          "Load-in time available, and any security or access restrictions.",
+          "Whether the venue has a decibel limiter, and at what level.",
+          "Who signs off, and whether you need an invoice with payment terms.",
+        ],
+      },
+      { type: "p", text: "That last point catches people out more than anything else. If your company needs 30-day terms and a purchase order, say so at enquiry stage, not after you have agreed a price." },
+
+      { type: "h2", text: "Briefing the music itself" },
+      { type: "p", text: "A corporate crowd is the most mixed audience a band plays to. Graduate intake and board members are in the same room, and nobody has chosen to be there the way wedding guests have." },
+      { type: "p", text: "What works: a broad, familiar repertoire that spans decades rather than a narrow genre. What does not: asking a band to play exclusively current chart music to a room with a thirty-year age range, or exclusively Motown to a room of twenty-somethings." },
+      { type: "p", text: "Give the band two things — a short do-not-play list, and any songs tied to your company (a brand anthem, an MD's favourite, something from a campaign). Both are more useful than a long wish list." },
+
+      { type: "h2", text: "Timing your booking" },
+      { type: "p", text: "Christmas party season is the tightest market in the calendar. Good bands are booked for the first two weeks of December by about September, and often much earlier. If you are reading this in autumn for a December event, enquire now and be flexible on the day of the week — a Wednesday in early December is far easier to fill than the second Friday." },
+      { type: "p", text: "Summer parties, launches and awards dinners are more forgiving, but 3–4 months is still a comfortable lead time for London." },
+
+      { type: "h2", text: "Booking direct versus through an agency" },
+      { type: "p", text: "Agencies are genuinely useful for corporate buyers: a single contract, a vetted roster, and someone accountable if an act fails. Those are real procurement advantages and for some organisations they are decisive." },
+      { type: "p", text: "The trade-off is commission of roughly 20–40% on top of the band's fee, and a layer between you and the people actually playing. If your brief is detailed or likely to change, talking to the band directly tends to be faster and cheaper." },
+      { type: "cta", text: "Get a corporate quote with travel included" },
+    ],
+  },
+
+  {
+    slug: "how-long-should-a-wedding-band-play",
+    title: "How long should a wedding band play?",
+    metaTitle: "How Long Should a Wedding Band Play? Set Times That Work",
+    description:
+      "Standard wedding band set lengths explained — two 60s or three 40s, when to start, what happens between sets, and how to build a timeline that survives a real wedding day.",
+    excerpt:
+      "Two 60-minute sets or three 40s? When should the first dance be? Set lengths are standard across the industry, but where you place them makes the difference between a full dance floor and an empty one.",
+    date: "2026-10-28",
+    category: "Planning",
+    readingMinutes: 5,
+    image: "/images/live-band-packed-dance-floor-london.jpg",
+    imageAlt: "Guests dancing to a live wedding band in London",
+    body: [
+      { type: "p", text: "Almost every professional wedding band in the UK offers the same two options: two 60-minute sets, or three 40-minute sets. Both add up to roughly two hours of live music across the evening. The question is not really how long — it is where those sets sit in your day." },
+
+      { type: "h2", text: "Two 60s or three 40s?" },
+      {
+        type: "table",
+        head: ["", "Two 60-minute sets", "Three 40-minute sets"],
+        rows: [
+          ["Feels like", "Two big blocks with one clear break", "A steadier presence across the evening"],
+          ["Best for", "Evenings starting later, around 8pm", "Longer evenings, or music needed from early on"],
+          ["Risk", "One long gap in the middle", "Energy dips if breaks are badly placed"],
+          ["Guests leaving early", "They may miss the second set entirely", "Everyone catches at least two sets"],
+        ],
+      },
+      { type: "p", text: "If a meaningful number of guests will leave before midnight — older relatives, people with children, anyone travelling — three 40s is usually the better call, because more of your guests see the band." },
+
+      { type: "h2", text: "When should the band start?" },
+      { type: "p", text: "The most common mistake is starting too late. Couples worry about the band finishing before the night ends, so they push the first set back — and the dance floor never gets going because guests have settled into conversations at their tables." },
+      { type: "p", text: "A pattern that works reliably: speeches end, room turns over, first dance happens at the very start of the band's first set. The band carries straight on from the first dance into upbeat material while everyone is already standing and watching. You get a full floor from the first song instead of spending twenty minutes coaxing people up." },
+
+      { type: "h2", text: "What happens between sets" },
+      { type: "p", text: "Silence between sets kills a dance floor faster than anything else. Guests sit down, conversations restart, and the band has to rebuild from nothing." },
+      { type: "p", text: "Ask every band what they provide. Most professional acts run a playlist through their own PA during breaks, often taking requests — we do, and it is included rather than an add-on. If a band has no answer to this question, you will need a DJ or a phone and an aux cable, and someone to manage it." },
+
+      { type: "h2", text: "A timeline that survives the day" },
+      { type: "p", text: "Wedding days run late. Dinner service slips, speeches overrun, and the schedule you agreed in month three meets reality. Build slack in:" },
+      {
+        type: "ul",
+        items: [
+          "Let the band set up during dinner or speeches, not in the gap immediately before they play.",
+          "Do not schedule the first dance for the same minute the band finishes setting up.",
+          "Know your venue's curfew, and work backwards from it rather than forwards from dinner.",
+          "Agree with the band what gets cut if you run 30 minutes late — it is much easier to decide in advance than at 10pm.",
+        ],
+      },
+
+      { type: "h2", text: "Do you need music earlier in the day too?" },
+      { type: "p", text: `Ceremony and drinks-reception music is usually a separate booking, because it is a different job — quieter, acoustic, and hours before the evening set. We price it separately (${gbp(PRICING.ceremonySoloFrom)} for a solo ceremony performance, ${gbp(PRICING.cocktailHourDuoFrom)} for a duo through a drinks reception) rather than building it into everyone's evening price.` },
+      { type: "p", text: "Booking it with the same act has a practical advantage beyond cost: they are already on site, already set up, and already know your timeline." },
+
+      { type: "h2", text: "What about an encore?" },
+      { type: "p", text: "Most bands will play one if the room wants it and the curfew allows. Worth agreeing in advance whether an encore is included or whether overrunning costs extra, so nobody is negotiating at midnight." },
+      { type: "cta", text: "Talk through your timeline and get a quote" },
+    ],
+  },
   {
     slug: "booking-a-wedding-band-london-checklist",
     title: "Booking a wedding band in London: a practical checklist",

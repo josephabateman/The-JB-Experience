@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { PRICING } from "@/config/pricing";
 import { WHATSAPP_URL } from "@/config/contact";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Wedding Band Essex | Live Music for Essex Weddings | The JB Experience",
@@ -73,9 +74,9 @@ const EssexPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-white dark:bg-ink-900">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-green-900 via-blue-900 to-purple-900 text-white py-20">
+      <section className="bg-gradient-to-br from-ink-900 via-ink-800 to-ink-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -90,58 +91,60 @@ const EssexPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
-                className="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+                className="bg-white text-ink-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-neutral-100 transition-all duration-300 transform hover:scale-105"
               >
                 Message on WhatsApp
               </Link>
               <Link
                 href="/#booking-form"
-                className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transition-all duration-300 transform hover:scale-105"
+                className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-ink-900 transition-all duration-300 transform hover:scale-105"
               >
-                📧 Get Essex Quote
+                Get an Essex quote
               </Link>
             </div>
           </div>
         </div>
       </section>
 
+      <Breadcrumbs trail={[["Wedding band Essex", "/wedding-band-essex"]]} />
+
       {/* Essex Coverage */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800">
+      <section className="py-16 bg-neutral-50 dark:bg-ink-800">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink-900 dark:text-white mb-4">
               Essex Wedding Band Coverage
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto">
               Based in East London (E10), we provide professional wedding entertainment across all of Essex, typically within a 40-mile radius.
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-12">
             {essexAreas.map((area) => (
-              <div key={area} className="bg-white dark:bg-gray-700 p-4 rounded-lg text-center shadow-sm">
-                <span className="text-green-600 dark:text-green-400 text-2xl mb-2 block">📍</span>
-                <p className="font-semibold text-gray-900 dark:text-white">{area}</p>
+              <div key={area} className="bg-white dark:bg-ink-700 p-4 rounded-lg text-center shadow-sm">
+                <span className="text-gold-600 dark:text-gold-400 text-2xl mb-2 block">📍</span>
+                <p className="font-semibold text-ink-900 dark:text-white">{area}</p>
               </div>
             ))}
           </div>
 
-          <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-8 border border-blue-200 dark:border-blue-800">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+          <div className="bg-gold-50 dark:bg-gold-900/20 rounded-xl p-8 border border-gold-200 dark:border-gold-800">
+            <h3 className="text-2xl font-bold text-ink-900 dark:text-white mb-4 text-center">
               🚗 Essex Travel Information
             </h3>
             <div className="grid md:grid-cols-3 gap-6 text-center">
               <div>
-                <p className="font-semibold text-gray-900 dark:text-white mb-2">Base Location</p>
-                <p className="text-gray-600 dark:text-gray-300">East London (E10 5ZD)</p>
+                <p className="font-semibold text-ink-900 dark:text-white mb-2">Base Location</p>
+                <p className="text-neutral-600 dark:text-neutral-300">East London (E10 5ZD)</p>
               </div>
               <div>
-                <p className="font-semibold text-gray-900 dark:text-white mb-2">Travel Costs</p>
-                <p className="text-gray-600 dark:text-gray-300">£{PRICING.baseTravelCostPerMile} per mile from base</p>
+                <p className="font-semibold text-ink-900 dark:text-white mb-2">Travel Costs</p>
+                <p className="text-neutral-600 dark:text-neutral-300">£{PRICING.baseTravelCostPerMile} per mile from base</p>
               </div>
               <div>
-                <p className="font-semibold text-gray-900 dark:text-white mb-2">Coverage Radius</p>
-                <p className="text-gray-600 dark:text-gray-300">40+ miles across Essex</p>
+                <p className="font-semibold text-ink-900 dark:text-white mb-2">Coverage Radius</p>
+                <p className="text-neutral-600 dark:text-neutral-300">40+ miles across Essex</p>
               </div>
             </div>
           </div>
@@ -152,43 +155,43 @@ const EssexPage = () => {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink-900 dark:text-white mb-4">
               Popular Essex Wedding Venues We Serve
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              We&apos;ve performed at many of Essex&apos;s most beautiful wedding venues. Here are some favorites:
+            <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto">
+              We&apos;ve performed at many of Essex&apos;s most beautiful wedding venues. Here are some favourites:
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {essexVenues.map((venue, index) => (
-              <div key={venue.name} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+              <div key={venue.name} className="bg-white dark:bg-ink-800 rounded-xl shadow-lg overflow-hidden">
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <span className="text-2xl">🏰</span>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">{venue.name}</h3>
-                      <p className="text-gray-600 dark:text-gray-400">{venue.location}</p>
+                      <h3 className="text-xl font-bold text-ink-900 dark:text-white">{venue.name}</h3>
+                      <p className="text-neutral-600 dark:text-neutral-400">{venue.location}</p>
                     </div>
                   </div>
                   
                   <div className="space-y-2 mb-4">
                     <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">Type:</span>
-                      <span className="font-semibold text-gray-900 dark:text-white">{venue.type}</span>
+                      <span className="text-neutral-600 dark:text-neutral-400">Type:</span>
+                      <span className="font-semibold text-ink-900 dark:text-white">{venue.type}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">Capacity:</span>
-                      <span className="font-semibold text-gray-900 dark:text-white">{venue.capacity}</span>
+                      <span className="text-neutral-600 dark:text-neutral-400">Capacity:</span>
+                      <span className="font-semibold text-ink-900 dark:text-white">{venue.capacity}</span>
                     </div>
                   </div>
                   
-                  <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">{venue.specialty}</p>
+                  <p className="text-neutral-700 dark:text-neutral-300 text-sm mb-4">{venue.specialty}</p>
                   
-                  <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+                  <div className="pt-4 border-t border-neutral-200 dark:border-neutral-700">
                     <Link
                       href="/#booking-form"
-                      className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-semibold"
+                      className="text-gold-600 dark:text-gold-400 hover:text-gold-700 dark:hover:text-gold-300 font-semibold"
                     >
                       Get Quote for {venue.name} →
                     </Link>
@@ -201,26 +204,26 @@ const EssexPage = () => {
       </section>
 
       {/* Pricing */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800">
+      <section className="py-16 bg-neutral-50 dark:bg-ink-800">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink-900 dark:text-white mb-4">
               Essex Wedding Band Pricing
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
+            <p className="text-xl text-neutral-600 dark:text-neutral-300">
               Transparent pricing with no hidden agency fees
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Solo Package */}
-            <div className="bg-green-50 dark:bg-green-900/20 p-8 rounded-2xl border border-green-200 dark:border-green-800">
+            <div className="bg-gold-50 dark:bg-gold-900/20 p-8 rounded-2xl border border-gold-200 dark:border-gold-800">
               <div className="text-center">
                 <span className="text-4xl mb-4 block">🎤</span>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Solo Performance</h3>
-                <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-4">£{PRICING.soloPrice}</div>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">+ travel costs</p>
-                <ul className="space-y-3 text-left text-gray-700 dark:text-gray-300">
+                <h3 className="text-2xl font-bold text-ink-900 dark:text-white mb-4">Solo Performance</h3>
+                <div className="text-4xl font-bold text-gold-600 dark:text-gold-400 mb-4">£{PRICING.soloPrice}</div>
+                <p className="text-neutral-600 dark:text-neutral-300 mb-6">+ travel costs</p>
+                <ul className="space-y-3 text-left text-neutral-700 dark:text-neutral-300">
                   <li>✅ Live looping with stompbox technology</li>
                   <li>✅ Acoustic guitar & vocals</li>
                   <li>✅ Custom song requests</li>
@@ -230,13 +233,13 @@ const EssexPage = () => {
             </div>
 
             {/* Full Band Package */}
-            <div className="bg-purple-50 dark:bg-purple-900/20 p-8 rounded-2xl border border-purple-200 dark:border-purple-800">
+            <div className="bg-gold-50 dark:bg-gold-900/20 p-8 rounded-2xl border border-gold-200 dark:border-gold-800">
               <div className="text-center">
                 <span className="text-4xl mb-4 block">🎸</span>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Full Band</h3>
-                <div className="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-4">£{PRICING.trioPrice.toLocaleString()}</div>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">+ travel costs</p>
-                <ul className="space-y-3 text-left text-gray-700 dark:text-gray-300">
+                <h3 className="text-2xl font-bold text-ink-900 dark:text-white mb-4">Full Band</h3>
+                <div className="text-4xl font-bold text-gold-600 dark:text-gold-400 mb-4">£{PRICING.trioPrice.toLocaleString()}</div>
+                <p className="text-neutral-600 dark:text-neutral-300 mb-6">+ travel costs</p>
+                <ul className="space-y-3 text-left text-neutral-700 dark:text-neutral-300">
                   <li>✅ Guitar, Bass, Drums, Vocals</li>
                   <li>✅ Professional sound system</li>
                   <li>✅ Full lighting setup</li>
@@ -247,12 +250,12 @@ const EssexPage = () => {
           </div>
 
           <div className="mt-8 text-center">
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <p className="text-neutral-600 dark:text-neutral-400 mb-4">
               Travel calculated at £{PRICING.baseTravelCostPerMile} per mile from E10. All prices include VAT.
             </p>
             <Link
               href="/#booking-form"
-              className="inline-flex items-center bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
+              className="inline-flex items-center bg-ink-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-ink-800 transition-colors"
             >
               Get Your Essex Wedding Quote →
             </Link>
@@ -264,38 +267,38 @@ const EssexPage = () => {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink-900 dark:text-white mb-4">
               Why Choose The JB Experience for Your Essex Wedding?
             </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-gradient-to-r from-gold-500 to-gold-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-3xl text-white">🎵</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Local Essex Knowledge</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <h3 className="text-xl font-bold text-ink-900 dark:text-white mb-4">Local Essex Knowledge</h3>
+              <p className="text-neutral-600 dark:text-neutral-300">
                 We know Essex venues inside out. From Gaynes Park&apos;s acoustics to Down Hall&apos;s layout, we arrive prepared.
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-gradient-to-r from-gold-500 to-gold-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-3xl text-white">💰</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Book Direct &amp; Save</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <h3 className="text-xl font-bold text-ink-900 dark:text-white mb-4">Book Direct &amp; Save</h3>
+              <p className="text-neutral-600 dark:text-neutral-300">
                 No agency fees! Save up to 30% compared to booking through wedding band agencies.
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-gradient-to-r from-gold-500 to-gold-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-3xl text-white">⭐</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Proven Track Record</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <h3 className="text-xl font-bold text-ink-900 dark:text-white mb-4">Proven Track Record</h3>
+              <p className="text-neutral-600 dark:text-neutral-300">
                 Hundreds of successful Essex weddings, BBC Radio features, and corporate clients including Hilton Hotels.
               </p>
             </div>
@@ -304,7 +307,7 @@ const EssexPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-indigo-600 to-purple-600">
+      <section className="py-16 bg-gradient-to-r from-gold-600 to-gold-600">
         <div className="max-w-4xl mx-auto px-4 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to Book Your Essex Wedding Band?
@@ -315,15 +318,15 @@ const EssexPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
-              className="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors"
+              className="bg-white text-ink-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-neutral-100 transition-colors"
             >
               Message on WhatsApp
             </Link>
             <Link
               href="/#booking-form"
-              className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transition-colors"
+              className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-ink-900 transition-colors"
             >
-              📧 Get Essex Quote
+              Get an Essex quote
             </Link>
           </div>
           <p className="mt-6 opacity-75">

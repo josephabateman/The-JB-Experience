@@ -9,12 +9,12 @@ import Link from "next/link";
  * wastes the image-search traffic these photos could earn.
  */
 const GALLERY = [
-  { src: "/images/Photo Jan 25 2025, 19 48 13.jpg", alt: "The JB Experience full band performing live at a London event" },
-  { src: "/images/Photo Jan 25 2025, 19 48 59.jpg", alt: "Joe Bateman singing and playing guitar with the band" },
-  { src: "/images/Photo Jan 25 2025, 19 49 20.jpg", alt: "Live band entertaining a packed dance floor in London" },
-  { src: "/images/Photo Jan 25 2025, 19 49 40.jpg", alt: "The JB Experience rhythm section performing at an evening reception" },
-  { src: "/images/Photo Jan 25 2025, 19 49 53.jpg", alt: "Wedding and function band playing under stage lighting" },
-  { src: "/images/Photo Jan 31 2025, 18 41 16 (1).jpg", alt: "The JB Experience performing for guests at a private party" },
+  { src: "/images/jb-experience-full-band-london-event.jpg", alt: "The JB Experience full band performing live at a London event" },
+  { src: "/images/joe-bateman-vocals-guitar-live.jpg", alt: "Joe Bateman singing and playing guitar with the band" },
+  { src: "/images/live-band-packed-dance-floor-london.jpg", alt: "Live band entertaining a packed dance floor in London" },
+  { src: "/images/jb-experience-rhythm-section-reception.jpg", alt: "The JB Experience rhythm section performing at an evening reception" },
+  { src: "/images/wedding-function-band-stage-lighting.jpg", alt: "Wedding and function band playing under stage lighting" },
+  { src: "/images/jb-experience-private-party-london.jpg", alt: "The JB Experience performing for guests at a private party" },
 ];
 
 const BLUR =
