@@ -1,232 +1,136 @@
-"use client";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { WHATSAPP_URL } from "@/config/contact";
+import { sortedPosts } from "@/content/blog";
 
-interface BlogPost {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  content: string;
-  date: string;
-  category: string;
-  featuredImage: string;
-  venue: string;
-  location: string;
-  eventType: string;
-  gallery: string[];
-  videoUrl?: string;
-}
+const SITE = "https://www.thejbexperience.co.uk";
 
-// Sample blog posts - you can replace this with a CMS later
-const blogPosts: BlogPost[] = [
-  {
-    id: "1",
-    title: "Magical Wedding at Gaynes Park, Essex - Sarah & Tom's Big Day",
-    slug: "gaynes-park-wedding-sarah-tom",
-    excerpt: "An unforgettable evening of live music at one of Essex's most beautiful wedding venues. From acoustic ceremony music to high-energy reception dancing!",
-    content: "Full blog content here...",
-    date: "2024-03-15",
-    category: "Wedding Gigs",
-    featuredImage: "/images/blog/gaynes-park-wedding.jpg",
-    venue: "Gaynes Park",
-    location: "Epping, Essex",
-    eventType: "Wedding Reception",
-    gallery: [
-      "/images/blog/gaynes-park-1.jpg",
-      "/images/blog/gaynes-park-2.jpg",
-      "/images/blog/gaynes-park-3.jpg"
-    ],
-    videoUrl: "https://www.youtube.com/embed/example1"
+export const metadata: Metadata = {
+  title: "Wedding Music Advice & Band Pricing Guides | The JB Experience",
+  description:
+    "Straight answers on booking live music in London — what a wedding band actually costs, band vs DJ, venue sound limiters, and a practical booking checklist.",
+  keywords:
+    "wedding band advice, wedding band cost London, band vs DJ, wedding music planning, booking a wedding band",
+  alternates: { canonical: `${SITE}/blog` },
+  openGraph: {
+    title: "Wedding Music Advice & Band Pricing Guides",
+    description:
+      "Straight answers on booking live music in London — real prices, band vs DJ, and a practical booking checklist.",
+    url: `${SITE}/blog`,
+    type: "website",
   },
-  {
-    id: "2", 
-    title: "Corporate Event Success at Hilton London Canary Wharf",
-    slug: "hilton-canary-wharf-corporate-event",
-    excerpt: "High-energy entertainment for 200+ guests at this prestigious London corporate venue. Jazz, pop, and crowd favorites!",
-    content: "Full blog content here...",
-    date: "2024-03-10",
-    category: "Corporate Events",
-    featuredImage: "/images/blog/hilton-corporate.jpg",
-    venue: "Hilton London Canary Wharf",
-    location: "London E14",
-    eventType: "Corporate Event",
-    gallery: [
-      "/images/blog/hilton-1.jpg",
-      "/images/blog/hilton-2.jpg"
-    ],
-    videoUrl: "https://www.youtube.com/embed/example2"
-  }
-];
-
-const categories = ["All", "Wedding Gigs", "Corporate Events", "Private Parties", "Festivals"];
-
-const BlogPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const filteredPosts = blogPosts.filter(post => {
-    const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.venue.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.location.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
-
-  return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-20">
-      {/* SEO-optimized header */}
-      <div className="max-w-7xl mx-auto px-4 mb-12">
-        <div className="text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Our Recent Gigs & Performances
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-            See The JB Experience in action at weddings, corporate events, and private parties across London, Essex, and Hertfordshire. Real venues, real celebrations, real memories.
-          </p>
-        </div>
-
-        {/* Search and Filter */}
-        <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-8">
-          <div className="flex flex-wrap gap-2">
-            {categories.map(category => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
-                  selectedCategory === category
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search venues or locations..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-800 dark:text-white"
-            />
-            <svg className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      {/* Blog Posts Grid */}
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredPosts.map(post => (
-            <article key={post.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              {/* Featured Image */}
-              <div className="relative h-48 bg-gray-200 dark:bg-gray-700">
-                {post.featuredImage ? (
-                  <Image
-                    src={post.featuredImage}
-                    alt={`${post.venue} - ${post.eventType}`}
-                    fill
-                    className="object-cover"
-                  />
-                ) : (
-                  <div className="flex items-center justify-center h-full">
-                    <span className="text-6xl">🎸</span>
-                  </div>
-                )}
-                <div className="absolute top-4 left-4">
-                  <span className="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    {post.category}
-                  </span>
-                </div>
-              </div>
-
-              {/* Post Content */}
-              <div className="p-6">
-                <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-3">
-                  <span>📅 {new Date(post.date).toLocaleDateString()}</span>
-                  <span>📍 {post.location}</span>
-                </div>
-                
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  <Link href={`/blog/${post.slug}`}>
-                    {post.title}
-                  </Link>
-                </h2>
-                
-                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
-                  {post.excerpt}
-                </p>
-
-                {/* Venue Info */}
-                <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-semibold text-gray-900 dark:text-white">{post.venue}</p>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">{post.eventType}</p>
-                    </div>
-                    <div className="flex gap-2">
-                      {post.videoUrl && (
-                        <span className="text-red-500" title="Video Available">🎥</span>
-                      )}
-                      <span className="text-blue-500" title={`${post.gallery.length} Photos`}>
-                        📸 {post.gallery.length}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <Link 
-                    href={`/blog/${post.slug}`}
-                    className="inline-flex items-center mt-3 text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-semibold"
-                  >
-                    View Gallery & Details →
-                  </Link>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        {filteredPosts.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-500 dark:text-gray-400 text-lg">
-              No posts found matching your criteria.
-            </p>
-          </div>
-        )}
-      </div>
-
-      {/* CTA Section */}
-      <div className="max-w-4xl mx-auto px-4 mt-16">
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-white text-center">
-          <h2 className="text-3xl font-bold mb-4">Want Your Event Featured Here?</h2>
-          <p className="text-xl mb-6 opacity-90">
-            Book The JB Experience for your wedding, corporate event, or party across London, Essex, and Hertfordshire
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
-              className="bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
-            >
-              Message on WhatsApp
-            </Link>
-            <Link
-              href="/#booking-form"
-              className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-indigo-600 transition-colors"
-            >
-              📧 Get Your Quote
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 };
 
-export default BlogPage;
+const formatDate = (iso: string) =>
+  new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+
+export default function BlogIndexPage() {
+  const posts = sortedPosts();
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            name: "The JB Experience — wedding music advice",
+            url: `${SITE}/blog`,
+            publisher: { "@type": "Organization", name: "The JB Experience", url: SITE },
+            blogPost: posts.map((p) => ({
+              "@type": "BlogPosting",
+              headline: p.title,
+              url: `${SITE}/blog/${p.slug}`,
+              datePublished: p.date,
+              dateModified: p.updated ?? p.date,
+              description: p.description,
+            })),
+          }),
+        }}
+      />
+
+      <main className="bg-white pt-24 dark:bg-ink-900">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <header className="py-10 text-center sm:py-14">
+            <p className="eyebrow mb-3">Advice</p>
+            <h1 className="mx-auto max-w-3xl text-3xl font-bold text-ink-900 dark:text-white sm:text-4xl lg:text-5xl">
+              Straight answers about booking live music
+            </h1>
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
+              Most band websites keep their prices and their advice behind an enquiry form. These
+              guides give you the numbers and the questions to ask — whether or not you book us.
+            </p>
+          </header>
+
+          {/* Posts */}
+          <div className="grid gap-8 pb-16 sm:grid-cols-2 lg:grid-cols-3">
+            {posts.map((post, i) => (
+              <article
+                key={post.slug}
+                className="group flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg dark:border-neutral-800 dark:bg-ink-800"
+              >
+                <Link href={`/blog/${post.slug}`} className="relative aspect-[16/10] overflow-hidden bg-neutral-100 dark:bg-ink-700">
+                  <Image
+                    src={post.image}
+                    alt={post.imageAlt}
+                    fill
+                    priority={i === 0}
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </Link>
+
+                <div className="flex flex-1 flex-col p-5">
+                  <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gold-600 dark:text-gold-400">
+                    <span>{post.category}</span>
+                    <span aria-hidden="true" className="text-neutral-300 dark:text-neutral-600">·</span>
+                    <span className="font-medium normal-case tracking-normal text-neutral-500 dark:text-neutral-400">
+                      {post.readingMinutes} min read
+                    </span>
+                  </div>
+
+                  <h2 className="mt-3 font-serif text-xl font-bold leading-snug text-ink-900 dark:text-white">
+                    <Link href={`/blog/${post.slug}`} className="transition-colors hover:text-gold-600 dark:hover:text-gold-400">
+                      {post.title}
+                    </Link>
+                  </h2>
+
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
+                    {post.excerpt}
+                  </p>
+
+                  <div className="mt-5 flex items-center justify-between border-t border-neutral-100 pt-4 dark:border-neutral-800">
+                    <time dateTime={post.date} className="text-xs text-neutral-500 dark:text-neutral-400">
+                      {formatDate(post.date)}
+                    </time>
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="text-sm font-semibold text-gold-600 transition-colors hover:text-gold-500 dark:text-gold-400"
+                    >
+                      Read →
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* Tail CTA */}
+          <div className="mb-16 rounded-3xl bg-ink-900 px-6 py-12 text-center">
+            <h2 className="font-serif text-2xl font-bold text-white sm:text-3xl">
+              Want a number for your own event?
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-neutral-300">
+              Our quote form gives you a real figure including travel — not a brochure.
+            </p>
+            <Link href="/#booking-form" className="btn-gold mt-7">
+              Get your free quote
+            </Link>
+          </div>
+        </div>
+      </main>
+    </>
+  );
+}

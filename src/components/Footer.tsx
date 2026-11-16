@@ -52,6 +52,8 @@ export function Footer() {
             <p className="mb-3 font-semibold text-ink-900 dark:text-white">Explore</p>
             <ul className="space-y-2 text-neutral-500 dark:text-neutral-400">
               <li><Link href="/#about" className="hover:text-gold-500">The band</Link></li>
+              <li><Link href="/prices" className="hover:text-gold-500">Prices</Link></li>
+              <li><Link href="/songs" className="hover:text-gold-500">Song list</Link></li>
               <li><Link href="/corporate-events" className="hover:text-gold-500">Corporate events</Link></li>
               <li><Link href="/christmas-party-band-london" className="hover:text-gold-500">Christmas parties</Link></li>
               <li><Link href="/#testimonials" className="hover:text-gold-500">Reviews</Link></li>
@@ -67,6 +69,7 @@ export function Footer() {
               <li><Link href="/wedding-band-essex" className="hover:text-gold-500">Wedding band Essex</Link></li>
               <li><Link href="/wedding-band-hertfordshire" className="hover:text-gold-500">Wedding band Hertfordshire</Link></li>
               <li><Link href="/wedding-music-guide" className="hover:text-gold-500">Wedding music guide</Link></li>
+              <li><Link href="/blog" className="hover:text-gold-500">Advice &amp; pricing guides</Link></li>
             </ul>
           </div>
 

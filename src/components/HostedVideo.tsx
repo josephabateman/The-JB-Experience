@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import Hls from "hls.js";
 import Link from "next/link";
 
 const HostedVideo: React.FC = () => {
@@ -15,6 +14,9 @@ const HostedVideo: React.FC = () => {
     setIsSafari(isSafariBrowser);
   }, []);
 
+  // hls.js is ~140kB and is only needed by non-Safari browsers. Loading it
+  // dynamically after mount keeps it out of the initial bundle — the poster image
+  // is what the visitor (and the LCP measurement) sees first either way.
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -23,15 +25,29 @@ const HostedVideo: React.FC = () => {
       video.src = videoSrc;
       video.load();
       video.play().catch(() => {});
-    } else if (Hls.isSupported()) {
+      return;
+    }
+
+    let destroy: (() => void) | undefined;
+    let cancelled = false;
+
+    import("hls.js").then(({ default: Hls }) => {
+      if (cancelled || !videoRef.current || !Hls.isSupported()) return;
       const hls = new Hls();
       hls.loadSource(videoSrc);
-      hls.attachMedia(video);
+      hls.attachMedia(videoRef.current);
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play().catch((err) => console.warn("Autoplay blocked:", err));
+        videoRef.current?.play().catch(() => {
+          /* autoplay blocked — poster stays visible */
+        });
       });
-      return () => hls.destroy();
-    }
+      destroy = () => hls.destroy();
+    });
+
+    return () => {
+      cancelled = true;
+      destroy?.();
+    };
   }, [isSafari]);
 
   const toggleMute = () => {
@@ -56,9 +72,10 @@ const HostedVideo: React.FC = () => {
         aria-hidden="true"
       />
 
-      {/* Gradient overlays for legibility */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ink-900/80 via-ink-900/50 to-ink-900/85" />
-      <div className="absolute inset-0 bg-ink-900/30" />
+      {/* Gradient overlays for legibility. The middle stop was too light against
+          bright, backlit footage — the H1 sits there, so it needs real contrast. */}
+      <div className="absolute inset-0 bg-gradient-to-b from-ink-900/85 via-ink-900/70 to-ink-900/90" />
+      <div className="absolute inset-0 bg-ink-900/25" />
 
       {/* Hero content */}
       <div className="relative z-10 mx-auto w-full max-w-5xl px-4 pt-24 pb-16 text-center sm:px-6">
@@ -82,21 +99,30 @@ const HostedVideo: React.FC = () => {
           <span className="hidden text-neutral-500 sm:inline">•</span>
           <span>BBC Radio featured</span>
           <span className="hidden text-neutral-500 sm:inline">•</span>
-          <span>Book direct &amp; save up to 30%</span>
+          <span>PA &amp; lighting included</span>
+          <span className="hidden text-neutral-500 sm:inline">•</span>
+          <span>No agency fees</span>
         </div>
 
-        {/* CTAs */}
+        {/* CTAs — the quote form is the goal, but "see prices" catches everyone
+            who isn't ready for a form yet and sends them to a page built to convert. */}
         <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link href="/#booking-form" className="btn-gold w-full sm:w-auto">
-            Get your free quote
+            Check your date &amp; price
           </Link>
           <Link
-            href="/#about"
+            href="/prices"
             className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-white/10 sm:w-auto"
           >
-            ▶ Watch us live
+            See our prices
           </Link>
         </div>
+
+        {/* Response-time reassurance directly under the CTA — removes the main
+            hesitation about filling in a form ("how long until I hear back?"). */}
+        <p className="mt-5 text-sm text-neutral-300">
+          Free quote including travel · Reply within 24 hours · No obligation
+        </p>
       </div>
 
       {/* Mute toggle */}

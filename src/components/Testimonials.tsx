@@ -1,13 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import CTAButton from "./CTAButton";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+import { useEffect, useRef, useState } from "react";
 
 interface Review {
   id?: string;
@@ -83,67 +76,52 @@ const fallbackReviews = [
 
 export default function ReviewsSlider() {
   const [reviews, setReviews] = useState<Review[]>(fallbackReviews);
-  const [loading, setLoading] = useState(true);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+
+  // Testimonials managed through the admin panel override the built-in list.
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/testimonials")
+      .then((r) => r.json())
+      .then((data) => {
+        if (!cancelled && data?.success && data.data?.length > 0) setReviews(data.data);
+      })
+      .catch(() => {
+        /* keep the built-in reviews */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Track scroll position so the arrows can disable themselves at either end.
+  const syncArrows = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    setAtStart(el.scrollLeft <= 8);
+    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 8);
+  };
 
   useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const response = await fetch('/api/testimonials');
-        const data = await response.json();
-        
-        if (data.success && data.data.length > 0) {
-          setReviews(data.data);
-        }
-      } catch (error) {
-        console.error('Failed to fetch testimonials:', error);
-        // Keep fallback reviews
-      } finally {
-        setLoading(false);
-      }
-    };
+    syncArrows();
+  }, [reviews]);
 
-    fetchTestimonials();
-  }, []);
+  const scrollByCards = (direction: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-review-card]");
+    const step = card ? card.offsetWidth + 24 : el.clientWidth * 0.8;
+    el.scrollBy({ left: step * direction, behavior: "smooth" });
+  };
+
   return (
-    <>
-      {/* Review Schema Markup */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "name": "The JB Experience",
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "5",
-              "reviewCount": reviews.length,
-              "bestRating": "5",
-              "worstRating": "5"
-            },
-            "review": reviews.slice(0, 5).map(review => ({
-              "@type": "Review",
-              "author": {
-                "@type": "Person",
-                "name": review.name
-              },
-              "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": "5",
-                "bestRating": "5"
-              },
-              "reviewBody": review.text,
-              "datePublished": "2024-01-01"
-            }))
-          })
-        }}
-      />
-      
-      <section className="section bg-neutral-50 dark:bg-ink-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
+    <section className="section bg-neutral-50 dark:bg-ink-800">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 text-center">
           <p className="eyebrow mb-3">Reviews</p>
-          <h2 className="text-3xl font-bold text-ink-900 dark:text-white mb-4 sm:text-4xl">
+          <h2 className="mb-4 text-3xl font-bold text-ink-900 dark:text-white sm:text-4xl">
             What our clients say
           </h2>
           <div className="mb-3 flex items-center justify-center gap-2 text-sm text-neutral-600 dark:text-neutral-300">
@@ -152,90 +130,64 @@ export default function ReviewsSlider() {
             <span className="text-neutral-400">·</span>
             <span>{reviews.length} reviews</span>
           </div>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">
-            Real feedback from weddings, corporate events, and private celebrations across London, Essex & Hertfordshire
-          </p>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            ← Swipe or use arrows to see all reviews →
+          <p className="mx-auto max-w-2xl text-lg text-neutral-600 dark:text-neutral-300">
+            Real feedback from weddings, corporate events and private celebrations across London,
+            Essex &amp; Hertfordshire.
           </p>
         </div>
-        
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={30}
-          slidesPerView={1}
-          loop={false}
-          grabCursor={true}
-          watchSlidesProgress={true}
-          breakpoints={{
-            640: {
-              slidesPerView: 1,
-              spaceBetween: 20,
-            },
-            768: {
-              slidesPerView: 2,
-              spaceBetween: 30,
-            },
-            1024: {
-              slidesPerView: 3,
-              spaceBetween: 40,
-            },
-          }}
-          navigation={{
-            prevEl: '.swiper-button-prev-custom',
-            nextEl: '.swiper-button-next-custom',
-          }}
-          pagination={{ 
-            clickable: true,
-            el: '.swiper-pagination-custom',
-            bulletActiveClass: 'swiper-pagination-bullet-active',
-            dynamicBullets: true,
-            dynamicMainBullets: 3,
-          }}
-          autoplay={{ 
-            delay: 4000, 
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true
-          }}
-          className="testimonials-swiper mb-8"
+
+        {/* Native scroll-snap carousel — no carousel library, no extra JS payload,
+            and it stays swipeable on touch and keyboard-scrollable on desktop. */}
+        <div
+          ref={trackRef}
+          onScroll={syncArrows}
+          tabIndex={0}
+          role="region"
+          aria-label="Client reviews, scrollable"
+          className="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-4 pb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 sm:mx-0 sm:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {reviews.map((review, index) => (
-            <SwiperSlide key={index}>
-              <div className="bg-white dark:bg-ink-900 rounded-2xl shadow-sm border border-neutral-200 dark:border-neutral-700 p-6 h-auto min-h-[280px] flex flex-col">
-                <div className="flex-1">
-                  <div className="flex mb-4">
-                    <span className="text-gold-500 text-lg">
-                      {'★'.repeat(review.rating || 5)}
-                    </span>
-                  </div>
-                  <p className="text-neutral-700 dark:text-neutral-300 text-base leading-relaxed mb-6">
-                    &ldquo;{review.text}&rdquo;
-                  </p>
-                </div>
-                <div className="border-t border-neutral-200 dark:border-neutral-700 pt-4">
-                  <div className="font-semibold text-ink-900 dark:text-white">{review.name}</div>
-                  <div className="text-sm text-neutral-500 dark:text-neutral-400">{review.event}</div>
-                </div>
+            <figure
+              key={review.id ?? index}
+              data-review-card
+              className="flex w-[85vw] max-w-sm flex-none snap-start flex-col rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-700 dark:bg-ink-900 sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+            >
+              <div className="mb-4 text-lg text-gold-500" aria-label={`${review.rating || 5} out of 5 stars`}>
+                {"★".repeat(review.rating || 5)}
               </div>
-            </SwiperSlide>
+              <blockquote className="flex-1 text-base leading-relaxed text-neutral-700 dark:text-neutral-300">
+                &ldquo;{review.text}&rdquo;
+              </blockquote>
+              <figcaption className="mt-6 border-t border-neutral-200 pt-4 dark:border-neutral-700">
+                <span className="block font-semibold text-ink-900 dark:text-white">{review.name}</span>
+                <span className="block text-sm text-neutral-500 dark:text-neutral-400">
+                  {review.event}
+                </span>
+              </figcaption>
+            </figure>
           ))}
-        </Swiper>
-
-        {/* Pagination Dots */}
-        <div className="swiper-pagination-custom flex justify-center space-x-2 mb-6"></div>
-        
-        {/* Custom Navigation Buttons */}
-        <div className="flex justify-center space-x-4">
-          <button className="swiper-button-prev-custom w-12 h-12 bg-gold-500 hover:bg-gold-400 text-ink-900 rounded-full flex items-center justify-center transition-all shadow-md hover:scale-105" aria-label="Previous review">
-            <span className="text-xl">←</span>
-          </button>
-          <button className="swiper-button-next-custom w-12 h-12 bg-gold-500 hover:bg-gold-400 text-ink-900 rounded-full flex items-center justify-center transition-all shadow-md hover:scale-105" aria-label="Next review">
-            <span className="text-xl">→</span>
-          </button>
         </div>
 
+        {/* Arrows */}
+        <div className="mt-6 flex justify-center gap-4">
+          <button
+            onClick={() => scrollByCards(-1)}
+            disabled={atStart}
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-gold-500 text-ink-900 shadow-md transition-all hover:scale-105 hover:bg-gold-400 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100"
+            aria-label="Previous reviews"
+          >
+            <span className="text-xl" aria-hidden="true">←</span>
+          </button>
+          <button
+            onClick={() => scrollByCards(1)}
+            disabled={atEnd}
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-gold-500 text-ink-900 shadow-md transition-all hover:scale-105 hover:bg-gold-400 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100"
+            aria-label="More reviews"
+          >
+            <span className="text-xl" aria-hidden="true">→</span>
+          </button>
+        </div>
       </div>
     </section>
-    </>
   );
 }

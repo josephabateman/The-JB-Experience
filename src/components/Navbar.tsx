@@ -7,10 +7,10 @@ import { WHATSAPP_URL } from "@/config/contact";
 
 const bandNav = [
   { name: "About", link: "/#about" },
+  { name: "Prices", link: "/prices" },
   { name: "Corporate", link: "/corporate-events" },
-  { name: "Gallery", link: "/#gallery" },
+  { name: "Songs", link: "/songs" },
   { name: "Reviews", link: "/#testimonials" },
-  { name: "FAQ", link: "/#faq" },
 ];
 
 export const Navbar: React.FC = () => {
@@ -39,9 +39,11 @@ export const Navbar: React.FC = () => {
     };
   }, [menuOpen]);
 
-  // On the solo-artist page the bar is always solid (dark page), elsewhere it's
-  // transparent over the hero until you scroll.
-  const solid = scrolled || isMusic;
+  // The transparent bar only works over the homepage's dark video hero. Every
+  // other page starts on a light background, where white nav text is invisible —
+  // so the bar stays solid everywhere except the un-scrolled homepage.
+  const isHome = pathname === "/";
+  const solid = scrolled || isMusic || !isHome;
 
   // ---------------------------------------------------------------------------
   // SOLO ARTIST MODE — distinct branding so it never feels like a band section

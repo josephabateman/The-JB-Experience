@@ -4,12 +4,12 @@ import { PRICING } from "@/config/pricing";
 import { WHATSAPP_URL } from "@/config/contact";
 
 export const metadata: Metadata = {
-  title: "Complete Wedding Music Guide 2025 | First Dance Songs & Playlists | The JB Experience",
-  description: "The ultimate guide to wedding music for 2025. First dance songs, reception playlists, ceremony music & band vs DJ advice from London wedding music experts.",
-  keywords: "wedding music guide, first dance songs 2025, wedding playlist, ceremony music, reception music, wedding band vs DJ, best wedding songs, wedding music planning",
+  title: "Complete Wedding Music Guide 2026 | First Dance Songs & Playlists | The JB Experience",
+  description: "The ultimate guide to wedding music for 2026. First dance songs, reception playlists, ceremony music & band vs DJ advice from London wedding music experts.",
+  keywords: "wedding music guide, first dance songs 2026, wedding playlist, ceremony music, reception music, wedding band vs DJ, best wedding songs, wedding music planning",
   alternates: { canonical: "https://www.thejbexperience.co.uk/wedding-music-guide" },
   openGraph: {
-    title: "Complete Wedding Music Guide 2025 | Wedding Music Planning",
+    title: "Complete Wedding Music Guide 2026 | Wedding Music Planning",
     description: "Everything you need to know about planning your wedding music - from first dance songs to reception playlists. Expert advice from London wedding band.",
     url: "https://www.thejbexperience.co.uk/wedding-music-guide",
     type: "article",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 const WeddingMusicGuide = () => {
-  const firstDanceSongs2025 = [
+  const firstDanceSongs2026 = [
     { title: "Perfect", artist: "Ed Sheeran", genre: "Pop/Acoustic", popularity: "Very Popular" },
     { title: "Thinking Out Loud", artist: "Ed Sheeran", genre: "Pop/Acoustic", popularity: "Very Popular" },
     { title: "All of Me", artist: "John Legend", genre: "R&B/Soul", popularity: "Very Popular" },
@@ -55,7 +55,7 @@ const WeddingMusicGuide = () => {
       <section className="bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Wedding Music Guide 2025
+            Wedding Music Guide 2026
           </h1>
           <p className="text-xl md:text-2xl mb-8 opacity-90">
             Everything you need to know about planning the perfect wedding music
@@ -85,7 +85,7 @@ const WeddingMusicGuide = () => {
             <div className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-sm">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Song Suggestions</h3>
               <ul className="space-y-2 text-gray-600 dark:text-gray-300">
-                <li>• Top first dance songs 2025</li>
+                <li>• Top first dance songs 2026</li>
                 <li>• Reception playlist ideas</li>
                 <li>• Ceremony music options</li>
                 <li>• Special request considerations</li>
@@ -183,7 +183,7 @@ const WeddingMusicGuide = () => {
       <section className="py-16 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12 text-center">
-            Top First Dance Songs for 2025
+            Top First Dance Songs for 2026
           </h2>
           
           <div className="bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg">
@@ -198,7 +198,7 @@ const WeddingMusicGuide = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {firstDanceSongs2025.map((song, index) => (
+                  {firstDanceSongs2026.map((song, index) => (
                     <tr key={index} className={`${index % 2 === 0 ? 'bg-gray-50 dark:bg-gray-800' : 'bg-white dark:bg-gray-700'} hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors`}>
                       <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">{song.title}</td>
                       <td className="px-6 py-4 text-gray-700 dark:text-gray-300">{song.artist}</td>

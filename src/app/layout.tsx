@@ -22,8 +22,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata = {
-  title: "Wedding Band London | Corporate Entertainment | The JB Experience",
-  description: `Professional live music for weddings & corporate events across London, Essex, Hertfordshire. Book direct & save 30%. From £${PRICING.soloPrice}. Get a free quote online.`,
+  title: `Wedding Band London | From £${PRICING.soloPrice}, No Agency Fees | The JB Experience`,
+  description: `Live band for weddings, corporate events & parties across London, Essex & Hertfordshire. Prices published up front from £${PRICING.soloPrice} — PA & lighting included, booked direct with no agency commission. Free quote in 24 hours.`,
   keywords: "wedding band London, corporate entertainment London, wedding musicians London, live band hire London, corporate event band London, function band London, wedding band Essex, wedding band Hertfordshire, book direct wedding band, no agency fees wedding band, affordable wedding band London, professional wedding band, live music London",
   author: "The JB Experience",
   robots: "index, follow",
@@ -70,8 +70,7 @@ export default function RootLayout({
         {/* Favicon */}
         <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
         
-        {/* Preload critical resources */}
-        <link rel="preload" href="/_next/static/css/app/layout.css" as="style" />
+        {/* Preload the LCP image only — Next injects its own CSS links */}
         <link rel="preload" href="/images/band-performing.jpg" as="image" />
         
         {/* DNS prefetch for external domains */}
@@ -221,11 +220,6 @@ export default function RootLayout({
         <meta name="geo.position" content="51.5693;-0.0146" />
         <meta name="ICBM" content="51.5693, -0.0146" />
         
-        {/* Additional Local SEO Tags */}
-        <meta name="coverage" content="London, Essex, Hertfordshire, Kent, Surrey" />
-        <meta name="distribution" content="local" />
-        <meta name="target" content="wedding bands London, wedding musicians Essex, event entertainment Hertfordshire" />
-
         {/* Google Ads Conversion Tracking */}
         <Script
           async
