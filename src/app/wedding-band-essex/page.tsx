@@ -7,7 +7,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Wedding Band Essex | Live Music for Essex Weddings | The JB Experience",
-  description: `Professional wedding band serving all of Essex. Live music for weddings in Chelmsford, Colchester, Southend, Brentwood & across Essex. Book direct from £${PRICING.soloPrice} - no agency fees!`,
+  description: `Live wedding band for Essex venues including Gaynes Park, Down Hall and Prested Hall, and for weddings across Chelmsford, Colchester, Southend and Brentwood. Book direct from £${PRICING.soloPrice} — no agency fees.`,
   keywords: "wedding band Essex, wedding music Essex, live band hire Essex, Essex wedding entertainment, wedding musicians Essex, Chelmsford wedding band, Colchester wedding band, Southend wedding band, Brentwood wedding band",
   alternates: { canonical: "https://www.thejbexperience.co.uk/wedding-band-essex" },
   openGraph: {
@@ -165,7 +165,8 @@ const EssexPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {essexVenues.map((venue, index) => (
-              <div key={venue.name} className="bg-white dark:bg-ink-800 rounded-xl shadow-lg overflow-hidden">
+              <div key={venue.name} id={`venue-${venue.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                className="scroll-mt-28 bg-white dark:bg-ink-800 rounded-xl shadow-lg overflow-hidden">
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <span className="text-2xl">🏰</span>

@@ -6,7 +6,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Wedding Band Hertfordshire | Live Music for Hertfordshire Weddings | The JB Experience",
-  description: `Professional wedding band serving all of Hertfordshire. Live music for weddings in St Albans, Watford, Hertford, Stevenage & across Hertfordshire. Book direct from £${PRICING.soloPrice}!`,
+  description: `Live wedding band for Hertfordshire venues including The Grove, Hanbury Manor and Ashridge House, and for weddings across St Albans, Watford, Hertford and Stevenage. Book direct from £${PRICING.soloPrice}.`,
   keywords: "wedding band Hertfordshire, wedding music Hertfordshire, live band hire Hertfordshire, Hertfordshire wedding entertainment, wedding musicians Hertfordshire, St Albans wedding band, Watford wedding band, Hertford wedding band, Stevenage wedding band",
   alternates: { canonical: "https://www.thejbexperience.co.uk/wedding-band-hertfordshire" },
   openGraph: {
@@ -164,7 +164,8 @@ const HertfordshirePage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {hertfordshireVenues.map((venue, index) => (
-              <div key={venue.name} className="bg-white dark:bg-ink-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div key={venue.name} id={`venue-${venue.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                className="scroll-mt-28 bg-white dark:bg-ink-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <span className="text-2xl">🏛️</span>
