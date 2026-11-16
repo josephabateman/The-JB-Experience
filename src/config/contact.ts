@@ -11,3 +11,23 @@ export const WHATSAPP_MESSAGE =
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   WHATSAPP_MESSAGE
 )}`;
+
+/**
+ * Where /review sends people.
+ *
+ * Set GOOGLE_REVIEW_URL in Vercel to the short link from your Google Business
+ * Profile ("Ask for reviews"), which looks like:
+ *   https://g.page/r/XXXXXXXXXXXXXX/review
+ * That opens the review box directly, already signed in, on mobile.
+ *
+ * Until it is set, /review falls back to a Google Maps search for the business
+ * — not ideal, but it lands people somewhere useful rather than breaking.
+ */
+const GOOGLE_REVIEW_FALLBACK =
+  "https://www.google.com/maps/search/?api=1&query=The+JB+Experience+wedding+band+London";
+
+export const GOOGLE_REVIEW_URL =
+  process.env.GOOGLE_REVIEW_URL || GOOGLE_REVIEW_FALLBACK;
+
+/** True once the real Google review link has been configured. */
+export const HAS_GOOGLE_REVIEW_LINK = Boolean(process.env.GOOGLE_REVIEW_URL);

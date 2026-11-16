@@ -9,20 +9,37 @@ than a month of ads.
 
 ---
 
-## Before you send anything: get your review link
+## Before you send anything: set up the link (one-off, five minutes)
 
 Do not send people to "search for us on Google". Every extra step loses half of them.
+
+**Step 1 — get the Google link.**
 
 1. Open your Google Business Profile (search your own business name while signed in as
    the owner, or go to business.google.com).
 2. Find **Ask for reviews** / **Get more reviews**.
 3. Copy the short link. It looks like `https://g.page/r/XXXXXXXXXXXX/review`.
 
-That link opens the review box directly, already signed in, on mobile. Test it on your
-own phone before sending it to anyone.
+**Step 2 — plug it into the site.**
 
-**Shorten it if you're sending by text** — `g.page/r/...` links are long and look
-suspicious in a message. A short link with your own name in it reads better.
+The site now serves `thejbexperience.co.uk/review`, which redirects to that Google
+link. Set it once and every template below works:
+
+1. Vercel → the `the-jb-experience` project → **Settings → Environment Variables**
+2. Add `GOOGLE_REVIEW_URL` with the `g.page/r/...` link as the value, for Production
+3. Save
+
+It takes effect immediately — no redeploy needed. Until you set it, `/review` falls
+back to a Google Maps search for the band, so the link never looks broken.
+
+**Step 3 — test it on your own phone.** Open `thejbexperience.co.uk/review` and check
+it lands on the review box.
+
+**Why bother with the redirect:** `https://g.page/r/CfX8kL2mQ9/review` looks like spam
+in a WhatsApp message and nobody can type it from memory.
+`thejbexperience.co.uk/review` is short enough to put in an email signature, read out
+at the end of a gig, or print on a card. It also means if the Google link ever
+changes, you update one setting instead of chasing old messages.
 
 ---
 
@@ -55,7 +72,7 @@ the room was still going at the end].
 Could I ask a small favour? We're trying to build up our reviews on Google, and a
 couple of lines from you would genuinely help people find us.
 
-[LINK]
+thejbexperience.co.uk/review
 
 It takes about a minute, and honestly two sentences is plenty — no need to write
 an essay.
@@ -83,7 +100,7 @@ This is a slightly belated message — we played at [your wedding / your event] 
 We're building up our reviews on Google, and if you still have good memories of the
 night, a couple of lines would mean a lot:
 
-[LINK]
+thejbexperience.co.uk/review
 
 Completely understand if it's too long ago or you'd rather not — no hard feelings
 either way.
@@ -109,7 +126,7 @@ Hi [Name], Joe here from the band at [venue] — hope you're well!
 Small favour: we're building up our Google reviews and a couple of lines from
 you would really help us out.
 
-[LINK]
+thejbexperience.co.uk/review
 
 Takes a minute, and no worries at all if you'd rather not. Thanks again for
 having us — great night.
