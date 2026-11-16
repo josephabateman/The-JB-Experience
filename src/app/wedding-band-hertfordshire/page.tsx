@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PRICING } from "@/config/pricing";
 import { WHATSAPP_URL } from "@/config/contact";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { venuePageForName } from "@/content/venues";
 
 export const metadata: Metadata = {
   title: "Wedding Band Hertfordshire | Live Music for Hertfordshire Weddings | The JB Experience",
@@ -189,11 +190,15 @@ const HertfordshirePage = () => {
                   <p className="text-neutral-700 dark:text-neutral-300 text-sm mb-4">{venue.specialty}</p>
                   
                   <div className="pt-4 border-t border-neutral-200 dark:border-neutral-700">
+                    {/* Venues with a page of their own get the deep link — it answers
+                        "wedding band <venue>" far better than the generic form. */}
                     <Link
-                      href="/#booking-form"
+                      href={venuePageForName(venue.name) ?? "/#booking-form"}
                       className="text-gold-600 dark:text-gold-400 hover:text-gold-700 dark:hover:text-gold-300 font-semibold"
                     >
-                      Get Quote for {venue.name} →
+                      {venuePageForName(venue.name)
+                        ? `Wedding bands at ${venue.name} →`
+                        : `Get Quote for ${venue.name} →`}
                     </Link>
                   </div>
                 </div>

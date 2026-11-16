@@ -5,6 +5,11 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { PRICING } from "../config/pricing";
 
+// The same act is listed on Entertainment Nation as "Rustlin Sky" at this
+// starting price. It is the honest benchmark for booking direct, so the saving
+// is calculated from it rather than quoted as a vague percentage.
+const AGENCY_LISTING_PRICE = 1729;
+
 export const Faq = () => {
   const getIcon = (question: string) => {
     if (question.includes("singer") || question.includes("videos")) return "🎤";
@@ -99,7 +104,7 @@ export const Faq = () => {
 const faqdata = [
   {
     question: "Why book direct vs agency?",
-    answer: "Save up to 30% by booking directly with The JB Experience. Agencies add 20-40% commission on top of our rates. Direct booking means better communication, more flexibility with requests, and lower costs."
+    answer: `Agencies add roughly 20–40% commission on top of a band's own fee. Our act is listed through an entertainment agency from £${AGENCY_LISTING_PRICE.toLocaleString()}; booked direct the full band is £${PRICING.trioPrice.toLocaleString()} — the same musicians, the same performance, £${(AGENCY_LISTING_PRICE - PRICING.trioPrice).toLocaleString()} less. You also get the band's own answers to your questions instead of a relay.`
   },
   {
     question: "Coverage areas from East London base?",

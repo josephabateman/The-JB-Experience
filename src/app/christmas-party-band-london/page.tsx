@@ -25,7 +25,7 @@ const highlights = [
   { title: "Festive classics + floor-fillers", body: "Michael Bublé, Wham! and Christmas favourites woven through the pop, rock and soul hits that pack a dance floor." },
   { title: "Office & corporate parties", body: "The polished, reliable live act your staff party deserves — trusted by clients including Hilton." },
   { title: "PA & lighting included", body: "Full sound system and stage lighting as standard, plus a playlist DJ service between sets." },
-  { title: "Book direct & save up to 30%", body: "No agency fees — deal directly with the band and keep more of your festive budget." },
+  { title: "Book direct, no agency fees", body: "No agency fees — deal directly with the band and keep more of your festive budget." },
 ];
 
 export default function ChristmasPartyBandPage() {

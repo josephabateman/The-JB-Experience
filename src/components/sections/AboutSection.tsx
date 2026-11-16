@@ -39,7 +39,7 @@ const included = [
   { title: "Professional PA & lighting", body: "Full sound system and stage lighting included as standard." },
   { title: "Live looping technology", body: "Innovative stompbox setup for a bigger sound from fewer players." },
   { title: "Your first dance, learned free", body: "We learn your special songs and read the room all night." },
-  { title: "Book direct, no agency fees", body: "Deal with the band directly and save up to 30%." },
+  { title: "Book direct, no agency fees", body: "Deal with the band directly. No commission added in the middle, and your questions answered by the people playing." },
 ];
 
 export const AboutSection = () => {

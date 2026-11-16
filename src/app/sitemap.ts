@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { BLOG_POSTS } from '@/content/blog'
+import { VENUES, venuePath } from '@/content/venues'
 
 const baseUrl = 'https://www.thejbexperience.co.uk'
 
@@ -10,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: now, changeFrequency: 'weekly', priority: 1 },
     { url: `${baseUrl}/prices`, lastModified: now, changeFrequency: 'monthly', priority: 0.95 },
+    { url: `${baseUrl}/wedding-band`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/corporate-events`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/wedding-band-essex`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/wedding-band-hertfordshire`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
@@ -20,6 +22,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
   ]
 
+  // Venue pages catch "wedding band <venue>" — already-booked-the-venue intent.
+  const venues: MetadataRoute.Sitemap = VENUES.map((venue) => ({
+    url: `${baseUrl}${venuePath(venue.slug)}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.85,
+  }))
+
   const posts: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.updated ?? post.date),
@@ -27,5 +37,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }))
 
-  return [...pages, ...posts]
+  return [...pages, ...venues, ...posts]
 }

@@ -66,6 +66,7 @@ export function Footer() {
           <div className="text-sm">
             <p className="mb-3 font-semibold text-ink-900 dark:text-white">Areas we cover</p>
             <ul className="space-y-2 text-neutral-500 dark:text-neutral-400">
+              <li><Link href="/wedding-band" className="hover:text-gold-500">Venues we&apos;ve played</Link></li>
               <li><Link href="/wedding-band-essex" className="hover:text-gold-500">Wedding band Essex</Link></li>
               <li><Link href="/wedding-band-hertfordshire" className="hover:text-gold-500">Wedding band Hertfordshire</Link></li>
               <li><Link href="/wedding-music-guide" className="hover:text-gold-500">Wedding music guide</Link></li>

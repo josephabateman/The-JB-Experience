@@ -1,24 +1,18 @@
-"use client";
+import Testimonials from "../Testimonials";
 
-import dynamic from "next/dynamic";
-
-// Import the existing Testimonials component
-const Testimonials = dynamic(() => import("../Testimonials"), {
-  ssr: false,
-  loading: () => (
-    <section className="py-12 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <div className="animate-pulse">
-            <div className="h-8 bg-gray-300 dark:bg-gray-700 rounded w-64 mx-auto mb-4"></div>
-            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-96 mx-auto"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-  ),
-});
-
-export const TestimonialsSection = () => {
-  return <Testimonials />;
-};
+/**
+ * The reviews section.
+ *
+ * This used to load Testimonials through next/dynamic with `ssr: false`, which
+ * meant the twelve client reviews — the most persuasive content on the site, and
+ * the only social proof above the booking form — were absent from the HTML
+ * entirely. Visitors got a grey skeleton until the JS arrived, and crawlers were
+ * asked to execute JavaScript before seeing a single word of it.
+ *
+ * It was deferred because the reviews were fetched from an API at runtime.
+ * They are static content now (src/content/reviews.ts), so the component renders
+ * on the server and the review text ships in the initial HTML. Testimonials is
+ * still a client component — the carousel arrows need state — but that costs
+ * nothing here: client components are server-rendered too.
+ */
+export const TestimonialsSection = () => <Testimonials />;

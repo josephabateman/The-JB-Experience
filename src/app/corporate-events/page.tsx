@@ -33,7 +33,7 @@ const eventTypes = [
 const whyBook = [
   { title: "Trusted by corporate clients", body: "Performed for clients including Hilton, with polished, reliable, professional delivery." },
   { title: "PA & lighting included", body: "Full sound system and stage lighting as standard — no extra hire, no surprises." },
-  { title: "Book direct & save up to 30%", body: "No agency fees. Deal directly with the band and keep your budget where it counts." },
+  { title: "Book direct, no agency fees", body: "No agency fees. Deal directly with the band and keep your budget where it counts." },
   { title: "Versatile, all-audience repertoire", body: "From laid-back dinner sets to floor-fillers that get every department dancing." },
 ];
 

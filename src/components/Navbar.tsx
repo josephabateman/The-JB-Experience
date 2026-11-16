@@ -10,6 +10,7 @@ const bandNav = [
   { name: "Prices", link: "/prices" },
   { name: "Corporate", link: "/corporate-events" },
   { name: "Songs", link: "/songs" },
+  { name: "Venues", link: "/wedding-band" },
   { name: "Reviews", link: "/#testimonials" },
 ];
 
